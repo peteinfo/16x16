@@ -1,4 +1,6 @@
 
+
+
 class Grid {
 
   int w;
@@ -8,8 +10,8 @@ class Grid {
 
   int xScale = 24;
   int yScale = 24;
-  int xOffset = 60;
-  int yOffset = 72;
+  int xOffset = 64;
+  int yOffset = 70;
 
 
   Grid(int _w, int _h) {
@@ -24,6 +26,8 @@ class Grid {
   }
 
   void draw() {
+
+    fill(fontColour);
 
     int cursorPos = 0;
 
@@ -49,12 +53,15 @@ class Grid {
         }
 
         char c = v[cursorPos];
+        textAlign(CENTER, CENTER);
+        textSize(20);
         text(c, x*xScale + xOffset, y*yScale+yOffset);
 
         cursorPos++;
       }
     }
   }
+
 
 
   void cursorLeft() {
@@ -98,6 +105,22 @@ class Grid {
       v[n] = '.';
     }
     println("");
+  }
+
+
+  void playNotes() {
+
+    int colCount = 0;
+
+    for (int n = (w*h)-w; n < w*h; n++) {
+      if (v[n] != '.') {
+        triOsc.play(midiToFreq(midiSequence[colCount]), 0.4);
+        env.play(triOsc, attackTime, sustainTime, sustainLevel, releaseTime);
+
+        println("donk");
+      }
+      colCount++;
+    }
   }
 
   void scramble() {
