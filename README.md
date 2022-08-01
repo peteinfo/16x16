@@ -8,3 +8,12 @@ Controls:
 Inspired by Orca: https://100r.co/site/orca.html
 
 Run in Processing 4: https://processing.org
+
+
+
+### Modes
+
+- Rainfall
+- Bubblewrap
+- Game of Life
+- Wireworld mode: https://wiki.xxiivv.com/site/wireworld.html

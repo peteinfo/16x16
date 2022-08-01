@@ -25,8 +25,8 @@ void onTick() {
   } else {
     windchime.stop();
     windchimePlaying = false;
-    sampleKick.play();
     grid.playNotes();
     grid.gravity();
+    sampleKick.play();
   }
 }

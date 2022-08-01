@@ -112,11 +112,12 @@ class Grid {
 
     int colCount = 0;
 
-    for (int n = (w*h)-w; n < w*h; n++) {
+    for (int n = ((w*h)-(2*w)); n < ((w*h)-w); n++) {
       if (v[n] != '.') {
+        println(colCount);
         triOsc.play(midiToFreq(midiSequence[colCount]), 0.4);
         env.play(triOsc, attackTime, sustainTime, sustainLevel, releaseTime);
-
+        v[n] = 'X';
         println("donk");
       }
       colCount++;

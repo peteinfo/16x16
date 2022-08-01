@@ -22,10 +22,10 @@ TriOsc triOsc;
 Env env;
 
 // Times and levels for the ASR envelope
-float attackTime = 0.1;
-float sustainTime = 0.4;
-float sustainLevel = 0.1;
-float releaseTime = 0.8;
+float attackTime = 0.001;
+float sustainTime = 0.1;
+float sustainLevel = 0.01;
+float releaseTime = 0.5;
 
 // This is an octave in MIDI notes.
 int[] midiSequence = { 50, 53, 55, 57, 60, 62, 65, 67, 69, 72, 70, 72, 74, 77, 79, 81, 83 };
@@ -70,9 +70,10 @@ void setup() {
   env = new Env(this);
 
   // Set soundfile as input to the reverb
-  delay.process(triOsc, 5.0);
-  delay.feedback(0.3);
-  delay.time(0.8);
+  delay.process(triOsc, 2.0);
+  delay.feedback(0.5);
+  delay.time(0.01);
+ // delay.drywet(0.5);
 }
 
 void draw() {
