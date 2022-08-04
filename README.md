@@ -13,7 +13,9 @@ Run in Processing 4: https://processing.org
 
 ### Modes
 
-- Rainfall
-- Bubblewrap
-- Game of Life
+- Rainfall: Notes fall to the bottom of the screen, where they splash and play.
+- Bubblewrap: There are 256 unpopped notes to start with. The user pops them in any order until no notes are left to play.
+- Game of Life: Cellular automata based sequencer
 - Wireworld mode: https://wiki.xxiivv.com/site/wireworld.html
+- TimeSum: Takes the sum total of all numbers to set tempo
+- Polymeter: Each row runs at a different speed
