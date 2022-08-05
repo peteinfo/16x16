@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>16x16</title>
+  <script src="./index.js"></script>
   <style>
     :root {
       --font-size: 18px;
@@ -27,20 +28,20 @@
       justify-content: center;
       align-items: center;
     }
-    #grid {
+    #display {
       display: grid;
       grid: repeat(16,var(--height)) / repeat(16,var(--width));
       width: calc(16 * var(--width));
       height: calc(16 * var(--height));
     }
-    #grid > div {
+    #display > div {
       text-align: center;
       position: relative;
       display: inline;
       line-height: 1.5rem;
     }
-    #grid > div:before,
-    #grid > div:nth-child(16n):after {
+    #display > div:before,
+    #display > div:nth-child(16n):after {
       content: '';
       position: absolute;
       left: 0px;
@@ -50,7 +51,7 @@
       background-color: green;
       /* z-index: 9999; */
     }
-    #grid > div:nth-child(16n):after {
+    #display > div:nth-child(16n):after {
       left: unset;
       right: 0;
     }
@@ -64,15 +65,15 @@
         color: black;
       }
     }
-    #grid > div.cursor {
+    #display > div.cursor {
       background-color: green;
       color: black;
       animation: blink 0.5s linear infinite alternate;
     }
   </style>
 </head>
-<body>
-  <div id="grid">
+<body onload="init()">
+  <div id="display">
     <div>0</div>
     <div class="cursor">1</div>
     <div>2</div>
