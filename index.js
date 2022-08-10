@@ -1,76 +1,119 @@
 let mode = null
 
+let cells = null
+
 const init = () => {
-  mode = initMode(rainMode, grid)
-  grid.moveBy(1, 1)
-  console.log("yay", grid)
-  grid.run()
-  document.onkeydown = function(event) {
-    const {key, altKey, ctrlKey, shiftKey, timeStamp} = event
-    grid.onKey({key, altKey, ctrlKey, shiftKey, timeStamp})
+  cells = document.querySelectorAll('#display>div')
+  grid.mode = initMode(writeMode, grid)
+  document.onkeydown = (event) => {
+    const { key, altKey, ctrlKey, shiftKey, timeStamp } = event
+    grid.onKey({ key, altKey, ctrlKey, shiftKey, timeStamp })
+    render()
   }
+  main()
+}
+
+const main = () => {
+  setInterval(render, 1000)
+}
+
+const render = () => {
+  grid.update()
+  cells.forEach((cell, index) => {
+    // render the content
+    cell.textContent = grid.sequence[index]
+    // render the cursor
+    cell.className = grid.cursor.index == index ? "cursor" : ""
+  })
 }
 
 const grid = {
   w: 16,
   h: 16,
+  mode: undefined, // the current mode
   sequence: Array(256), // create string of length,
   cursor: {
     x: 0,
     y: 0,
+    index: 0,
   },
   onKey(e) {
     console.log(e)
+    switch (e.key) {
+      case "ArrowRight":
+        this.moveBy(1,0)
+        break;
+      case "ArrowLeft":
+        this.moveBy(-1,0)
+        break;
+      case "ArrowUp":
+        this.moveBy(0,-1)
+        break;
+      case "ArrowDown":
+        this.moveBy(0,1)
+        break;
+    }
+    this.mode.onKey(e)
   },
-  moveBy (x = 0, y = 0) {
+  moveBy(x = 0, y = 0) {
     this.cursor.x += x
     this.cursor.y += y
+    // Yes, this is so complicated because JS modulo does not wrap on negative numbers
+    this.cursor.index = ((this.cursor.index + x + 16 * y % 256) + 256) % 256
+    console.log(this.cursor.index)
   },
-  moveTo ({x = 0, y = 0}) {
-    this.cursor.x += x
-    this.cursor.y += y
+  moveTo({ x = 0, y = 0 }) {
+    this.cursor.x = x
+    this.cursor.y = y
+    this.cursor.index = (x + 16 * y) % 256
   },
-  _ticker: undefined,
-  run() {
-    this._ticker = setInterval(this.tick.bind(this), 1000)
-  },
-  tick() {
+  update() {
     let x, y
-    for (x=0; x<16; x+=1) {
-      for (y=0; y<16; y+=1) {
-        this.sequence[y*16+x] = randChar()
+    for (x = 0; x < 16; x += 1) {
+      for (y = 0; y < 16; y += 1) {
+        const index = y * 16 + x
+        this.sequence[index] = this.mode.update(x, y, index)
       }
     }
-    this.render()
   },
-  render() {
-    const cells = document.querySelectorAll('#display>div')
-    // console.log(this.sequence)
-    cells.forEach((cell, i) => {
-      cell.textContent = this.sequence[i]
-      if (this.cursor.y*16+this.cursor.x == i) {
-        cell.className = "cursor"
-      } else {
-        cell.className = ""
-      }
-    })
-
-  }
 }
 
-const randChar = () => String.fromCharCode(65+Math.random()*57)
+const randChar = () => String.fromCharCode(65 + Math.random() * 57)
 
 const initMode = (mode, grid) => {
-  const newMode = {...mode, grid}
+  const newMode = { ...mode, grid }
   newMode.init()
   return newMode
 }
 
+
+// A mode generating random chars
+const randMode = {
+  init() { },
+  onKey(key) { },
+  update(x, y) {
+    return randChar()
+  },
+}
+
+const writeMode = {
+  init() { },
+  onKey(key) {
+    if (key.key.match(/^[A-z0-9]$/)) {
+      this.grid.sequence[this.grid.cursor.index] = key.key
+      this.grid.moveBy(1,0)
+    }
+  },
+  update(x, y, index) {
+    return this.grid.sequence[index]
+  },
+}
+
+
 // A mode is a self contained object with a reference to the current grid
 const rainMode = {
-  grid: null,
-  init: () => {},
-  onKey: key => {
-    console.log('rain mode had key press of ', key)
+  init() { },
+  onKey(key) { },
+  update(x, y) {
   },
 }
