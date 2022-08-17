@@ -12,324 +12,55 @@
       --width: 24px;
       --height: 28px;
     }
+    html, body {
+      margin: 0;
+    }
     html {
       background-color: black;
       color: green;
       font-family: monospace;
       font-size: var(--font-size);
-    }
-    html, body {
-      margin: 0;
-      height: 100%;
-      width: 100%;
-    }
-    body {
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100%;
     }
-    #display {
-      display: grid;
-      grid: repeat(16,var(--height)) / repeat(16,var(--width));
-      width: calc(16 * var(--width));
-      height: calc(16 * var(--height));
-    }
-    #display > div {
-      text-align: center;
+    body {
       position: relative;
-      display: inline;
-      line-height: 1.5rem;
+      padding: 1rem;
+      padding-left: calc(1rem + 1ch);
+      background-color: #fff;
+      word-wrap: break-word;
+      width: calc((1ch + 10px) * 16);
+      height: calc(1.5rem * 16);
+      line-height: calc(1.5rem);
+      letter-spacing: 10px;
     }
-    #display > div:before,
-    #display > div:nth-child(16n):after {
+    #cursor {
       content: '';
       position: absolute;
-      left: 0px;
-      bottom: 0px;
-      height: 0.2em;
-      width: 0.2em;
+      left: calc(1rem + 1ch + 2ch);
+      top: calc(1rem - 4px + 1.5rem * 0);
+      width: 1ch;
+      height: 1.5rem;
       background-color: green;
-      /* z-index: 9999; */
-    }
-    #display > div:nth-child(16n):after {
-      left: unset;
-      right: 0;
+      opacity: 0.7;
+      animation: blink 0.5s linear infinite alternate;
     }
     @keyframes blink {
       0%{
-        background-color: black;
+        background-color: transparent;
         color: green;
       }
       100%{
         background-color: green;
-        color: black;
+        color: transparent;
       }
-    }
-    #display > div.cursor {
-      background-color: green;
-      color: black;
-      animation: blink 0.5s linear infinite alternate;
     }
   </style>
 </head>
 <body onload="init()">
-  <div id="display">
-    <div>0</div>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
-    <div>a</div>
-    <div>b</div>
-    <div>c</div>
-    <div>d</div>
-    <div>e</div>
-    <div>f</div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+  <code id="display"></code>
+  <div id="cursor"></div>
 </body>
 </html>

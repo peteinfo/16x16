@@ -5,6 +5,7 @@ let cells = null
 const init = () => {
   cells = document.querySelectorAll('#display>div')
   grid.mode = initMode(writeMode, grid)
+  // grid.mode = initMode(randMode, grid)
   document.onkeydown = (event) => {
     const { key, altKey, ctrlKey, shiftKey, timeStamp } = event
     grid.onKey({ key, altKey, ctrlKey, shiftKey, timeStamp })
@@ -19,19 +20,24 @@ const main = () => {
 
 const render = () => {
   grid.update()
-  cells.forEach((cell, index) => {
-    // render the content
-    cell.textContent = grid.sequence[index]
-    // render the cursor
-    cell.className = grid.cursor.index == index ? "cursor" : ""
-  })
+  const body = grid.sequence.join('')
+  
+  document.querySelector('#display').innerText = body
+
+  // Render the cursor
+  // cells.forEach((cell, index) => {
+  //   // render the content
+  //   cell.textContent = grid.sequence[index]
+  //   // render the cursor
+  //   cell.className = grid.cursor.index == index ? "cursor" : ""
+  // })
 }
 
 const grid = {
   w: 16,
   h: 16,
   mode: undefined, // the current mode
-  sequence: Array(256), // create string of length,
+  sequence: Array(256).fill('.'), // create string of length,
   cursor: {
     x: 0,
     y: 0,
@@ -78,7 +84,7 @@ const grid = {
   },
 }
 
-const randChar = () => String.fromCharCode(65 + Math.random() * 57)
+const randChar = () => String.fromCharCode(65 + Math.random() * 56)
 
 const initMode = (mode, grid) => {
   const newMode = { ...mode, grid }
