@@ -27,7 +27,6 @@ const render = () => {
   grid.sequence.slice(i*16, i*16+15).join('')
   )
   const body = lines.join('\n')
-  console.log(body)
   
   document.querySelector('#display').innerText = body
   
