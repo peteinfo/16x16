@@ -1,5 +1,7 @@
 const cursor = "\u2588" // The full block char
 
+// Full block: \u2588
+
 let frameCounter = 0
 
 const init = () => {
