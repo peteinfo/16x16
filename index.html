@@ -36,11 +36,14 @@
       line-height: calc(1.5rem);
       letter-spacing: 10px;
     }
+
+    /* An idea for the cursor: create a string of 256 spaces with a block char at the cursor position and simply render below with the same animation */
     #cursor {
       content: '';
       position: absolute;
-      left: calc(1rem + 1ch + 2ch);
-      top: calc(1rem - 4px + 1.5rem * 0);
+      margin: calc(1rem - 4px) 0 0 calc(1rem + 1ch);
+      left: 0ch;
+      top: 0rem;
       width: 1ch;
       height: 1.5rem;
       background-color: green;

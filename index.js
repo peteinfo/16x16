@@ -2,7 +2,10 @@ let mode = null
 
 let cells = null
 
+let cursor = document.querySelector('#cursor')
+
 const init = () => {
+  cursor = document.querySelector('#cursor')
   cells = document.querySelectorAll('#display>div')
   grid.mode = initMode(writeMode, grid)
   // grid.mode = initMode(randMode, grid)
@@ -20,9 +23,15 @@ const main = () => {
 
 const render = () => {
   grid.update()
-  const body = grid.sequence.join('')
+  const lines = new Array(16).fill('').map((_, i) => 
+  grid.sequence.slice(i*16, i*16+15).join('')
+  )
+  const body = lines.join('\n')
+  console.log(body)
   
   document.querySelector('#display').innerText = body
+  
+  cursor.setAttribute("style", `left: calc((1ch + 10px) * ${grid.cursor.x}); top: ${grid.cursor.y * 1.5}rem;`)
 
   // Render the cursor
   // cells.forEach((cell, index) => {
@@ -65,8 +74,7 @@ const grid = {
     this.cursor.x += x
     this.cursor.y += y
     // Yes, this is so complicated because JS modulo does not wrap on negative numbers
-    this.cursor.index = ((this.cursor.index + x + 16 * y % 256) + 256) % 256
-    console.log(this.cursor.index)
+    this.cursor.index = ((this.cursor.index + x + y * 16 % 256) + 256) % 256
   },
   moveTo({ x = 0, y = 0 }) {
     this.cursor.x = x
@@ -105,7 +113,7 @@ const randMode = {
 const writeMode = {
   init() { },
   onKey(key) {
-    if (key.key.match(/^[A-z0-9]$/)) {
+    if (key.key.match(/^[A-z0-9 .?!]$/)) {
       this.grid.sequence[this.grid.cursor.index] = key.key
       this.grid.moveBy(1,0)
     }
