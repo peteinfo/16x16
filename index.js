@@ -15,6 +15,10 @@ const init = () => {
   }
   main()
 }
+window.addEventListener('DOMContentLoaded', (event) => {
+  init()
+});
+
 
 const main = () => {
   setInterval(render, 500)
