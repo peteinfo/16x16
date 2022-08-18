@@ -26,44 +26,17 @@
       height: 100%;
     }
     body {
-      position: relative;
-      padding: 1rem;
-      padding-left: calc(1rem + 1ch);
-      background-color: #fff;
+      /* Padding would be needed if using a bg colour or frame */
+      /* padding: 1rem;
+      padding-left: calc(1rem + 1ch); */
       word-wrap: break-word;
       width: calc((1ch + 10px) * 16);
       height: calc(1.5rem * 16);
       line-height: calc(1.5rem);
       letter-spacing: 10px;
     }
-
-    /* An idea for the cursor: create a string of 256 spaces with a block char at the cursor position and simply render below with the same animation */
-    #cursor {
-      content: '';
-      position: absolute;
-      margin: calc(1rem - 4px) 0 0 calc(1rem + 1ch);
-      left: 0ch;
-      top: 0rem;
-      width: 1ch;
-      height: 1.5rem;
-      background-color: green;
-      opacity: 0.7;
-      animation: blink 0.5s linear infinite alternate;
-    }
-    @keyframes blink {
-      0%{
-        background-color: transparent;
-        color: green;
-      }
-      100%{
-        background-color: green;
-        color: transparent;
-      }
-    }
   </style>
 </head>
 <body onload="init()">
-  <code id="display"></code>
-  <div id="cursor"></div>
 </body>
 </html>

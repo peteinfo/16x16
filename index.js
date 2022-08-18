@@ -1,11 +1,8 @@
-let mode = null
+const cursor = "\u2588" // The full block char
 
-let cells = null
-
-let cursor = document.querySelector('#cursor')
+let frameCounter = 0
 
 const init = () => {
-  cursor = document.querySelector('#cursor')
   cells = document.querySelectorAll('#display>div')
   grid.mode = initMode(writeMode, grid)
   // grid.mode = initMode(randMode, grid)
@@ -18,27 +15,23 @@ const init = () => {
 }
 
 const main = () => {
-  setInterval(render, 1000)
+  setInterval(render, 500)
 }
 
 const render = () => {
   grid.update()
-  const lines = new Array(16).fill('').map((_, i) => 
-    grid.sequence.slice(i*16, i*16+16).join('')
-  )
-  const body = lines.join('\n')
-  
-  document.querySelector('#display').innerText = body
-  
-  cursor.setAttribute("style", `left: calc((1ch + 10px) * ${grid.cursor.x}); top: ${grid.cursor.y * 1.5}rem;`)
 
-  // Render the cursor
-  // cells.forEach((cell, index) => {
-  //   // render the content
-  //   cell.textContent = grid.sequence[index]
-  //   // render the cursor
-  //   cell.className = grid.cursor.index == index ? "cursor" : ""
-  // })
+  // Add the cursor to the sequence on every other frame
+  const seq = mod(frameCounter,2) == 0 ? grid.sequence : grid.sequence.map(
+    (c, i) => i == grid.cursor.index ? cursor : c
+  )
+  // Split into lines for rendering in DOM
+  const lines = new Array(16).fill('').map((_, i) => 
+    seq.slice(i*16, i*16+16).join('')
+  ).join('\n')
+  
+  document.querySelector('body').innerText = lines
+  frameCounter++
 }
 
 const grid = {
