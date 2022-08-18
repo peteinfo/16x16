@@ -24,7 +24,7 @@ const main = () => {
 const render = () => {
   grid.update()
   const lines = new Array(16).fill('').map((_, i) => 
-  grid.sequence.slice(i*16, i*16+15).join('')
+    grid.sequence.slice(i*16, i*16+16).join('')
   )
   const body = lines.join('\n')
   
@@ -52,7 +52,7 @@ const grid = {
     index: 0,
   },
   onKey(e) {
-    console.log(e)
+    // console.log(e)
     switch (e.key) {
       case "ArrowRight":
         this.moveBy(1,0)
@@ -70,15 +70,19 @@ const grid = {
     this.mode.onKey(e)
   },
   moveBy(x = 0, y = 0) {
-    this.cursor.x += x
-    this.cursor.y += y
-    // Yes, this is so complicated because JS modulo does not wrap on negative numbers
-    this.cursor.index = ((this.cursor.index + x + y * 16 % 256) + 256) % 256
+    if (x != 0) {
+      this.cursor.x = mod(this.cursor.index + x, 16)
+      this.cursor.index = mod(this.cursor.x + this.cursor.y * 16, 256)
+    }
+    if (y != 0) {
+      this.cursor.y = mod(Math.floor((this.cursor.index + y*16)/16), 16)
+      this.cursor.index = mod(this.cursor.x + this.cursor.y * 16, 256)
+    }
   },
   moveTo({ x = 0, y = 0 }) {
     this.cursor.x = x
     this.cursor.y = y
-    this.cursor.index = (x + 16 * y) % 256
+    this.cursor.index = mod(x + 16 * y, 256)
   },
   update() {
     let x, y
@@ -130,3 +134,7 @@ const rainMode = {
   update(x, y) {
   },
 }
+
+
+// Utilities
+const mod = (value, m) => ((value % m) + m) % m
