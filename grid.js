@@ -1,4 +1,4 @@
-const cursor = "\u2588" // The full block char
+const cursorChar = "\u2588" // The full block char
 
 // Full block: \u2588
 
@@ -15,10 +15,13 @@ const setupGrid = (width, height) => {
       index: 0,
     },
     forEach(func, withCursor = false) {
-      (withCursor ? seqWithCursor(this.sequence, this.cursor) : this.sequence)
-      .forEach((char, index) => {
+      this.sequence.forEach((char, index) => {
         let {x, y} = indexToXY({index})
-        func(char, index, x, y)
+        func(
+          withCursor && this.cursor.index == index
+          ? cursorChar
+          : char,
+        index, x, y)
       })
     },
     onKey(e) {
@@ -77,7 +80,7 @@ const forNeighboursOf = (x, y, func = ({x, y, index}) => {}, includeDiagonal = f
 }
 
 const seqWithCursor = (sequence, c) => sequence.map(
-  (char, i) => i == c.index ? cursor : char
+  (char, i) => i == c.index ? cursorChar : char
 )
 
 const asLines = (seq, width = 16) => new Array(width).fill('').map((_, i) =>

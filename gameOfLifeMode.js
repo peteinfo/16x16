@@ -29,7 +29,7 @@ defineMode("Game of Life", grid => {
     },
     onKey(key) {
       if (key.key == " ")
-        for (let index = 0; index < 50; index++) {
+        for (let index = 0; index < 10; index++) {
           birthRandCell()
         }
     },
@@ -38,7 +38,7 @@ defineMode("Game of Life", grid => {
       if (grid.cursor.index == index)
         grid.sequence[index] = ''
       // wait for half a second to udpate the system
-      if (frameCounter % 30 != 0) return
+      if (frameCounter % 42  != 0) return
       // follow the rules
       const isLive = grid.sequence[index] !== ''
       let liveNeighbours = 0
