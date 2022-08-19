@@ -4,7 +4,7 @@ const cursor = "\u2588" // The full block char
 
 let frameCounter = 0
 
-const makeGrid = (width, height) => {
+const setupGrid = (width, height) => {
   return {
     w: width, h: height,
     mode: undefined, // the current mode
@@ -14,14 +14,14 @@ const makeGrid = (width, height) => {
       y: 0,
       index: 0,
     },
-    forEach(func) {
-      this.sequence.forEach((char, index) => {
+    forEach(func, withCursor = false) {
+      (withCursor ? seqWithCursor(this.sequence, this.cursor) : this.sequence)
+      .forEach((char, index) => {
         let {x, y} = indexToXY({index})
         func(char, index, x, y)
       })
     },
     onKey(e) {
-      // console.log(e)
       switch (e.key) {
         case "ArrowRight":
           this.moveBy(1, 0)
@@ -39,38 +39,26 @@ const makeGrid = (width, height) => {
       this.mode.onKey(e)
     },
     moveBy(x = 0, y = 0) {
-      this.cursor = move(this.cursor).by(x, y)
+      this.cursor = moveBy(this.cursor, x, y)
     },
     moveTo(x = 0, y = 0) {
-      this.cursor = move(this.cursor).to(x, y)
+      this.cursor = moveTo(x, y)
     },
     update() {
-      let x, y
-      for (x = 0; x < 16; x += 1) {
-        for (y = 0; y < 16; y += 1) {
-          this.mode.update(x, y, y * 16 + x)
-        }
-      }
+      this.forEach((char, index, x, y) => this.mode.update(x, y, index))
     },
   }
 }
 
-const renderGrid = grid => {
-  grid.update(frameCounter)
+const grid = setupGrid(16, 16)
 
-  // Add the cursor to the sequence on every other frame
-  // mod(frameCounter, 2) == 0 ? grid.sequence : 
-  const seq = grid.sequence.map(
-    (c, i) => i == grid.cursor.index ? cursor : c
-  )
-  // Split into lines for rendering in DOM
-  const lines = new Array(16).fill('').map((_, i) =>
-    seq.slice(i * 16, i * 16 + 16).join('')
-  ).join('\n')
+const seqWithCursor = (sequence, c) => sequence.map(
+  (char, i) => i == c.index ? cursor : char
+)
 
-  frameCounter++
-  return lines
-}
+const asLines = (seq, width = 16) => new Array(width).fill('').map((_, i) =>
+  seqWithCursor(seq).slice(i * width, i * width + width).join('')
+).join('\n')
 
 const xyToIndex = ({x, y}) => mod(x + y * 16, 256)
 
@@ -78,7 +66,6 @@ const indexToXY = ({index}) => ({
   x: mod(index, 16),
   y: mod(Math.floor(index / 16), 16),
 })
-
 
 const moveBy = ({index}, xi = 0, yi = 0) => {
   let {x, y} = indexToXY({index})
@@ -103,74 +90,14 @@ const move = ({index = 0}) => ({
   to: (x = 0, y = 0) => moveTo({index}, x, y)
 })
 
-
 const randChar = () => String.fromCharCode(65 + Math.random() * 56)
 
 const initMode = name => (modes[name] && (grid.mode = modes[name]).init())
 
 let modes = {}
-const defineMode = (name, func) => modes[name] = func({})
+const defineMode = (name, func) => modes[name] = func(grid)
 
-// A mode generating random chars
-defineMode("Random Mode", grid => {
-  return {
-    init() { },
-    onKey(key) { },
-    update(x, y, index) {
-      grid.mode.sequence[index] = randChar()
-    },
-  }
-})
-
-// A writing mode
-defineMode("Just Write", grid => {
-
-  return {
-    init() { },
-    onKey(key) {
-      console.log(grid)
-      if (key.key.match(/^[A-z0-9 .?!]$/)) {
-        grid.sequence[grid.cursor.index] = key.key
-        grid.moveBy(1, 0)
-      }
-    },
-    update(x, y, index) {
-    },
-  }
-})
-
-// A writing mode
-defineMode("Audio Test Mode", grid => {
-  let samples = [
-    "./samples/kick.wav",
-    "./samples/type.wav",
-  ]
-
-  return {
-    init() {
-      samples = samples.map(loadSample)
-    },
-    onKey() {
-      samples[Math.round(Math.random())].play()
-    },
-    update(x, y, index) {
-    },
-  }
-})
-
-
-// A mode is a self contained object with a reference to the current grid
-// A writing mode
-defineMode("Raining", grid => {
-  return {
-    init() { },
-    onKey(key) { },
-    update(x, y) { },
-  }
-})
-
+const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
 // Utilities
 const mod = (value, m) => ((value % m) + m) % m
-
-const loadSample = url => new Audio(url)
