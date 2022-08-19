@@ -45,12 +45,36 @@ const setupGrid = (width, height) => {
       this.cursor = moveTo(x, y)
     },
     update() {
-      this.forEach((char, index, x, y) => this.mode.update(x, y, index))
+      this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter))
+      frameCounter++
     },
   }
 }
 
 const grid = setupGrid(16, 16)
+
+const forNeighboursOf = (x, y, func = ({x, y, index}) => {}, includeDiagonal = false) => {
+  // upper middle
+  func(moveTo(x , y - 1))
+  // upper right
+  if (includeDiagonal)
+    func(moveTo(x + 1, y - 1))
+  // right
+  func(moveTo(x + 1, y))
+  // lower right
+  if (includeDiagonal)
+    func(moveTo(x + 1, y + 1))
+  // lower middle
+  func(moveTo(x, y + 1))
+  // lower left
+  if (includeDiagonal)
+    func(moveTo(x - 1, y + 1))
+  // left
+  func(moveTo(x - 1, y))
+  // upper left
+  if (includeDiagonal)
+    func(moveTo(x - 1, y - 1))
+}
 
 const seqWithCursor = (sequence, c) => sequence.map(
   (char, i) => i == c.index ? cursor : char
