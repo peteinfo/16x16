@@ -71,19 +71,18 @@ const grid = {
   moveBy(x = 0, y = 0) {
     if (x != 0) {
       this.cursor.x = mod(this.cursor.index + x, 16)
-      this.cursor.index = mod(this.cursor.x + this.cursor.y * 16, 256)
     }
     if (y != 0) {
       this.cursor.y = mod(Math.floor((this.cursor.index + y*16)/16), 16)
-      this.cursor.index = mod(this.cursor.x + this.cursor.y * 16, 256)
     }
+    this.cursor.index = mod(this.cursor.x + this.cursor.y * 16, 256)
   },
-  moveTo({ x = 0, y = 0 }) {
-    this.cursor.x = x
-    this.cursor.y = y
+  moveTo(x = 0, y = 0) {
     this.cursor.index = mod(x + 16 * y, 256)
+    this.cursor.x = mod(this.cursor.index, 16)
+    this.cursor.y = mod(Math.floor((this.cursor.index)/16), 16)
   },
-  update() {
+update() {
     let x, y
     for (x = 0; x < 16; x += 1) {
       for (y = 0; y < 16; y += 1) {
