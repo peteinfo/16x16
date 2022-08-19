@@ -6,7 +6,7 @@ function setup() {
   textFont('Courier')
   createCanvas(500, 500)
   setupGrid(16, 16)
-  initMode("Just Write")
+  useMode("Just Write")
   // initMode("Test Sounds")
 }
 

@@ -92,7 +92,7 @@ const move = ({index = 0}) => ({
 
 const randChar = () => String.fromCharCode(65 + Math.random() * 56)
 
-const initMode = name => (modes[name] && (grid.mode = modes[name]).init())
+const useMode = name => (modes[name] && (grid.mode = modes[name]).init())
 
 let modes = {}
 const defineMode = (name, func) => modes[name] = func(grid)
