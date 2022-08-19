@@ -35,6 +35,38 @@ const render = () => {
   frameCounter++
 }
 
+const xyToIndex = ({x, y}) => mod(x + y * 16, 256)
+
+const indexToXY = ({index}) => ({
+  x: mod(index, 16),
+  y: mod(Math.floor(index / 16), 16),
+})
+
+
+const moveBy = ({index}, xi = 0, yi = 0) => {
+  let {x, y} = indexToXY({index})
+  if (xi != 0) {
+    x = mod(index + xi, 16)
+  }
+  if (yi != 0) {
+    y = mod(Math.floor((index + yi * 16) / 16), 16)
+  }
+  return { x, y, index: xyToIndex({x, y})}
+}
+
+const moveTo = (x = 0, y = 0) => moveBy({index: 0}, x, y)
+
+const moveToIndex = index => {
+  const _index = mod(index, 256)
+  return { ...indexToXY({_index}), _index }
+}
+
+const move = ({index = 0}) => ({
+  by: (xi = 0, yi = 0) => moveBy({index}, xi, yi),
+  to: (x = 0, y = 0) => moveTo({index}, x, y)
+})
+
+
 const grid = {
   w: 16,
   h: 16,
@@ -64,18 +96,10 @@ const grid = {
     this.mode.onKey(e)
   },
   moveBy(x = 0, y = 0) {
-    if (x != 0) {
-      this.cursor.x = mod(this.cursor.index + x, 16)
-    }
-    if (y != 0) {
-      this.cursor.y = mod(Math.floor((this.cursor.index + y * 16) / 16), 16)
-    }
-    this.cursor.index = mod(this.cursor.x + this.cursor.y * 16, 256)
+    this.cursor = move(this.cursor).by(x, y)
   },
   moveTo(x = 0, y = 0) {
-    this.cursor.index = mod(x + 16 * y, 256)
-    this.cursor.x = mod(this.cursor.index, 16)
-    this.cursor.y = mod(Math.floor((this.cursor.index) / 16), 16)
+    this.cursor = move(this.cursor).to(x, y)
   },
   update() {
     let x, y
