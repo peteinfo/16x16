@@ -1,43 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>16x16</title>
-  <script src="./index.js"></script>
-  <style>
-    :root {
-      --font-size: 18px;
-      --width: 24px;
-      --height: 28px;
-    }
-    html, body {
-      margin: 0;
-    }
-    html {
-      background-color: black;
-      color: green;
-      font-family: monospace;
-      font-size: var(--font-size);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      white-space: pre;
-    }
-    body {
-      /* Padding would be needed if using a bg colour or frame */
-      /* padding: 1rem;
-      padding-left: calc(1rem + 1ch); */
-      word-wrap: break-word;
-      width: calc((1ch + 10px) * 16);
-      height: calc(1.5rem * 16);
-      line-height: calc(1.5rem);
-      letter-spacing: 10px;
-    }
-  </style>
-</head>
-<body>
-</body>
+  <head>
+    <script src="./libraries/p5.min.js"></script>
+    <script src="./libraries/p5.sound.min.js"></script>
+    <script src="grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16x16</title>
+  </head>
+  <body>
+    <main>
+    </main>
+    <script src="sketch.js"></script>
+  </body>
 </html>
