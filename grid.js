@@ -4,16 +4,46 @@ const cursorChar = "\u2588" // The full block char
 
 let frameCounter = 0
 
+// Utilities
+const mod = (value, m) => ((value % m) + m) % m
+
+const xyToIndex = ({x, y}) => mod(x + y * 16, 256)
+
+const indexToXY = ({index}) => ({
+  x: mod(index, 16),
+  y: mod(Math.floor(index / 16), 16),
+})
+
+const moveBy = ({index}, xi = 0, yi = 0) => {
+  let {x, y} = indexToXY({index})
+  if (xi != 0) {
+    x = mod(index + xi, 16)
+  }
+  if (yi != 0) {
+    y = mod(Math.floor((index + yi * 16) / 16), 16)
+  }
+  return { x, y, index: xyToIndex({x, y})}
+}
+
+const moveTo = (x = 0, y = 0) => moveBy({index: 0}, x, y)
+
+const moveToIndex = index => {
+  const _index = mod(index, 256)
+  return { ...indexToXY({_index}), _index }
+}
+
+const move = ({index = 0}) => ({
+  by: (xi = 0, yi = 0) => moveBy({index}, xi, yi),
+  to: (x = 0, y = 0) => moveTo({index}, x, y)
+})
+
+
 const setupGrid = (width, height) => {
   return {
     w: width, h: height,
     mode: undefined, // the current mode
     sequence: Array(width*height).fill('.'), // create string of length,
-    cursor: {
-      x: 0,
-      y: 0,
-      index: 0,
-    },
+    cursor: moveTo(0, 0),
     forEach(func, withCursor = false) {
       this.sequence.forEach((char, index) => {
         let {x, y} = indexToXY({index})
@@ -51,6 +81,9 @@ const setupGrid = (width, height) => {
       this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter))
       frameCounter++
     },
+    setRandomCell(value) {
+      this.sequence[Math.round(Math.random() * (this.sequence.length-1))] = value
+    },
   }
 }
 
@@ -87,44 +120,26 @@ const asLines = (seq, width = 16) => new Array(width).fill('').map((_, i) =>
   seqWithCursor(seq).slice(i * width, i * width + width).join('')
 ).join('\n')
 
-const xyToIndex = ({x, y}) => mod(x + y * 16, 256)
-
-const indexToXY = ({index}) => ({
-  x: mod(index, 16),
-  y: mod(Math.floor(index / 16), 16),
-})
-
-const moveBy = ({index}, xi = 0, yi = 0) => {
-  let {x, y} = indexToXY({index})
-  if (xi != 0) {
-    x = mod(index + xi, 16)
-  }
-  if (yi != 0) {
-    y = mod(Math.floor((index + yi * 16) / 16), 16)
-  }
-  return { x, y, index: xyToIndex({x, y})}
-}
-
-const moveTo = (x = 0, y = 0) => moveBy({index: 0}, x, y)
-
-const moveToIndex = index => {
-  const _index = mod(index, 256)
-  return { ...indexToXY({_index}), _index }
-}
-
-const move = ({index = 0}) => ({
-  by: (xi = 0, yi = 0) => moveBy({index}, xi, yi),
-  to: (x = 0, y = 0) => moveTo({index}, x, y)
-})
-
 const randChar = () => String.fromCharCode(65 + Math.random() * 56)
 
-const useMode = name => (modes[name] && (grid.mode = modes[name]).init())
+const useMode = name => {
+  if (!modes[name]) {
+    console.log(`Could not find mode named "${name}".`)
+    return
+  }
+  (grid.mode && grid.mode.onload && grid.mode.onload())
+  grid.mode = modes[name]
+  grid.mode.init()
+}
 
 let modes = {}
 const defineMode = (name, func) => modes[name] = func(grid)
 
 const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
-// Utilities
-const mod = (value, m) => ((value % m) + m) % m
+const getMode = name => modes[name] || {}
+const getModeName = grid => {
+  return Object.entries(modes).find(([name, mode]) => {
+    if (mode === grid.mode) return name
+  })[0];
+}

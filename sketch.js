@@ -6,9 +6,10 @@ function setup() {
   textFont('Courier')
   createCanvas(500, 500)
   setupGrid(16, 16)
-  useMode("Just Write")
+  // useMode("Just Write")
   // useMode("Test Sounds")
-  useMode("Game of Life")
+  // useMode("Game of Life")
+  useMode("Wondering Cursor")
   // frameRate(1)
 }
 
@@ -39,6 +40,6 @@ const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
   grid.forEach((char, index, x, y) => {
     text(char, x * Math.round(width / grid.w), y * Math.round(height / grid.h));
   }, true)
-  text('The Mode Name here', 0, height + fontSize/2)
+  text(`Mode: ${getModeName(grid)}`, 0, height + fontSize/2)
   pop()
 }

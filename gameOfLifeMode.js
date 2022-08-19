@@ -15,7 +15,7 @@
 //  comes a live cell, as if by reproduction.
 defineMode("Game of Life", grid => {
   const liveCell = () => '.'
-  const birthRandCell = () => grid.sequence[Math.round(Math.random() * (grid.sequence.length-1))] = liveCell()
+  const birthRandCell = () => grid.setRandomCell(liveCell())
 
   return {
     preload() {
