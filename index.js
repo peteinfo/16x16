@@ -6,8 +6,9 @@ let frameCounter = 0
 
 const init = () => {
   cells = document.querySelectorAll('#display>div')
-  grid.mode = initMode(writeMode, grid)
-  // grid.mode = initMode(randMode, grid)
+  initMode(writeMode, grid)
+  initMode(audioTestMode, grid)
+  //initMode(randMode, grid)
   document.onkeydown = (event) => {
     const { key, altKey, ctrlKey, shiftKey, timeStamp } = event
     grid.onKey({ key, altKey, ctrlKey, shiftKey, timeStamp })
@@ -82,7 +83,7 @@ const grid = {
     this.cursor.x = mod(this.cursor.index, 16)
     this.cursor.y = mod(Math.floor((this.cursor.index)/16), 16)
   },
-update() {
+  update() {
     let x, y
     for (x = 0; x < 16; x += 1) {
       for (y = 0; y < 16; y += 1) {
@@ -98,7 +99,7 @@ const randChar = () => String.fromCharCode(65 + Math.random() * 56)
 const initMode = (mode, grid) => {
   const newMode = { ...mode, grid }
   newMode.init()
-  return newMode
+  grid.mode = newMode
 }
 
 
@@ -124,6 +125,22 @@ const writeMode = {
   },
 }
 
+const audioTestMode = {
+  samples: [
+    "./samples/kick.wav",
+    "./samples/type.wav",
+  ],
+  init() {
+    this.samples = this.samples.map(loadSample)
+  },
+  onKey() {
+    this.samples[Math.round(Math.random())].play()
+  },
+  update(x, y, index) {
+    return this.grid.sequence[index]
+  },
+}
+
 
 // A mode is a self contained object with a reference to the current grid
 const rainMode = {
@@ -136,3 +153,5 @@ const rainMode = {
 
 // Utilities
 const mod = (value, m) => ((value % m) + m) % m
+
+const loadSample = url => new Audio(url)
