@@ -7,9 +7,9 @@ function setup() {
   createCanvas(500, 500)
   setupGrid(16, 16)
   // useMode("Just Write")
-  // useMode("Test Sounds")
+  useMode("Test Sounds")
   // useMode("Game of Life")
-  useMode("Wondering Cursor")
+  // useMode("Wondering Cursor")
   // frameRate(1)
 }
 
