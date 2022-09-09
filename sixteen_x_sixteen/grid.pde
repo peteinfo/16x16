@@ -53,7 +53,7 @@ class Grid {
         }
 
         char c = v[cursorPos];
-        textAlign(CENTER, CENTER);
+        textAlign(LEFT);
         textSize(20);
         text(c, x*xScale + xOffset, y*yScale+yOffset);
 
@@ -117,7 +117,7 @@ class Grid {
         println(colCount);
         triOsc.play(midiToFreq(midiSequence[colCount]), 0.4);
         env.play(triOsc, attackTime, sustainTime, sustainLevel, releaseTime);
-        v[n] = 'X';
+        v[n] = 'O';
         println("donk");
       }
       colCount++;
