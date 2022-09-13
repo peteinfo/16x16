@@ -16,6 +16,10 @@ defineMode("Reflect Mode", grid => {
       }
     },
     update(x, y, index) {
+      noStroke()
+      fill(x*10, y*1 , y*10, 200)
+      ellipseMode(CENTER)
+      ellipse(x * Math.round(width / grid.w), y * Math.round(height / grid.h), grid.sequence[index]*10, grid.sequence[index]*10)
     },
   }
 })
