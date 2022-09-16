@@ -1,8 +1,11 @@
-const cursorChar = "\u2588" // The full block char
+
+// Variables
+let u = 10;           // universal unit of measurement, updated from window width and height
+let frameCounter = 0
 
 // Full block: \u2588
+const cursorChar = "\u2588" // The full block char
 
-let frameCounter = 0
 
 // Utilities
 const mod = (value, m) => ((value % m) + m) % m

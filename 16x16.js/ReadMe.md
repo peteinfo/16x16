@@ -10,16 +10,15 @@
 
 - **Reflect**. Mirror the X and/or Y axis.
 - **Snake**. Old school Nokia snake mode. The grid starts with a few scattered notes. Eat notes to play them.
-- **Game of Life**. Note plays on change of state?
+- **Game of Life**.  Cellular automata based sequencer. Note plays on change of state?
 - **Polymeter**. Each row is a sequence that plays at a different speed.
 - **Looper**. One character acts as a start (and stop) point on each row, so you can dynamically set the length of each sequence.
 - **Bubblewrap**. Pop the notes to play!
-- Rainfall: Notes fall to the bottom of the screen, where they splash and play.
-- Bubblewrap: There are 256 unpopped notes to start with. The user pops them in any order until no notes are left to play.
-- Game of Life: Cellular automata based sequencer
-- Wireworld mode: https://wiki.xxiivv.com/site/wireworld.html
-- TimeSum: Takes the sum total of all numbers to set tempo
-- Polymeter: Each row runs at a different speed
+- **Rainfall**: Notes fall to the bottom of the screen, where they splash and play.
+- **Bubblewrap**: There are 256 unpopped notes to start with. The user pops them in any order until no notes are left to play.
+- **Wireworld.** A cellular automata that runs along one axis: https://wiki.xxiivv.com/site/wireworld.html
+- **TimeSum**: Takes the sum total of all numbers to set tempo
+- **Polymeter**: Each row runs at a different speed
 
 
 
