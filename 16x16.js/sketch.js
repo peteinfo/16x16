@@ -74,7 +74,8 @@ const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
       text(cursorChar, x * Math.round(width / grid.w), y * Math.round(height / grid.h));
     }
   }, true)
-  textSize(fontSize * 0.5)
+  fill(0, 192, 0)
+  textSize(fontSize * 0.75)
   text(`Mode: ${getModeName(grid)}`, 0, height + fontSize / 2)
   pop()
 }
