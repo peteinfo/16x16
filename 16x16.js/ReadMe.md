@@ -14,6 +14,12 @@
 - **Polymeter**. Each row is a sequence that plays at a different speed.
 - **Looper**. One character acts as a start (and stop) point on each row, so you can dynamically set the length of each sequence.
 - **Bubblewrap**. Pop the notes to play!
+- Rainfall: Notes fall to the bottom of the screen, where they splash and play.
+- Bubblewrap: There are 256 unpopped notes to start with. The user pops them in any order until no notes are left to play.
+- Game of Life: Cellular automata based sequencer
+- Wireworld mode: https://wiki.xxiivv.com/site/wireworld.html
+- TimeSum: Takes the sum total of all numbers to set tempo
+- Polymeter: Each row runs at a different speed
 
 
 
