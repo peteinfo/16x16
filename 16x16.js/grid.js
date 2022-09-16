@@ -10,34 +10,34 @@ const cursorChar = "\u2588" // The full block char
 // Utilities
 const mod = (value, m) => ((value % m) + m) % m
 
-const xyToIndex = ({x, y}) => mod(x + y * 16, 256)
+const xyToIndex = ({ x, y }) => mod(x + y * 16, 256)
 
-const indexToXY = ({index}) => ({
+const indexToXY = ({ index }) => ({
   x: mod(index, 16),
   y: mod(Math.floor(index / 16), 16),
 })
 
-const moveBy = ({index}, xi = 0, yi = 0) => {
-  let {x, y} = indexToXY({index})
+const moveBy = ({ index }, xi = 0, yi = 0) => {
+  let { x, y } = indexToXY({ index })
   if (xi != 0) {
     x = mod(index + xi, 16)
   }
   if (yi != 0) {
     y = mod(Math.floor((index + yi * 16) / 16), 16)
   }
-  return { x, y, index: xyToIndex({x, y})}
+  return { x, y, index: xyToIndex({ x, y }) }
 }
 
-const moveTo = (x = 0, y = 0) => moveBy({index: 0}, x, y)
+const moveTo = (x = 0, y = 0) => moveBy({ index: 0 }, x, y)
 
 const moveToIndex = index => {
   const _index = mod(index, 256)
-  return { ...indexToXY({_index}), _index }
+  return { ...indexToXY({ _index }), _index }
 }
 
-const move = ({index = 0}) => ({
-  by: (xi = 0, yi = 0) => moveBy({index}, xi, yi),
-  to: (x = 0, y = 0) => moveTo({index}, x, y)
+const move = ({ index = 0 }) => ({
+  by: (xi = 0, yi = 0) => moveBy({ index }, xi, yi),
+  to: (x = 0, y = 0) => moveTo({ index }, x, y)
 })
 
 
@@ -45,16 +45,17 @@ const setupGrid = (width, height) => {
   return {
     w: width, h: height,
     mode: undefined, // the current mode
-    sequence: Array(width*height).fill('.'), // create string of length,
+    sequence: Array(width * height).fill('.'), // create string of length,
     cursor: moveTo(0, 0),
     forEach(func, withCursor = false) {
       this.sequence.forEach((char, index) => {
-        let {x, y} = indexToXY({index})
+        let { x, y } = indexToXY({ index })
         func(
           withCursor && this.cursor.index == index
-          ? cursorChar
-          : char,
-        index, x, y)
+            //? cursorChar
+            ? char
+            : char,
+          index, x, y)
       })
     },
     onKey(e) {
@@ -85,16 +86,16 @@ const setupGrid = (width, height) => {
       frameCounter++
     },
     setRandomCell(value) {
-      this.sequence[Math.round(Math.random() * (this.sequence.length-1))] = value
+      this.sequence[Math.round(Math.random() * (this.sequence.length - 1))] = value
     },
   }
 }
 
 const grid = setupGrid(16, 16)
 
-const forNeighboursOf = (x, y, func = ({x, y, index}) => {}, includeDiagonal = false) => {
+const forNeighboursOf = (x, y, func = ({ x, y, index }) => { }, includeDiagonal = false) => {
   // upper middle
-  func(moveTo(x , y - 1))
+  func(moveTo(x, y - 1))
   // upper right
   if (includeDiagonal)
     func(moveTo(x + 1, y - 1))
