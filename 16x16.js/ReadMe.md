@@ -24,6 +24,7 @@
 
 ## prompt ideas
 
+- Need to add the creative prompt mode!
 - Use OpenAI Playground to generate prompts based on Oblique Strategies (or at least in the style of).
 - Q: Should the prompts be related to the next mode that is coming up? This might make it a lot more relevent and could potentially have some very light instructions included.
 
@@ -31,6 +32,7 @@
 
 ## general ideas
 
+- Flashing Cursor!
 - Lots and lots of documentation!
 - Handle scene switches as page reloads using a URL param to indicate the next type of mode, possibly also a choice, etc.
 - add KB shortcut to go to next scene

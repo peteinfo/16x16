@@ -3,11 +3,11 @@ function preload() {
 }
 
 function setup() {
-  textFont('Courier')
+  textFont('Andale Mono') // can also try Courier or look at other mono fonts?
   createCanvas(windowWidth, windowHeight)
   setupGrid(16, 16)
-  //useMode("Just Write")
   useMode("Reflect Mode")
+  //useMode("Just Write")
   //useMode("Test Sounds")
   //useMode("Game of Life")
   //useMode("Wondering Cursor")
@@ -18,11 +18,11 @@ function setup() {
 function draw() {
   
   // update unit of measurement
-  // shortest width divided by 20 (leaving a border of 2 on each side around grid)
+  // shortest width divided by 25 (leaving a border of 2 on each side around grid)
   if (windowWidth > windowHeight) {
-    u = windowHeight / 20;
+    u = windowHeight / 25;
   } else {
-    u = windowWidth / 20;
+    u = windowWidth / 25;
   }
   
   background(0)
