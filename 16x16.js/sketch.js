@@ -7,7 +7,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   //frameRate(24)
   setupGrid(16, 16)
-  useMode("Reflect Mode")
+  //useMode("Reflect Mode")
+  useMode("Long Sequence")
   //useMode("Just Write")
   //useMode("Test Sounds")
   //useMode("Game of Life")
@@ -25,9 +26,10 @@ function draw() {
     u = windowWidth / 25;
   }
 
+  print('a'.charCodeAt(0))
+
   background(0)
   renderGrid(u * 0.5, u * 0.5, u * 16, u * 16)
-
 }
 
 function windowResized() {

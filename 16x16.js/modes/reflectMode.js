@@ -4,7 +4,7 @@ defineMode("Reflect Mode", grid => {
   return {
     init() { },
     onKey(key) {
-      if (key.key.match(/^[A-z0-9 .?!]$/)) {
+      if (key.key.match(/^[0-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         
         // reflections
