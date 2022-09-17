@@ -26,8 +26,6 @@ function draw() {
     u = windowWidth / 25;
   }
 
-  print('a'.charCodeAt(0))
-
   background(0)
   renderGrid(u * 0.5, u * 0.5, u * 16, u * 16)
 }
@@ -45,7 +43,9 @@ function keyPressed(e) {
 
 const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
   grid.update()
+
   const fontSize = u * 0.75
+
 
   // draw border around grid
   /*
