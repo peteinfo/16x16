@@ -1,9 +1,22 @@
+
+// -------------------
+//        16x16
+// -------------------
+
+// https://github.com/peteinfo/16x16
+
+let mainFont 
+
 function preload() {
   preloadModes()
+  //mainFont = loadFont('/fonts/Courier_New/Courier_New_Bold.ttf')
+  mainFont = loadFont('/fonts/Andale_Mono/Andale_Mono.ttf')
+
 }
 
 function setup() {
-  textFont('Andale Mono') // can also try Courier or look at other mono fonts?
+  textFont(mainFont)
+  //textFont('Andale Mono') // can also try Courier or look at other mono fonts?
   createCanvas(windowWidth, windowHeight)
   //frameRate(24)
   setupGrid(16, 16)

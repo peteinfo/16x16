@@ -3,11 +3,11 @@
 //    Long Sequence
 // -------------------
 // One long sequence, playing all steps in the grid.
-// Each note is a different sample?
 
 defineMode("Long Sequence", grid => {
 
-  var p1 = 4
+  var playhead01 = 0
+  var playhead01_last = 0
 
   return {
     init() { },
@@ -20,11 +20,21 @@ defineMode("Long Sequence", grid => {
     },
 
     update(x, y, index) {
+      
+      // update the playhead position
+      playhead01 = round((millis()/100.0)%256)
 
-      p1 = round((millis()/100.0)%256)
+      // play sound if playhead position has changed and there is a note at that location to play
+      if (playhead01 != playhead01_last) {
+        //print("SOUND PLAYED")
+        print(index)
+      }
+
+      // update playhead_last
+      playhead01_last = playhead01
 
       // if cursor position, draw flashing cursor block
-      if (p1 == index) {
+      if (playhead01 == index) {
           fill(255, 165, 0, 100)
           push()
           translate(windowWidth / 2 - 8 * u, windowHeight / 2 - 8 * u)

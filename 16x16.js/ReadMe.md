@@ -12,6 +12,7 @@
 - **Snake**. Old school Nokia snake mode. The grid starts with a few scattered notes. Eat notes to play them.
 - **Game of Life**.  Cellular automata based sequencer. Note plays on change of state?
 - **Polymeter**. Each row is a sequence that plays at a different speed.
+- **Multi playhead**. Multiple playheads go through the same sequence.
 - **Looper**. One character acts as a start (and stop) point on each row, so you can dynamically set the length of each sequence.
 - **Bubblewrap**. Pop the notes to play!
 - **Rainfall**: Notes fall to the bottom of the screen, where they splash and play.
@@ -39,6 +40,14 @@
 - Handle scene switches as page reloads using a URL param to indicate the next type of mode, possibly also a choice, etc.
 - Add KB shortcut to go to next scene
 - Add a toggle to prefer row of column based iteration to better support making a horizontal tracker.
-- Data logging mode (which mode is popular, how long used?)
-- Implement "Interest" tracker, dwell time
+- Data logging mode (which mode is popular, how long used?). Implement "Interest" tracker, dwell time
 - **DONE** Flashing Cursor!
+
+
+
+## sound ideas
+
+- Record some scales.
+- Field recordings.
+- Water drops?
+- Drum sounds.
