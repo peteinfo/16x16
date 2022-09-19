@@ -24,6 +24,7 @@ function setup() {
   useMode("Long Sequence")
   //useMode("Just Write")
   //useMode("Test Sounds")
+  //useMode("Test Sounds2")
   //useMode("Game of Life")
   //useMode("Wondering Cursor")
   //useMode("Random Mode")
@@ -91,6 +92,6 @@ const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
   }, true)
   fill(0, 192, 0)
   textSize(fontSize * 0.75)
-  text(`Mode: ${getModeName(grid)}`, 0, height + fontSize / 2)
+  text(`16x16: ${getModeName(grid)}`, 0, height + fontSize / 2)
   pop()
 }

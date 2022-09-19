@@ -3,11 +3,11 @@ defineMode("Test Sounds", grid => {
   let samples = [
     "./samples/kick.wav",
     "./samples/type.wav",
-    "./samples/sample1.wav",
+    "./samples/silence.wav",
     "./samples/tom.wav",
   ]
 
-  let lastPayed = ''
+  let lastPlayed = ''
 
   return {
     preload() {
@@ -18,14 +18,14 @@ defineMode("Test Sounds", grid => {
     },
     onKey(e) {
       // Play a random sample from the collection
-      lastPayed = Math.round(Math.random() * (samples.length-1))
-      samples[lastPayed].play()
+      lastPlayed = Math.round(Math.random() * (samples.length-1))
+      samples[lastPlayed].play()
       grid.sequence[grid.cursor.index] = [
         'k',
         't',
         's',
         'o',
-      ][lastPayed]
+      ][lastPlayed]
     },
     update(x, y, index) {
     },
