@@ -5,7 +5,7 @@
 
 // https://github.com/peteinfo/16x16
 
-let mainFont 
+let mainFont
 
 function preload() {
   preloadModes()
@@ -19,15 +19,14 @@ function setup() {
   //textFont('Andale Mono') // can also try Courier or look at other mono fonts?
   createCanvas(windowWidth, windowHeight)
   //frameRate(24)
-  
+
   setupGrid(16, 16)
 
-  useMode("Prompt Mode")
+  //useMode("Prompt Mode")
   //useMode("Reflect Mode")
-  //useMode("Long Sequence")
+  useMode("Long Sequence")
   //useMode("Just Write")
   //useMode("Test Sounds")
-  //useMode("Test Sounds2")
   //useMode("Game of Life")
   //useMode("Wondering Cursor")
   //useMode("Random Mode")
@@ -55,6 +54,14 @@ function windowResized() {
 
 function keyPressed(e) {
   grid.onKey(e)
+
+  if (e.key == 'Escape') {
+    print('MODE CHANGE')
+    
+    // BUG: WHY ISN'T LAST MODE CLEARING?
+    useMode("Prompt Mode")
+
+  }
 }
 
 
@@ -85,7 +92,7 @@ const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
 
     // if cursor position, draw flashing cursor block
     if (grid.cursor.index == index) {
-      if((millis()%1000) > 500) {
+      if ((millis() % 1000) > 500) {
         fill(0, 192, 0, 200)
       } else {
         fill(0, 192, 0, 100)

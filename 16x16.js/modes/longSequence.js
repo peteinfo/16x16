@@ -48,6 +48,9 @@ defineMode("Long Sequence", grid => {
       if (key.key.match(/^[1-3]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.moveBy(1, 0)
+      } else if (key.key.match(/^[a-zA-Z4-90]$/)){
+        grid.sequence[grid.cursor.index] = round(random(1, 3))
+        grid.moveBy(1, 0)
       }
     },
 
@@ -69,6 +72,7 @@ defineMode("Long Sequence", grid => {
             print("PLAY NOTE! index: " + index + " contains: " + grid.sequence[index])
             //samples[grid.sequence[index]].rate(2)
             samples[grid.sequence[index]].pan(0.1)
+            samples[grid.sequence[index]].stop()
             samples[grid.sequence[index]].play()
           }
         }
