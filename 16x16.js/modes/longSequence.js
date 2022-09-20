@@ -19,6 +19,7 @@ defineMode("Long Sequence", grid => {
 
   let playhead01 = 0
   let playhead01_last = 0
+  let firstKeyPressed = false
 
   return {
 
@@ -38,15 +39,17 @@ defineMode("Long Sequence", grid => {
       // WEIRD BUG ALERT - NEEDS FIXING
       // The samples only play if you trigger one first here (!!)
       // So playing a silent sample on every keypress, just to make sure the others play.
-      samples[0].play()
+      // Only need to do this once after first key press.
+      if (!firstKeyPressed) {
+        samples[0].play()
+        firstKeyPressed = true
+      }
 
       if (key.key.match(/^[1-3]$/)) {
         grid.sequence[grid.cursor.index] = key.key
-        grid.moveBy(1, 0)        
+        grid.moveBy(1, 0)
       }
     },
-
-    
 
     update(x, y, index) {
 
@@ -65,6 +68,7 @@ defineMode("Long Sequence", grid => {
             // Great! Let's play a note
             print("PLAY NOTE! index: " + index + " contains: " + grid.sequence[index])
             //samples[grid.sequence[index]].rate(2)
+            samples[grid.sequence[index]].pan(0.1)
             samples[grid.sequence[index]].play()
           }
         }
