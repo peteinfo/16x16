@@ -20,7 +20,7 @@
 - **Wireworld.** A cellular automata that runs along one axis: https://wiki.xxiivv.com/site/wireworld.html
 - **TimeSum**: Takes the sum total of all numbers to set tempo
 - **Polymeter**: Each row runs at a different speed
-
+- **Random Access** The playhead jumps randomly between positions
 
 
 ## prompt ideas

@@ -57,7 +57,7 @@ defineMode("Long Sequence", grid => {
     update(x, y, index) {
 
       // update the playhead position
-      playhead01 = round((millis() / 200.0) % 256)
+      playhead01 = round((millis() / 250.0) % 256)
 
       // is playhead at current index?
       if ((playhead01 == index)) {
