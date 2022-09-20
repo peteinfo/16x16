@@ -19,9 +19,12 @@ function setup() {
   //textFont('Andale Mono') // can also try Courier or look at other mono fonts?
   createCanvas(windowWidth, windowHeight)
   //frameRate(24)
+  
   setupGrid(16, 16)
+
+  useMode("Prompt Mode")
   //useMode("Reflect Mode")
-  useMode("Long Sequence")
+  //useMode("Long Sequence")
   //useMode("Just Write")
   //useMode("Test Sounds")
   //useMode("Test Sounds2")
