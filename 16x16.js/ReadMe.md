@@ -4,9 +4,15 @@
 
 [OpenAI playground](https://beta.openai.com/playground) has been used to influence the design decisions and act as a creative sounding board in the desing process. It is also used to help generate prompts for each of the modes.
 
+## levels + inactivity
 
+The system has three 'levels': sequencer, prompts and design.
 
-## mode ideas
+- **Sequencer**. This is the main 16x16 grid. When left inactive for 30s (as shown in counter), this moves to prompt mode.
+- **Prompt**. A machine learning mangled oblique strategy prompt is shown, enouraging the player to consider a different mindset and approach the sequencer differently. Underneath the large prompt there is an invitation to "press any key to begin", which takes the user to a random sequencer. Gentle background music (windchimes/ambient) plays underneath. If left in this mode for a long time (3mins?) then this transitions 'deeper' into design mode.
+- **Design**. This mode displays a scrolling list of the questions/interaction with OpenAI that led to the design of the sequencer and prompts. This is a documentation of the design process. Again there is a prompt at the bottom "press any key to begin". There is gentle background music in this mode, but more electronic and background than the prompt mode (which is more upbeat)
+
+## sequencer mode ideas
 
 - **Reflect**. Mirror the X and/or Y axis.
 - **Snake**. Old school Nokia snake mode. The grid starts with a few scattered notes. Eat notes to play them.
@@ -51,3 +57,7 @@
 - Field recordings.
 - Water drops?
 - Drum sounds.
+
+## inspiration
+
+ - Norns 'Descartes' sequencer https://llllllll.co/t/descartes/58413

@@ -7,7 +7,7 @@ defineMode("Prompt Mode", grid => {
   let prompts
   let currentPrompt = ''
   let samples = [
-    "./samples/windchime.wav",
+    "./samples/prompts/windchime.mp3",
   ]
 
   return {

@@ -1,10 +1,10 @@
 // testing Sounds Mode
 defineMode("Test Sounds", grid => {
   let samples = [
-    "./samples/kick.wav",
-    "./samples/type.wav",
-    "./samples/silence.wav",
-    "./samples/tom.wav",
+    "./samples/interface/silence.mp3",
+    "./samples/drums/basic/kick.mp3",
+    "./samples/drums/basic/type.mp3",
+    "./samples/drums/basic/tom.mp3",
   ]
 
   let lastPlayed = ''

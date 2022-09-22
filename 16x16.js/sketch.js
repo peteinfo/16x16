@@ -22,9 +22,9 @@ function setup() {
 
   setupGrid(16, 16)
 
+  useMode("Long Sequence")
   //useMode("Prompt Mode")
   //useMode("Reflect Mode")
-  useMode("Long Sequence")
   //useMode("Just Write")
   //useMode("Test Sounds")
   //useMode("Game of Life")
