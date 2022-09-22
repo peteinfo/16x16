@@ -33,15 +33,13 @@ function setup() {
   //useMode("Random Mode")
 }
 
+const updateGridUnit = () => (u = Math.min(windowWidth, windowHeight) / 25)
 function draw() {
+  updateGridUnit()
 
   // update unit of measurement
   // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-  if (windowWidth > windowHeight) {
-    u = windowHeight / 25;
-  } else {
-    u = windowWidth / 25;
-  }
+
 
   background(0)
   renderGrid(u * 0.5, u * 0.5, u * 16, u * 16)
@@ -49,7 +47,8 @@ function draw() {
 
 function windowResized() {
   // update the canvas size when the window is resized
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight)
+  updateGridUnit()
 }
 
 
