@@ -107,8 +107,9 @@ defineMode("Long Sequence", grid => {
               sampleToPlay = grid.sequence[index]
             }
             else if (grid.sequence[index].match(/^[a-z]$/)) {
-              print(grid.sequence[index])
-              //sampleToPlay = grid.sequence[index]
+              // convert from ascii
+              // as a is 97 in ascii, subtract 87 to shift to 10
+              sampleToPlay = grid.sequence[index].charCodeAt(0)-87
             }
 
             //samples[sampleToPlay].rate(2)
