@@ -60,4 +60,5 @@ The system has three 'levels': sequencer, prompts and design.
 
 ## inspiration
 
+ - Orca. https://100r.co/site/orca.html
  - Norns 'Descartes' sequencer https://llllllll.co/t/descartes/58413
