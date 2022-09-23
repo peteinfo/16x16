@@ -20,11 +20,12 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   //frameRate(24)
 
-  setupGrid(16, 16)
+  // Note: Not needed, `grid` is already initialised; TODO: this chould chnage to user initialisation.
+  // setupGrid(16, 16)
 
-  //useMode("Long Sequence")
-  useMode("Random Access")
-  //useMode("Prompt Mode")
+  useMode("Long Sequence")
+  // useMode("Random Access")
+  // useMode("Prompt Mode")
   //useMode("Reflect Mode")
   //useMode("Just Write")
   //useMode("Test Sounds")
@@ -33,22 +34,24 @@ function setup() {
   //useMode("Random Mode")
 }
 
-const updateGridUnit = () => (u = Math.min(windowWidth, windowHeight) / 25)
+// returns value alternating based on time
+const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
+
+
+
+// shortest width divided by 25 (leaving a border of 2 on each side around grid)
+const unitOfOne = () => Math.min(windowWidth, windowHeight) / 25
+const unitOf = scale => unitOfOne() * scale
+
+
 function draw() {
-  updateGridUnit()
-
-  // update unit of measurement
-  // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-
-
   background(0)
-  renderGrid(u * 0.5, u * 0.5, u * 16, u * 16)
+  renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8), unitOf(16), unitOf(16))
 }
 
 function windowResized() {
   // update the canvas size when the window is resized
   resizeCanvas(windowWidth, windowHeight)
-  updateGridUnit()
 }
 
 
@@ -66,11 +69,11 @@ function keyPressed(e) {
 
 
 const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
-  grid.update()
-
-  const fontSize = u * 0.75
-
-
+  grid.renderSequence()
+  
+  
+  const fontSize = unitOf(0.75)
+  
   // draw border around grid
   /*
   push()
@@ -80,24 +83,25 @@ const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
   pop()
   */
 
-  push()
-  translate(windowWidth / 2 - 8 * u, windowHeight / 2 - 8 * u)
+ push()
+ translate(x,y)
+ push()
+ grid.drawMode()
+ pop()
   textSize(fontSize)
   noStroke()
   grid.forEach((char, index, x, y) => {
-
+    // TODO
+    // const {x, y} = indexToPixel(index, { width, height} /* dimensions */)
+    const pX = x * Math.round(width / grid.w)
+    const pY = y * Math.round(height / grid.h)
     // draw character at grid space
     fill(0, 192, 0)
-    text(char, x * Math.round(width / grid.w), y * Math.round(height / grid.h));
-
+    text(char, pX, pY);
     // if cursor position, draw flashing cursor block
-    if (grid.cursor.index == index) {
-      if ((millis() % 1000) > 500) {
-        fill(0, 192, 0, 200)
-      } else {
-        fill(0, 192, 0, 100)
-      }
-      text(cursorChar, x * Math.round(width / grid.w), y * Math.round(height / grid.h));
+    if (cursorAt(grid, index)) {
+      fill(blinking(200,100))
+      text(cursorChar, pX, pY);
     }
   }, true)
   fill(0, 192, 0)

@@ -1,6 +1,4 @@
-
 // Variables
-let u = 10;           // universal unit of measurement, updated from window width and height
 let frameCounter = 0
 
 
