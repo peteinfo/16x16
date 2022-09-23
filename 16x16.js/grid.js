@@ -11,7 +11,7 @@ const mod = (value, m) => ((value % m) + m) % m
 
 const xyToIndex = ({ x, y }) => mod(x + y * 16, 256)
 
-const indexToXY = ({ index }) => ({
+const indexToXY = ({ index = 0 }) => ({
   x: mod(index, 16),
   y: mod(Math.floor(index / 16), 16),
 })
@@ -42,6 +42,7 @@ const move = ({ index = 0 }) => ({
 
 const setupGrid = (width, height) => {
   return {
+    description: "",
     w: width, h: height,
     mode: undefined, // the current mode
     sequence: Array(width * height).fill('.'), // create string of length,
@@ -80,9 +81,12 @@ const setupGrid = (width, height) => {
     moveTo(x = 0, y = 0) {
       this.cursor = moveTo(x, y)
     },
-    update() {
-      this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter))
+    renderSequence() {
+      this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter, char))
       frameCounter++
+    },
+    drawMode() {
+      this.mode.draw(frameCounter)
     },
     setRandomCell(value) {
       this.sequence[Math.round(Math.random() * (this.sequence.length - 1))] = value
@@ -91,6 +95,8 @@ const setupGrid = (width, height) => {
 }
 
 const grid = setupGrid(16, 16)
+
+const cursorAt = (grid, index) => grid.cursor.index === index
 
 const forNeighboursOf = (x, y, func = ({ x, y, index }) => { }, includeDiagonal = false) => {
   // upper middle

@@ -37,8 +37,6 @@ function setup() {
 // returns value alternating based on time
 const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
-
-
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
 const unitOfOne = () => Math.min(windowWidth, windowHeight) / 25
 const unitOf = scale => unitOfOne() * scale
@@ -70,7 +68,7 @@ function keyPressed(e) {
 
 const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
   grid.renderSequence()
-  
+
   
   const fontSize = unitOf(0.75)
   
