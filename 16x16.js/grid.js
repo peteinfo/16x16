@@ -227,4 +227,4 @@ const currentModeName = grid => {
   })[0];
 }
 
-const modeDescription = grid => grid.mode.dscription || currentModeName(grid)
+const modeDescription = grid => grid.mode.description || currentModeName(grid)
