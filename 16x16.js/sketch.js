@@ -58,20 +58,25 @@ function keyPressed(e) {
 
   if (e.key == 'Escape') {
     print('MODE CHANGE')
-    
+
     // BUG: WHY ISN'T LAST MODE CLEARING?
     useMode("Prompt Mode")
 
   }
 }
 
+const drawChar = (c, fontSize, x, y) => (textSize(fontSize),text(c, x + fontSize * 1 / 3, y + fontSize))
 
-const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
+
+const renderGrid = (x = 0, y = 0) => {
   grid.renderSequence()
 
-  
+  push()
+  translate(x, y)
+
+
   const fontSize = unitOf(0.75)
-  
+
   // draw border around grid
   /*
   push()
@@ -81,29 +86,28 @@ const renderGrid = (x = 0, y = 0, width = 400, height = 400) => {
   pop()
   */
 
- push()
- translate(x,y)
- push()
- grid.drawMode()
- pop()
-  textSize(fontSize)
+  // Let the mode draw itself
+  push()
+  grid.drawMode()
+  pop()
+
+  
   noStroke()
-  grid.forEach((char, index, x, y) => {
-    // TODO
-    // const {x, y} = indexToPixel(index, { width, height} /* dimensions */)
-    const pX = x * Math.round(width / grid.w)
-    const pY = y * Math.round(height / grid.h)
+  grid.forEach((char, index) => {
+    const [ x, y ] = indexToPixelXY(index)
+
     // draw character at grid space
     fill(0, 192, 0)
-    text(char, pX, pY);
+    drawChar(char, fontSize, x, y)
     // if cursor position, draw flashing cursor block
     if (cursorAt(grid, index)) {
-      fill(blinking(200,100))
-      text(cursorChar, pX, pY);
+      fill(blinking(200, 100))
+      drawChar(cursorChar, fontSize, x, y);
     }
   }, true)
+
   fill(0, 192, 0)
   textSize(fontSize * 0.75)
-  text(`16x16: ${getModeName(grid)}`, 0, height + fontSize / 2)
+  text(`16x16: ${getModeName(grid)}`, 0, unitOf(16) + fontSize / 2)
   pop()
 }

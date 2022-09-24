@@ -1,55 +1,126 @@
 // Variables
 let frameCounter = 0
 
-
 // Full block: \u2588
 const cursorChar = "\u2588" // The full block char
 
 
 // Utilities
+/**
+ * Computes modulo with respect to negative numbers because of a quirk in JS
+ * @param {number} value Left side of modulo
+ * @param {number} m Right side of modulo
+ * @returns number result of modulo
+ */
 const mod = (value, m) => ((value % m) + m) % m
 
+/**
+ * Transforms 2d grid coordinates into 1d sequence index.
+ * @param {object} cursor {x, y} object i.e. a grid cursor
+ * @returns number The corresponding index in the underlying sequence
+ */
 const xyToIndex = ({ x, y }) => mod(x + y * 16, 256)
 
-const indexToXY = ({ index = 0 }) => ({
+/**
+ * Adds sequence index to a 2D cursor object
+ * @param {object} param0 The cursor object with x and y coordinates
+ * @returns Cursor object with sequence index
+ */
+const withIndex = ({ x, y }) => ({ x, y, index: xyToIndex({ x, y })})
+
+/**
+ * Transforms a sequence index into a 2D grid cursor object.
+ * @param {object} cursor The cursor objecto to transform
+ * @returns New cursor object
+ */
+const fromIndex = (index = 0) => ({
   x: mod(index, 16),
   y: mod(Math.floor(index / 16), 16),
+  index: mod(index, 16 * 16),
 })
+/**
+ * Transforms a sequence index into a 2D cursor object.
+ * @param {object} cursor The cursor objecto to transform
+ * @returns New cursor object
+ */
+const indexToXY = fromIndex
 
+/**
+ * Moves a cursor by x and y increments
+ * @param {object} cursor The cursor objecto to transform
+ * @param {number} xi Increment on the x axis
+ * @param {number} yi  Increment on the y axis
+ * @returns New cursor oject
+ */
 const moveBy = ({ index }, xi = 0, yi = 0) => {
-  let { x, y } = indexToXY({ index })
-  if (xi != 0) {
-    x = mod(index + xi, 16)
-  }
-  if (yi != 0) {
-    y = mod(Math.floor((index + yi * 16) / 16), 16)
-  }
-  return { x, y, index: xyToIndex({ x, y }) }
+  let { x, y } = fromIndex(index)
+  return withIndex({
+    x: !!xi ? mod(Math.floor(index + xi), 16) : x,
+    y: !!yi ? mod(Math.floor((index + yi * 16) / 16), 16) : y,
+  })
 }
 
-const moveTo = (x = 0, y = 0) => moveBy({ index: 0 }, x, y)
+/**
+ * Moves cursor object with 2D grid coordinates
+ * @param {number} x X coordinate
+ * @param {number} y Y coordinate
+ * @returns New cursor object at given coordinates
+ */
+const moveTo = ({ /* old cursor not relevant */ }, x = 0, y = 0) => createCursor(x, y)
 
-const moveToIndex = index => {
-  const _index = mod(index, 256)
-  return { ...indexToXY({ _index }), _index }
+/**
+ * Creates new cursor object with index incremented by given value
+ * @param {object} param0 Cursor object to be transformed
+ * @param {number} inc Increment on index of cursor
+ * @returns New cursor object
+ */
+const moveByIndex = ({ index = 0 }, inc = 0) => fromIndex(index + inc)
+
+/**
+ * Creates a new cursor object with 2D grid coordinates
+ * @param {number} x X coordinate
+ * @param {number} y Y coordinate
+ * @returns New cursor object at given coordinates
+ */
+ const createCursor = (x = 0, y = 0) => withIndex({x, y})
+
+/**
+ * Caculates cell value to pixel value with optional offset for center of cell
+ * @param {int} cell Zero based cell index horizontal or vertical
+ * @param {string} mode Currently either null, undefined, or 'center' (p5js 
+ * @returns 
+ */
+const unitToPixel = (cell, mode = null) => Math.round(
+  (mode == 'center' ? unitOf(0.5) : 0) + unitOf(cell)
+  )
+
+/**
+ * Transforms index position in grid space into coordinates in pixel space, i.e., for drawin operations.
+ * @param {number} index positive index within bounds of sequence
+ * @param {string} mode Currently either null, undefined, or 'center' (p5js constant CENTER) supported
+ * @returns Array with x and y coordinates in pixel space based on grid units
+ */
+const indexToPixelXY = (index, mode = null) => {
+  const {x, y} = fromIndex(index)
+  return [ unitToPixel(x, mode), unitToPixel(y, mode) ]
 }
 
-const move = ({ index = 0 }) => ({
-  by: (xi = 0, yi = 0) => moveBy({ index }, xi, yi),
-  to: (x = 0, y = 0) => moveTo({ index }, x, y)
-})
-
-
+/**
+ * Creates a grid object.
+ * @param {integer} width Number of grid columns
+ * @param {integer} height Number of grid rows
+ * @returns grid object
+ */
 const setupGrid = (width, height) => {
   return {
     description: "",
     w: width, h: height,
     mode: undefined, // the current mode
     sequence: Array(width * height).fill('.'), // create string of length,
-    cursor: moveTo(0, 0),
+    cursor: createCursor(0, 0),
     forEach(func, withCursor = false) {
       this.sequence.forEach((char, index) => {
-        let { x, y } = indexToXY({ index })
+        let { x, y } = fromIndex( index )
         func(
           withCursor && this.cursor.index == index
             //? cursorChar
@@ -79,7 +150,10 @@ const setupGrid = (width, height) => {
       this.cursor = moveBy(this.cursor, x, y)
     },
     moveTo(x = 0, y = 0) {
-      this.cursor = moveTo(x, y)
+      this.cursor = moveTo(this.cursor, x, y)
+    },
+    advanceBy(inc) {
+      this.cursor = moveByIndex(this.cursor, inc)
     },
     renderSequence() {
       this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter, char))

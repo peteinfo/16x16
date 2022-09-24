@@ -80,7 +80,7 @@ defineMode("Long Sequence", grid => {
 
       if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
-        grid.moveBy(1, 0)
+        grid.advanceBy(1)
       }
     },
 
@@ -123,9 +123,7 @@ defineMode("Long Sequence", grid => {
     }
 
       fill(255, 165, 0, 100)    // orange playhead
-      textSize(unitOf(0.75))
-      const {x, y} = indexToXY({index: playhead01})
-      text(cursorChar, x * Math.round(unitOf(16) / grid.w), y * Math.round(unitOf(16) / grid.h))
+      drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead01))
     },
   }
 })
