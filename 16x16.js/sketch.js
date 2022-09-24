@@ -24,7 +24,7 @@ function setup() {
   // setupGrid(16, 16)
 
   useMode("Long Sequence")
-  // useMode("Random Access")
+  //useMode("Random Access")
   // useMode("Prompt Mode")
   //useMode("Reflect Mode")
   //useMode("Just Write")
