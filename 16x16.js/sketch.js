@@ -108,6 +108,6 @@ const renderGrid = (x = 0, y = 0) => {
 
   fill(0, 192, 0)
   textSize(fontSize * 0.75)
-  text(`16x16: ${getModeName(grid)}`, 0, unitOf(16) + fontSize / 2)
+  text(`16x16: ${modeDescription(grid)}`, 0, unitOf(16) + fontSize / 2)
   pop()
 }
