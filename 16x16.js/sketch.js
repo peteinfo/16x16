@@ -25,7 +25,7 @@ function setup() {
 
   useMode("Long Sequence")
   //useMode("Random Access")
-  // useMode("Prompt Mode")
+  //useMode("Prompt Mode")
   //useMode("Reflect Mode")
   //useMode("Just Write")
   //useMode("Test Sounds")
