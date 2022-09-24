@@ -39,7 +39,8 @@ The system has three 'levels': sequencer, prompts and design.
 
 ## general ideas
 
-- Constrain Keyboard input (0-9 a-z A-Z) and decide on how to turn that to integer. [Stack Overflow](https://stackoverflow.com/questions/22624379/how-to-convert-letters-to-numbers-with-javascript)
+- Fade out for inactivity.
+Constrain Keyboard input (0-9 a-z A-Z) and decide on how to turn that to integer. [Stack Overflow](https://stackoverflow.com/questions/22624379/how-to-convert-letters-to-numbers-with-javascript)
 - Shortcut to turn off grid/cursor.
 - Add a longer description/instruction text for each mode.
 - Lots and lots of documentation!
