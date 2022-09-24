@@ -33,16 +33,18 @@ defineMode("Prompt Mode", grid => {
       samples[0].play()
     },
 
-    update(x, y, index) {
+    update(x, y, index) {},
+
+    draw() {
       background(0)
-      push()
-      translate(windowWidth / 2 - 8 * u, windowHeight / 2 - 8 * u)
+      // push()
+      // translate(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8))
       fill(255, 165, 0, 100)    // orange playhead
-      textSize(u * 1.2)
-      textLeading(u * 2)
+      textSize(unitOf(1.2))
+      textLeading(unitOf(2))
       textAlign(CENTER, CENTER)
-      text(currentPrompt, 0, 0, u * 15, u * 15)
-      pop();
+      text(currentPrompt, 0, 0, unitOf(15), unitOf(15))
+      // pop();
     },
   }
 })

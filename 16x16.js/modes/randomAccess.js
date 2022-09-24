@@ -64,9 +64,6 @@ defineMode("Random Access", grid => {
     init() {
     },
 
-    playSample() {
-    },
-
     onKey(key) {
 
       // WEIRD BUG ALERT - NEEDS FIXING
@@ -84,56 +81,41 @@ defineMode("Random Access", grid => {
       }
     },
 
-    update(x, y, index) {
+    update(x, y, index) {},
 
-      
+    draw() {
       // update the playhead position
-      if (Math.random() > 0.9999) {
-        playhead01 = Math.round(Math.random()*256)
+      if (Math.random() > 0.85) {
+        playhead01 = Math.floor(Math.random()*256)
       }
 
-      // is playhead at current index?
-      if ((playhead01 == index)) {
+      // and does the index contain a note to play?
+      if (playhead01_last != playhead01 && grid.sequence[playhead01] != '.') {
 
-        // and does the index contain a note to play?
-        if (grid.sequence[index] != '.') {
+        // Great! Let's play a note
+        print("PLAY NOTE! index: " + playhead01 + " contains: " + grid.sequence[playhead01])
 
-          // and finally has the playhead just moved into a new position? (to avoid repeats while playhead passes through a position) 
-          if (playhead01_last != playhead01) {
+        let sampleToPlay = '0'
 
-            // Great! Let's play a note
-            print("PLAY NOTE! index: " + index + " contains: " + grid.sequence[index])
-
-            let sampleToPlay = '0'
-
-            if (grid.sequence[index].match(/^[0-9]$/)) {
-              sampleToPlay = grid.sequence[index]
-            }
-            else if (grid.sequence[index].match(/^[a-z]$/)) {
-              // convert from ascii
-              // as a is 97 in ascii, subtract 87 to shift to 10
-              sampleToPlay = grid.sequence[index].charCodeAt(0) - 87
-            }
-
-            //samples[sampleToPlay].rate(2)
-            samples[sampleToPlay].pan(0.1)
-            samples[sampleToPlay].stop()
-            samples[sampleToPlay].play()
-          }
+        if (grid.sequence[playhead01].match(/^[0-9]$/)) {
+          sampleToPlay = grid.sequence[playhead01]
         }
-        // update the last position of the playhead
-        playhead01_last = playhead01
-      }
+        else if (grid.sequence[playhead01].match(/^[a-z]$/)) {
+          // convert from ascii
+          // as a is 97 in ascii, subtract 87 to shift to 10
+          sampleToPlay = grid.sequence[playhead01].charCodeAt(0) - 87
+        }
 
-      // if playhead is at current index, then draw the playhead
-      if (playhead01 == index) {
-        fill(255, 165, 0, 100)    // orange playhead
-        push()
-        translate(windowWidth / 2 - 8 * u, windowHeight / 2 - 8 * u)
-        textSize(u * 0.75)
-        text(cursorChar, x * Math.round(u * 16 / grid.w), y * Math.round(u * 16 / grid.h))
-        pop()
+        //samples[sampleToPlay].rate(2)
+        samples[sampleToPlay].pan(0.1)
+        samples[sampleToPlay].stop()
+        samples[sampleToPlay].play()
       }
+      // update the last position of the playhead
+      playhead01_last = playhead01
+    
+      fill(255, 165, 0, 100)    // orange playhead
+      drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead01))
     },
   }
 })
