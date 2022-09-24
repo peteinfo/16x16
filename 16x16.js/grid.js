@@ -170,7 +170,7 @@ const setupGrid = (width, height) => {
 
 const grid = setupGrid(16, 16)
 
-const cursorAt = (grid, index) => grid.cursor.index === index
+const isCursorAt = (grid, index) => grid.cursor.index === index
 
 const forNeighboursOf = (x, y, func = ({ x, y, index }) => { }, includeDiagonal = false) => {
   // upper middle
