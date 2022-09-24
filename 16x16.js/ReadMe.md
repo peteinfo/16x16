@@ -27,6 +27,7 @@ The system has three 'levels': sequencer, prompts and design.
 - **TimeSum**: Takes the sum total of all numbers to set tempo
 - **Polymeter**: Each row runs at a different speed
 - **Random Access** The playhead jumps randomly between positions
+- **Arrow Advance** Playhead only advances on every arrow key press
 
 
 ## prompt ideas
