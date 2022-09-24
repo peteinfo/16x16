@@ -64,9 +64,6 @@ defineMode("Long Sequence", grid => {
     init() {
     },
 
-    playSample() {
-    },
-
     onKey(key) {
 
       // WEIRD BUG ALERT - NEEDS FIXING
