@@ -1,4 +1,3 @@
-
 // -------------------
 //        16x16
 // -------------------
@@ -45,7 +44,7 @@ const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
-  const [phase, progress] = checkModeSwitching()
+  const [phase, progress] = whatState()
   background(0)
   renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8), unitOf(16), unitOf(16))
   if (phase == 'start') {
@@ -162,15 +161,15 @@ const modeSwitcher = (grid) => {
 
   return {
     active, start, idle,
-    checkModeSwitching: () => {
+    whatState: () => {
       switch(phase) {
       case 'start':
         var [done, ...values] = timer(startedAt, startupTime)
-        if (done) active(true)
+        if (done) active()
         return ['start', ...values]
       case 'active':
         var [done, ...values] = timer(lastActive, idleTime)
-        if (done) idle(true)
+        if (done) idle()
         return ['active', ...values]
       case 'idle':
         var [done, ...values] = timer(idleSince, transitionTime)
@@ -178,11 +177,17 @@ const modeSwitcher = (grid) => {
         return ['idle', ...values]
       case 'switch':
         // use prompt mode when current is none prompt mode
-        start(true)
+        const isPrompt = grid.mode.isPrompt || false
+        useMode(
+          isPrompt
+          ? randomMode()
+          : 'Prompt Mode'
+        )
+        start()
         return ['switch', 1, 1]
       }
     }
   }
 }
 
-const { active, start, idle, checkModeSwitching } = modeSwitcher(grid)
+const { active, start, idle, whatState } = modeSwitcher(grid)

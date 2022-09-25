@@ -156,11 +156,13 @@ const setupGrid = (width, height) => {
       this.cursor = moveByIndex(this.cursor, inc)
     },
     renderSequence() {
-      this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter, char))
+      if (this.mode.udpate) {
+        this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter, char))
+      }
       frameCounter++
     },
     drawMode() {
-      this.mode.draw(frameCounter)
+      (this.mode.draw && this.mode.draw(frameCounter))
     },
     setRandomCell(value) {
       this.sequence[Math.round(Math.random() * (this.sequence.length - 1))] = value
@@ -206,9 +208,15 @@ const asLines = (seq, width = 16) => new Array(width).fill('').map((_, i) =>
 const randChar = () => String.fromCharCode(65 + Math.random() * 56)
 
 const useMode = name => {
+  console.log('Loading mode', name)
   if (!modes[name]) {
     console.log(`Could not find mode named "${name}".`)
     return
+  }
+  if (grid.mode) {
+    // console.log("Unloading mode", grid.mode)
+    (grid.mode.unload && grid.mode.unload())
+    grid.mode = null
   }
   (grid.mode && grid.mode.onload && grid.mode.onload())
   grid.mode = modes[name]
@@ -216,11 +224,19 @@ const useMode = name => {
 }
 
 let modes = {}
-const defineMode = (name, func) => modes[name] = func(grid)
+const defineMode = (name, func) => modes[name] = {name, ...func(grid)}
 
 const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
+const pickRandom = array => {
+  for (let index = 0; index < array.length; index++) {
+    if (Math.random() > 0.5) return array[index]
+  }
+}
+
 const getMode = name => modes[name] || {}
+const allModes = () => Object.keys(modes).filter( m => m != 'Prompt Mode')
+const randomMode = () => pickRandom(allModes())
 const getModeName = grid => {
   return Object.entries(modes).find(([name, mode]) => {
     if (mode === grid.mode) return name
