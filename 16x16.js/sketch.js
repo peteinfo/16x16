@@ -32,6 +32,8 @@ function setup() {
   //useMode("Game of Life")
   //useMode("Wondering Cursor")
   //useMode("Random Mode")
+
+  start()
 }
 
 // returns value alternating based on time
@@ -43,8 +45,18 @@ const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
+  const [phase, progress] = checkModeSwitching()
   background(0)
   renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8), unitOf(16), unitOf(16))
+  if (phase == 'start') {
+    background(0, (1 - progress) * 255)
+  }
+  else if (phase == 'idle') {
+    background(0, (progress) * 255)
+  }
+  else if (phase != 'active') {
+    background(0)
+  }
 }
 
 function windowResized() {
@@ -54,15 +66,13 @@ function windowResized() {
 
 
 function keyPressed(e) {
-  grid.onKey(e)
-
   if (e.key == 'Escape') {
     print('MODE CHANGE')
-
-    // BUG: WHY ISN'T LAST MODE CLEARING?
-    useMode("Prompt Mode")
-
+    idle()
+    return
   }
+  active()
+  grid.onKey(e)
 }
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize),text(c, x + fontSize * 1 / 3, y + fontSize))
@@ -111,3 +121,68 @@ const renderGrid = (x = 0, y = 0) => {
   text(`16x16: ${getModeName(grid)}`, 0, unitOf(16) + fontSize / 2)
   pop()
 }
+
+const modeSwitcher = (grid) => {
+  const startupTime = 500
+  const idleTime = 10000
+  const transitionTime = 1000
+
+  let idleSince = 0
+  let lastActive = 0
+
+  let phase = 'preboot' // preboot, start, active, idle, switch
+
+  const timer = (lastTime, limit) => {
+    const time = Math.min(millis() - lastTime, limit)
+    const progress = Math.min(time / limit, 1.0)
+    const done = time == limit
+    return [done, progress, time]
+  }
+  
+  const active = () => {
+    console.log('switching from', phase, 'to active')
+    if (phase != 'active' && phase != 'start') return
+    phase = 'active'
+    lastActive = millis()
+  }
+
+  const start = () => {
+    console.log('switching from', phase, 'to start')
+    if (phase != null && phase != undefined && phase != 'preboot' && phase != 'switch') return
+    phase = 'start'
+    startedAt = millis()
+  }
+
+  const idle = () => {
+    console.log('switching from', phase, 'to idle')
+    if (phase == 'idle') return
+    phase = 'idle'
+    idleSince = millis()
+  }
+
+  return {
+    active, start, idle,
+    checkModeSwitching: () => {
+      switch(phase) {
+      case 'start':
+        var [done, ...values] = timer(startedAt, startupTime)
+        if (done) active(true)
+        return ['start', ...values]
+      case 'active':
+        var [done, ...values] = timer(lastActive, idleTime)
+        if (done) idle(true)
+        return ['active', ...values]
+      case 'idle':
+        var [done, ...values] = timer(idleSince, transitionTime)
+        if (done) phase = 'switch'
+        return ['idle', ...values]
+      case 'switch':
+        // use prompt mode when current is none prompt mode
+        start(true)
+        return ['switch', 1, 1]
+      }
+    }
+  }
+}
+
+const { active, start, idle, checkModeSwitching } = modeSwitcher(grid)
