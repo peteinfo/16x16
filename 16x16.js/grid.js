@@ -234,9 +234,11 @@ const pickRandom = array => {
   }
 }
 
-const getMode = name => modes[name] || {}
 const allModes = () => Object.keys(modes).filter( m => m != 'Prompt Mode')
+
 const randomMode = () => pickRandom(allModes())
+
+const getMode = name => modes[name] || {}
 const getModeName = grid => {
   return Object.entries(modes).find(([name, mode]) => {
     if (mode === grid.mode) return name
