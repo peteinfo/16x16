@@ -244,3 +244,73 @@ const getModeName = grid => {
     if (mode === grid.mode) return name
   })[0];
 }
+
+const modeSwitcher = ({
+  startupTime = 500,
+  idleTime = 10000,
+  transitionTime = 1000
+}) => {
+
+  let idleSince = 0
+  let lastActive = 0
+
+  let phase = 'preboot' // preboot, start, active, idle, switch
+
+  const timer = (lastTime, limit) => {
+    const time = Math.min(millis() - lastTime, limit)
+    const progress = Math.min(time / limit, 1.0)
+    const done = time == limit
+    return [done, progress, time]
+  }
+  
+  const active = () => {
+    console.log('switching from', phase, 'to active')
+    if (phase != 'active' && phase != 'start') return
+    phase = 'active'
+    lastActive = millis()
+  }
+
+  const start = () => {
+    console.log('switching from', phase, 'to start')
+    if (phase != null && phase != undefined && phase != 'preboot' && phase != 'switch') return
+    phase = 'start'
+    startedAt = millis()
+  }
+
+  const idle = () => {
+    console.log('switching from', phase, 'to idle')
+    if (phase == 'idle') return
+    phase = 'idle'
+    idleSince = millis()
+  }
+
+  return {
+    active, start, idle,
+    whatState: () => {
+      switch(phase) {
+      case 'start':
+        var [done, ...values] = timer(startedAt, startupTime)
+        if (done) active()
+        return ['start', ...values]
+      case 'active':
+        var [done, ...values] = timer(lastActive, idleTime)
+        if (done) idle()
+        return ['active', ...values]
+      case 'idle':
+        var [done, ...values] = timer(idleSince, transitionTime)
+        if (done) phase = 'switch'
+        return ['idle', ...values]
+      case 'switch':
+        // use prompt mode when current is none prompt mode
+        const isPrompt = grid.mode.isPrompt || false
+        useMode(
+          isPrompt
+          ? randomMode()
+          : 'Prompt Mode'
+        )
+        start()
+        return ['switch', 1, 1]
+      }
+    }
+  }
+}
