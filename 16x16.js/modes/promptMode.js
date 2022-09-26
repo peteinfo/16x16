@@ -11,7 +11,7 @@ defineMode("Prompt Mode", grid => {
   ]
 
   return {
-    description: "",
+    description: "press any key to begin",
     isPrompt: true,
     preload() {
       prompts = loadStrings('./prompts/prompts.txt')
@@ -22,22 +22,24 @@ defineMode("Prompt Mode", grid => {
     init() {
       currentPrompt = random(prompts)
       grid.sequence.fill(' ')
+      samples[0].play()
     },
 
     unload() {
       grid.sequence.fill('.')
+      samples[0].stop()
     },
 
     onKey(key) {
-      currentPrompt = random(prompts)
-      samples[0].stop()
-      samples[0].play()
+      //currentPrompt = random(prompts)
+      //samples[0].stop()
+      //samples[0].play()
     },
 
     update(x, y, index) { },
 
     draw() {
-      fill(255, 165, 0, 100)
+      fill(255, 165, 0, 255)
       textSize(unitOf(1.2))
       textLeading(unitOf(2))
       textAlign(CENTER, CENTER)

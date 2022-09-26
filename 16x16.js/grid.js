@@ -276,6 +276,9 @@ const modeSwitcher = ({
     if (phase != null && phase != undefined && phase != 'preboot' && phase != 'switch') return
     phase = 'start'
     startedAt = millis()
+    // move to back to the origin when starting a new mode
+    // this keeps it out of the way in the prompt mode
+    grid.moveTo(0, 0)
   }
 
   const idle = () => {
