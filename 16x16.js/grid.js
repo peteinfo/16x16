@@ -239,11 +239,12 @@ const allModes = () => Object.keys(modes).filter( m => m != 'Prompt Mode')
 const randomMode = () => pickRandom(allModes())
 
 const getMode = name => modes[name] || {}
-const getModeName = grid => {
+const currentModeName = grid => {
   return Object.entries(modes).find(([name, mode]) => {
     if (mode === grid.mode) return name
   })[0];
 }
+
 
 const modeSwitcher = ({
   startupTime = 500,
@@ -314,3 +315,6 @@ const modeSwitcher = ({
     }
   }
 }
+
+const modeDescription = grid => grid.mode.description || currentModeName(grid)
+

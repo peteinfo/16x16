@@ -55,7 +55,7 @@ defineMode("Random Access", grid => {
   let firstKeyPressed = false
 
   return {
-
+    description: "Type anywhere the random access will read it.",
     preload() {
       //soundFormats('mp3');
       samples = samples.map(loadSound)

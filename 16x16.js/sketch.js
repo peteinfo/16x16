@@ -28,8 +28,9 @@ function setup() {
   // Note: Not needed, `grid` is already initialised; TODO: this chould chnage to user initialisation.
   // setupGrid(16, 16)
 
-  // useMode("Long Sequence")
-  useMode("Random Access")
+  useMode("Ripples")
+  //useMode("Long Sequence")
+  //useMode("Random Access")
   //useMode("Prompt Mode")
   //useMode("Reflect Mode")
   //useMode("Just Write")
@@ -81,7 +82,7 @@ function keyPressed(e) {
   grid.onKey(e)
 }
 
-const drawChar = (c, fontSize, x, y) => (textSize(fontSize),text(c, x + fontSize * 1 / 3, y + fontSize))
+const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))
 
 
 const renderGrid = (x = 0, y = 0) => {
@@ -107,10 +108,10 @@ const renderGrid = (x = 0, y = 0) => {
   grid.drawMode()
   pop()
 
-  
+
   noStroke()
   grid.forEach((char, index) => {
-    const [ x, y ] = indexToPixelXY(index)
+    const [x, y] = indexToPixelXY(index)
 
     // draw character at grid space
     fill(0, 192, 0)
@@ -123,7 +124,6 @@ const renderGrid = (x = 0, y = 0) => {
   }, true)
 
   fill(0, 192, 0)
-  textSize(fontSize * 0.75)
-  text(`16x16: ${getModeName(grid)}`, 0, unitOf(16) + fontSize / 2)
+  drawChar(modeDescription(grid), fontSize * 0.75, unitOf(0.125), unitOf(16) + fontSize / 2)
   pop()
 }
