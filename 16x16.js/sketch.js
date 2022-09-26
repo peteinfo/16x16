@@ -8,7 +8,7 @@ let mainFont
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 500,
-  idleTime: 20000,
+  idleTime: 3000, // 3000 for quick testing, 20000 for real use?
   transitionTime: 1000,
 })
 
@@ -28,7 +28,7 @@ function setup() {
   // Note: Not needed, `grid` is already initialised; TODO: this chould chnage to user initialisation.
   // setupGrid(16, 16)
 
-  useMode("Ripples")
+  useMode("ripples")
   //useMode("Long Sequence")
   //useMode("Random Access")
   //useMode("Prompt Mode")
@@ -118,7 +118,7 @@ const renderGrid = (x = 0, y = 0) => {
     drawChar(char, fontSize, x, y)
     // if cursor position, draw flashing cursor block
     if (isCursorAt(grid, index)) {
-      fill(blinking(200, 100))
+      fill(0, 255, 0, blinking(100, 50))
       drawChar(cursorChar, fontSize, x, y);
     }
   }, true)

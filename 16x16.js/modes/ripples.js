@@ -1,47 +1,59 @@
 defineMode("ripples", grid => {
+  let sample
+  let startedPlaying = false
   const ripples = {}
   const createRipple = () => ({
-    r: 10,
-    colour: [255, 255, 0, 127]
+    r: 5,
+    speed: random(0.5, 1.5),
+    thickness: random(10, 40),
+    colour: [random(80, 100), random(100, 140), random(110, 200)]
   })
   return {
-    description: "this is a long sequence",
-    preload() { },
+    description: "drop a stone in the pond\nany key will produce a ripple",
+    preload() {
+      sample = loadSound('./samples/nature/bbc-river-stream-brook.mp3')
+    },
     init() {
-
+      sample.play()
+    },
+    unload() { 
+      sample.stop()
     },
     onKey(key) {
+      print(startedPlaying)
+      if (!startedPlaying) {
+        sample.play()
+        startedPlaying = true
+      }
       if (key.key.match(/^[0-9a-z]$/)) {
-        grid.sequence[grid.cursor.index] = key.key
+        grid.sequence[grid.cursor.index] = 'o'
         if (!ripples[grid.cursor.index]) {
           ripples[grid.cursor.index] = createRipple()
         }
         grid.advanceBy(1)
       }
     },
-
     update(x, y, index) {
-
     },
-
     draw() {
       Object.entries(ripples).map(([key, ripple]) => {
         // Transform the ripple
-        ripple.r = ripple.r + 1
+        ripple.r = ripple.r + ripple.speed
 
         // House keeping
-        if (ripples[key].r > 1000 ) {
+        if (ripples[key].r > 1000) {
           delete ripples[key]
         }
 
         // Draw the ripple
         const [x, y] = indexToPixelXY(key, CENTER)
         push()
-        fill(...ripple.colour)
+        noFill()
+        strokeWeight(ripple.thickness)
+        stroke(...ripple.colour, (1 - ripple.r / 1000) * 100)
         ellipse(x, y, ripple.r)
         pop()
       })
-
     },
   }
 })

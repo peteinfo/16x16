@@ -11,7 +11,7 @@ defineMode("Test Sounds", grid => {
 
   return {
     preload() {
-      soundFormats('wav', 'm4a');
+      soundFormats('mp3');
       samples = samples.map(loadSound)
     },
     init() {
