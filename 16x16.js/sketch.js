@@ -1,4 +1,3 @@
-
 // -------------------
 //        16x16
 // -------------------
@@ -6,6 +5,12 @@
 // https://github.com/peteinfo/16x16
 
 let mainFont
+
+const { active, start, idle, whatState } = modeSwitcher({
+  startupTime: 500,
+  idleTime: 20000,
+  transitionTime: 1000,
+})
 
 function preload() {
   preloadModes()
@@ -33,6 +38,9 @@ function setup() {
   //useMode("Game of Life")
   //useMode("Wondering Cursor")
   //useMode("Random Mode")
+
+  // To debug a a mode do not call start() and just useMode instead and make adjustments to the background in draw()
+  start()
 }
 
 // returns value alternating based on time
@@ -44,8 +52,18 @@ const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
+  const [phase, progress] = whatState()
   background(0)
   renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8), unitOf(16), unitOf(16))
+  if (phase == 'start') {
+    background(0, (1 - progress) * 255)
+  }
+  else if (phase == 'idle') {
+    background(0, (progress) * 255)
+  }
+  else if (phase != 'active') {
+    background(0)
+  }
 }
 
 function windowResized() {
@@ -55,15 +73,13 @@ function windowResized() {
 
 
 function keyPressed(e) {
-  grid.onKey(e)
-
   if (e.key == 'Escape') {
     print('MODE CHANGE')
-
-    // BUG: WHY ISN'T LAST MODE CLEARING?
-    useMode("Prompt Mode")
-
+    idle()
+    return
   }
+  active()
+  grid.onKey(e)
 }
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))
