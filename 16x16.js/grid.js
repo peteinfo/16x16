@@ -221,8 +221,10 @@ const defineMode = (name, func) => modes[name] = func(grid)
 const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
 const getMode = name => modes[name] || {}
-const getModeName = grid => {
+const currentModeName = grid => {
   return Object.entries(modes).find(([name, mode]) => {
     if (mode === grid.mode) return name
   })[0];
 }
+
+const modeDescription = grid => grid.mode.description || currentModeName(grid)
