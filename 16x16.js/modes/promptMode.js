@@ -9,19 +9,20 @@ defineMode("Prompt Mode", grid => {
   let samples = [
     "./samples/prompts/windchime.mp3",
   ]
+  let backgroundFill = ['<', '>', '^', '_', '|']
 
   return {
-    description: "press any key to begin",
+    description: ("oblique grid strategies:\npress any key to begin"),
     isPrompt: true,
     preload() {
       prompts = loadStrings('./prompts/prompts.txt')
-      soundFormats('wav', 'm4a');
+      //soundFormats('wav', 'm4a');
       samples = samples.map(loadSound)
     },
 
     init() {
       currentPrompt = random(prompts)
-      grid.sequence.fill(' ')
+      grid.sequence.fill(backgroundFill[int(random(backgroundFill.length))])
       samples[0].play()
     },
 
