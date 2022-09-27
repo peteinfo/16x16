@@ -8,14 +8,14 @@ let mainFont
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 500,
-  idleTime: 3000, // 3000 for quick testing, 20000 for real use?
+  idleTime: 5000, // 5000 for quick testing, 20000 for real use?
   transitionTime: 1000,
 })
 
 function preload() {
   preloadModes()
   //mainFont = loadFont('/fonts/Courier_New/Courier_New_Bold.ttf')
-  mainFont = loadFont('/fonts/Andale_Mono/Andale_Mono.ttf')
+  mainFont = loadFont('./fonts/Andale_Mono/Andale_Mono.ttf')
 
 }
 
@@ -28,8 +28,8 @@ function setup() {
   // Note: Not needed, `grid` is already initialised; TODO: this chould chnage to user initialisation.
   // setupGrid(16, 16)
 
-  useMode("ripples")
-  //useMode("Long Sequence")
+  //useMode("ripples")
+  useMode("Long Sequence")
   //useMode("Random Access")
   //useMode("Prompt Mode")
   //useMode("Reflect Mode")
@@ -71,15 +71,53 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight)
 }
 
-
 function keyPressed(e) {
   if (e.key == 'Escape') {
     print('MODE CHANGE')
     idle()
     return
   }
+  // indicate that user is still active
   active()
+  // pass key press to grid
   grid.onKey(e)
+}
+
+function mousePressed() {
+  // indicate that user is still active
+  active()
+  // left click
+  if (mouseX < (windowWidth / 2 - unitOf(8))) {
+    grid.moveBy(-1, 0)
+  }
+  // right click
+  if (mouseX > (windowWidth / 2 + unitOf(8))) {
+    grid.moveBy(1, 0)
+  }
+  // up click
+  if (mouseY < (windowHeight / 2 - unitOf(8))) {
+    grid.moveBy(0, -1)
+  }
+   // down click
+   if (mouseY > (windowHeight / 2 + unitOf(8))) {
+    grid.moveBy(0, +1)
+  }
+  // click in grid
+  if ((mouseX > (windowWidth / 2 - unitOf(8))) && (mouseX < (windowWidth / 2 + unitOf(8))) && (mouseY > (windowHeight / 2 - unitOf(8))) && (mouseY < (windowHeight / 2 + unitOf(8)))) {
+    // if grid is clicked, then increment value of character at that position
+    let currentChar = grid.sequence[grid.cursor.index]
+    let currentAscii = currentChar.charCodeAt(0)
+    let newAscii = currentAscii + 1;
+    if (newAscii == 47) newAscii = 48 // bump up one from / to 0
+    if (newAscii == 123) newAscii = 48 // wrap z to 0
+    if (newAscii == 58) newAscii = 97 // jump 9 to a
+    let newChar = String.fromCharCode(newAscii)
+    print(currentChar)
+    print(currentAscii)
+    print(newAscii)
+    print(newChar)
+    grid.sequence[grid.cursor.index] = newChar
+  }
 }
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))

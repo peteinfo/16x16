@@ -26,7 +26,7 @@ const xyToIndex = ({ x, y }) => mod(x + y * 16, 256)
  * @param {object} param0 The cursor object with x and y coordinates
  * @returns Cursor object with sequence index
  */
-const withIndex = ({ x, y }) => ({ x, y, index: xyToIndex({ x, y })})
+const withIndex = ({ x, y }) => ({ x, y, index: xyToIndex({ x, y }) })
 
 /**
  * Transforms a sequence index into a 2D grid cursor object.
@@ -82,7 +82,7 @@ const moveByIndex = ({ index = 0 }, inc = 0) => fromIndex(index + inc)
  * @param {number} y Y coordinate
  * @returns New cursor object at given coordinates
  */
- const createCursor = (x = 0, y = 0) => withIndex({x, y})
+const createCursor = (x = 0, y = 0) => withIndex({ x, y })
 
 /**
  * Caculates cell value to pixel value with optional offset for center of cell
@@ -92,17 +92,17 @@ const moveByIndex = ({ index = 0 }, inc = 0) => fromIndex(index + inc)
  */
 const unitToPixel = (cell, mode = null) => Math.round(
   (mode == 'center' ? unitOf(0.5) : 0) + unitOf(cell)
-  )
+)
 
 /**
- * Transforms index position in grid space into coordinates in pixel space, i.e., for drawin operations.
+ * Transforms index position in grid space into coordinates in pixel space, i.e., for drawing operations.
  * @param {number} index positive index within bounds of sequence
  * @param {string} mode Currently either null, undefined, or 'center' (p5js constant CENTER) supported
  * @returns Array with x and y coordinates in pixel space based on grid units
  */
 const indexToPixelXY = (index, mode = null) => {
-  const {x, y} = fromIndex(index)
-  return [ unitToPixel(x, mode), unitToPixel(y, mode) ]
+  const { x, y } = fromIndex(index)
+  return [unitToPixel(x, mode), unitToPixel(y, mode)]
 }
 
 /**
@@ -120,7 +120,7 @@ const setupGrid = (width, height) => {
     cursor: createCursor(0, 0),
     forEach(func, withCursor = false) {
       this.sequence.forEach((char, index) => {
-        let { x, y } = fromIndex( index )
+        let { x, y } = fromIndex(index)
         func(
           withCursor && this.cursor.index == index
             //? cursorChar
@@ -130,6 +130,7 @@ const setupGrid = (width, height) => {
       })
     },
     onKey(e) {
+      //print(e) // print to look at key code
       switch (e.key) {
         case "ArrowRight":
           this.moveBy(1, 0)
@@ -142,6 +143,11 @@ const setupGrid = (width, height) => {
           break;
         case "ArrowDown":
           this.moveBy(0, 1)
+          break;
+        case "Enter":
+          // enter moves to first position of next line
+          this.moveBy(0, 1)
+          this.moveTo(0, this.cursor.y)
           break;
       }
       this.mode.onKey(e)
@@ -156,7 +162,7 @@ const setupGrid = (width, height) => {
       this.cursor = moveByIndex(this.cursor, inc)
     },
     renderSequence() {
-      if (this.mode.udpate) {
+      if (this.mode.update) {
         this.forEach((char, index, x, y) => this.mode.update(x, y, index, frameCounter, char))
       }
       frameCounter++
@@ -224,7 +230,7 @@ const useMode = name => {
 }
 
 let modes = {}
-const defineMode = (name, func) => modes[name] = {name, ...func(grid)}
+const defineMode = (name, func) => modes[name] = { name, ...func(grid) }
 
 const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
@@ -234,7 +240,7 @@ const pickRandom = array => {
   }
 }
 
-const allModes = () => Object.keys(modes).filter( m => m != 'Prompt Mode')
+const allModes = () => Object.keys(modes).filter(m => m != 'Prompt Mode')
 
 const randomMode = () => pickRandom(allModes())
 
@@ -263,7 +269,7 @@ const modeSwitcher = ({
     const done = time == limit
     return [done, progress, time]
   }
-  
+
   const active = () => {
     console.log('switching from', phase, 'to active')
     if (phase != 'active' && phase != 'start') return
@@ -291,29 +297,29 @@ const modeSwitcher = ({
   return {
     active, start, idle,
     whatState: () => {
-      switch(phase) {
-      case 'start':
-        var [done, ...values] = timer(startedAt, startupTime)
-        if (done) active()
-        return ['start', ...values]
-      case 'active':
-        var [done, ...values] = timer(lastActive, idleTime)
-        if (done) idle()
-        return ['active', ...values]
-      case 'idle':
-        var [done, ...values] = timer(idleSince, transitionTime)
-        if (done) phase = 'switch'
-        return ['idle', ...values]
-      case 'switch':
-        // use prompt mode when current is none prompt mode
-        const isPrompt = grid.mode.isPrompt || false
-        useMode(
-          isPrompt
-          ? randomMode()
-          : 'Prompt Mode'
-        )
-        start()
-        return ['switch', 1, 1]
+      switch (phase) {
+        case 'start':
+          var [done, ...values] = timer(startedAt, startupTime)
+          if (done) active()
+          return ['start', ...values]
+        case 'active':
+          var [done, ...values] = timer(lastActive, idleTime)
+          if (done) idle()
+          return ['active', ...values]
+        case 'idle':
+          var [done, ...values] = timer(idleSince, transitionTime)
+          if (done) phase = 'switch'
+          return ['idle', ...values]
+        case 'switch':
+          // use prompt mode when current is none prompt mode
+          const isPrompt = grid.mode.isPrompt || false
+          useMode(
+            isPrompt
+              ? randomMode()
+              : 'Prompt Mode'
+          )
+          start()
+          return ['switch', 1, 1]
       }
     }
   }
