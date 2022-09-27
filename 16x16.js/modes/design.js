@@ -4,26 +4,25 @@
 
 defineMode("design", grid => {
 
-  let prompts
-  let currentPrompt = ''
+  let design
+  let yScroll = 0
   let samples = [
     "./samples/prompts/windchime.mp3",
   ]
-  let backgroundFill = ['', '', '', '', '']
 
   return {
-    description: ("oblique grid strategies:\npress any key to begin"),
+    description: ("press any key to begin"),
     isPrompt: true,
     preload() {
-      prompts = loadStrings('./prompts/prompts.txt')
-      //soundFormats('wav', 'm4a');
+      design = loadStrings('./prompts/design-conversation.txt')
       samples = samples.map(loadSound)
     },
 
     init() {
-      currentPrompt = random(prompts)
-      grid.sequence.fill(backgroundFill[int(random(backgroundFill.length))])
       samples[0].play()
+      grid.sequence.fill('')
+      print(design[1])
+
     },
 
     unload() {
@@ -32,19 +31,17 @@ defineMode("design", grid => {
     },
 
     onKey(key) {
-      //currentPrompt = random(prompts)
-      //samples[0].stop()
-      //samples[0].play()
     },
 
     update(x, y, index) { },
 
     draw() {
-      fill(255, 165, 0, 255)
-      textSize(unitOf(1.2))
-      textLeading(unitOf(2))
-      textAlign(CENTER, CENTER)
-      text(currentPrompt, 0, 0, unitOf(15), unitOf(15))
+      fill(100, 100, 255, 255)
+      textSize(unitOf(0.5))
+      textLeading(unitOf(0.75))
+      textAlign(LEFT, TOP)
+      text(design.join('\n\n'), 0, yScroll, unitOf(15), unitOf(1500))
+      yScroll = yScroll - 1
     },
   }
 })

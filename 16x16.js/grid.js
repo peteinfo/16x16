@@ -240,7 +240,7 @@ const pickRandom = array => {
   }
 }
 
-const allModes = () => Object.keys(modes).filter(m => m != 'Prompt Mode')
+const allModes = () => Object.keys(modes).filter(m => m != 'prompt')
 
 const randomMode = () => pickRandom(allModes())
 
