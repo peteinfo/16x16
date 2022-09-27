@@ -8,7 +8,7 @@ let mainFont
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 500,
-  idleTime: 20000, // 5000 for quick testing, 20000 for real use?
+  idleTime: 5000, // 5000 for quick testing, 20000 for real use?
   transitionTime: 1000,
 })
 
@@ -28,7 +28,7 @@ function setup() {
   // Note: Not needed, `grid` is already initialised; TODO: this chould chnage to user initialisation.
   // setupGrid(16, 16)
 
-  useMode("design")
+  //useMode("design")
   //useMode("example")
   //useMode("gamer-of-life")
   //useMode("just-write")
@@ -37,7 +37,7 @@ function setup() {
   //useMode("random-access")
   //useMode("random")
   //useMode("reflections")
-  //useMode("ripples")
+  useMode("ripples")
   //useMode("sound-test")
   //useMode("wandering-cursor")
 

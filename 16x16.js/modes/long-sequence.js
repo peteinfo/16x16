@@ -55,7 +55,7 @@ defineMode("long-sequence", grid => {
   let firstKeyPressed = false
 
   return {
-    description: "a long sequence to lay out your samples\nuse keys 0-9 and a-z, each one a different sample",
+    description: "a long sequence to lay out your samples\nuse keys 0-9 and a-z\neach one a different sample",
     preload() {
       //soundFormats('mp3');
       samples = samples.map(loadSound)

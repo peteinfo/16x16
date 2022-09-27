@@ -315,7 +315,7 @@ const modeSwitcher = ({
           useMode(
             isPrompt
               ? randomMode()
-              : 'Prompt Mode'
+              : 'prompt'
           )
           start()
           return ['switch', 1, 1]

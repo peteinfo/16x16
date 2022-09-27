@@ -1,16 +1,31 @@
 What sounds should we include in our experimental drum sequencer?
+
 We could add a variety of sounds to our experimental drum sequencer, including different percussion instruments, synth sounds, and even vocal samples.
+
 What kind of vocal sounds are there that we can use?
+
 There are a variety of vocal sounds that we could use, including screams, whispers, moans, and even laughter.
+
 Could we sequence words from phonemes?
+
 Yes, we could sequence words from phonemes, which would give the drum sequencer a more human feel.
+
 Should we also change the rhythmic timing to give it a more human feel?
+
 Yes, we should also change the rhythmic timing to give it a more human feel. This would make the drum sequencer more expressive and allow for more complex rhythms.
+
 What other ways are there of changing the timing?
+
 We could also use swing or humanize functions to change the timing.
+
 Is setting a grid of 16 steps wide and 16 steps high too constrictive?
+
 No, setting a grid of 16 steps wide and 16 steps high is not too constrictive. This would give us a good amount of flexibility when it comes to sequencing our drums.
+
 Perhaps you could help us by listing some different types of rhythms we could use in our design?
+
 There are many different types of rhythms that we could use in our design, including simple 4/4, 6/8, 9/8, and 12/8 time signatures, as well as more complex polyrhythms.
+
 Tell us more about how we could use polyrhythms in the sequencer.
+
 Polyrhythms are rhythms that have more than one pulse, or beat, running through them. This can create a very complex and interesting sound.

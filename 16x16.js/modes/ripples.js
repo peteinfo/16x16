@@ -19,7 +19,7 @@ defineMode("ripples", grid => {
     },
     unload() { 
       sample.stop()
-      ripple.clear
+      ripples.clear
     },
     onKey(key) {
       print(startedPlaying)
@@ -28,7 +28,11 @@ defineMode("ripples", grid => {
         startedPlaying = true
       }
       if (key.key.match(/^[0-9a-z]$/)) {
-        grid.sequence[grid.cursor.index] = 'o'
+
+        let stones = ['O', '0', 'o']
+        let stone = pickRandom(stones)
+
+        grid.sequence[grid.cursor.index] = stone
         if (!ripples[grid.cursor.index]) {
           ripples[grid.cursor.index] = createRipple()
         }

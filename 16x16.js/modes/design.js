@@ -5,9 +5,9 @@
 defineMode("design", grid => {
 
   let design
-  let yScroll = 0
+  let yScroll
   let samples = [
-    "./samples/prompts/windchime.mp3",
+    "./samples/design/bbc-particle-beam.mp3",
   ]
 
   return {
@@ -22,7 +22,7 @@ defineMode("design", grid => {
       samples[0].play()
       grid.sequence.fill('')
       print(design[1])
-
+      yScroll = unitOf(20)
     },
 
     unload() {
@@ -31,16 +31,17 @@ defineMode("design", grid => {
     },
 
     onKey(key) {
+      samples[0].play()
     },
 
     update(x, y, index) { },
 
     draw() {
       fill(100, 100, 255, 255)
-      textSize(unitOf(0.5))
-      textLeading(unitOf(0.75))
+      textSize(unitOf(0.75))
+      textLeading(unitOf(1.0))
       textAlign(LEFT, TOP)
-      text(design.join('\n\n'), 0, yScroll, unitOf(15), unitOf(1500))
+      text(design.join('\n'), 0, yScroll, unitOf(16), unitOf(1500))
       yScroll = yScroll - 1
     },
   }
