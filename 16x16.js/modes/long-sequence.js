@@ -8,7 +8,7 @@
 // https://www.reddit.com/r/p5js/comments/opo5h3/comment/h6rnsu6/
 
 
-defineMode("Random Access", grid => {
+defineMode("long-sequence", grid => {
 
   let samples = [
     /* 00 - 0 */ "./samples/interface/silence.mp3",
@@ -55,7 +55,7 @@ defineMode("Random Access", grid => {
   let firstKeyPressed = false
 
   return {
-    description: "Type anywhere the random access will read it.",
+    description: "a long sequence to lay out your samples\nuse keys 0-9 and a-z, each one a different sample",
     preload() {
       //soundFormats('mp3');
       samples = samples.map(loadSound)
@@ -70,50 +70,55 @@ defineMode("Random Access", grid => {
       // The samples only play if you trigger one first here (!!)
       // So playing a silent sample on every keypress, just to make sure the others play.
       // Only need to do this once after first key press.
-      if (!firstKeyPressed) {
-        samples[0].play()
-        firstKeyPressed = true
-      }
+      // if (!firstKeyPressed) {
+      //   samples[0].play()
+      //   firstKeyPressed = true
+      // }
 
       if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
-        grid.moveBy(1, 0)
+        grid.advanceBy(1)
       }
     },
 
     update(x, y, index) {},
 
-    draw() {
+    draw(frameCounter) {
+
       // update the playhead position
-      if (Math.random() > 0.85) {
-        playhead01 = Math.floor(Math.random()*256)
-      }
+      playhead01 = mod(round(millis() / 250.0), 256)
 
       // and does the index contain a note to play?
-      if (playhead01_last != playhead01 && grid.sequence[playhead01] != '.') {
+      if (grid.sequence[playhead01] != '.') {
 
-        // Great! Let's play a note
-        print("PLAY NOTE! index: " + playhead01 + " contains: " + grid.sequence[playhead01])
+        // and finally has the playhead just moved into a new position? (to avoid repeats while playhead passes through a position) 
+        if (playhead01_last != playhead01) {
 
-        let sampleToPlay = '0'
+          // Great! Let's play a note
+          print("PLAY NOTE! index: " + playhead01 + " contains: " + grid.sequence[playhead01])
+          
+          let sampleToPlay = '0'
 
-        if (grid.sequence[playhead01].match(/^[0-9]$/)) {
-          sampleToPlay = grid.sequence[playhead01]
+          // Small fix to avoid out of bounds
+          if (grid.sequence[playhead01] && grid.sequence[playhead01].match(/^[0-9]$/)) {
+            sampleToPlay = grid.sequence[playhead01]
+          }
+          else if (grid.sequence[playhead01].match(/^[a-z]$/)) {
+            // convert from ascii
+            // as a is 97 in ascii, subtract 87 to shift to 10
+            sampleToPlay = grid.sequence[playhead01].charCodeAt(0)-87
+          }
+
+          //samples[sampleToPlay].rate(2)
+          samples[sampleToPlay].pan(0.1)
+          samples[sampleToPlay].stop()
+          samples[sampleToPlay].play()
         }
-        else if (grid.sequence[playhead01].match(/^[a-z]$/)) {
-          // convert from ascii
-          // as a is 97 in ascii, subtract 87 to shift to 10
-          sampleToPlay = grid.sequence[playhead01].charCodeAt(0) - 87
-        }
-
-        //samples[sampleToPlay].rate(2)
-        samples[sampleToPlay].pan(0.1)
-        samples[sampleToPlay].stop()
-        samples[sampleToPlay].play()
-      }
+      // }
       // update the last position of the playhead
       playhead01_last = playhead01
-    
+    }
+
       fill(255, 165, 0, 100)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead01))
     },

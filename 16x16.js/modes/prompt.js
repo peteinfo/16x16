@@ -2,7 +2,7 @@
 //    Prompt Mode
 // -------------------
 
-defineMode("Prompt Mode", grid => {
+defineMode("prompt", grid => {
 
   let prompts
   let currentPrompt = ''

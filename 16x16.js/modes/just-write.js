@@ -1,5 +1,5 @@
 // A writing mode
-defineMode("Just Write", grid => {
+defineMode("just-write", grid => {
 
   return {
     init() { },

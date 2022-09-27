@@ -13,7 +13,7 @@
 //  4.
 //  Any dead cell with exactly three live neighbours be-
 //  comes a live cell, as if by reproduction.
-defineMode("Game of Life", grid => {
+defineMode("game-of-life", grid => {
   const liveCell = () => '.'
   const birthRandCell = () => grid.setRandomCell(liveCell())
 

@@ -8,7 +8,7 @@ let mainFont
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 500,
-  idleTime: 5000, // 5000 for quick testing, 20000 for real use?
+  idleTime: 20000, // 5000 for quick testing, 20000 for real use?
   transitionTime: 1000,
 })
 
@@ -28,16 +28,19 @@ function setup() {
   // Note: Not needed, `grid` is already initialised; TODO: this chould chnage to user initialisation.
   // setupGrid(16, 16)
 
+  useMode("design")
+  //useMode("example")
+  //useMode("gamer-of-life")
+  //useMode("just-write")
+  //useMode("long-sequence")
+  //useMode("prompt")
+  //useMode("random-access")
+  //useMode("random")
+  //useMode("reflections")
   //useMode("ripples")
-  useMode("Long Sequence")
-  //useMode("Random Access")
-  //useMode("Prompt Mode")
-  //useMode("Reflect Mode")
-  //useMode("Just Write")
-  //useMode("Test Sounds")
-  //useMode("Game of Life")
-  //useMode("Wondering Cursor")
-  //useMode("Random Mode")
+  //useMode("sound-test")
+  //useMode("wandering-cursor")
+
 
   // To debug a a mode do not call start() and just useMode instead and make adjustments to the background in draw()
   start()
@@ -47,14 +50,14 @@ function setup() {
 const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-const unitOfOne = () => Math.min(windowWidth, windowHeight) / 25
+const unitOfOne = () => Math.min(windowWidth, windowHeight) / 21
 const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
   const [phase, progress] = whatState()
   background(0)
-  renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8), unitOf(16), unitOf(16))
+  renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(9), unitOf(16), unitOf(16))
   if (phase == 'start') {
     background(0, (1 - progress) * 255)
   }
@@ -98,8 +101,8 @@ function mousePressed() {
   if (mouseY < (windowHeight / 2 - unitOf(8))) {
     grid.moveBy(0, -1)
   }
-   // down click
-   if (mouseY > (windowHeight / 2 + unitOf(8))) {
+  // down click
+  if (mouseY > (windowHeight / 2 + unitOf(8))) {
     grid.moveBy(0, +1)
   }
   // click in grid

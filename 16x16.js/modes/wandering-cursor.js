@@ -1,5 +1,5 @@
 // A cursor wonders across the grid and seeds cells
-defineMode("Wondering Cursor", grid => {
+defineMode("wandering-cursor", grid => {
   const randDirection = () => Math.round(Math.random() * 3 - 1)
   let ticker = null
   let lastTyped = randChar()

@@ -1,5 +1,5 @@
 // testing Sounds Mode
-defineMode("Test Sounds", grid => {
+defineMode("sound-test", grid => {
   let samples = [
     "./samples/interface/silence.mp3",
     "./samples/drums/basic/kick.mp3",

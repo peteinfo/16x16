@@ -1,5 +1,5 @@
 // A writing mode
-defineMode("Reflect Mode", grid => {
+defineMode("reflections", grid => {
 
   return {
     init() { },

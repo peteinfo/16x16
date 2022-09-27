@@ -1,8 +1,8 @@
 // A mode that does nothing
-defineMode("Example Mode", grid => {
+defineMode("example", grid => {
   return {
     // the description is displayed underneath the grid
-    description: "This is just an example",
+    description: "a blank example mode",
     // Preload can be used to load any resources
     preload() { },
     // init is called when starting the mode

@@ -1,5 +1,5 @@
 // A mode generating random chars
-defineMode("Random Mode", grid => {
+defineMode("random", grid => {
   return {
     init() { },
     onKey(key) { },

@@ -251,7 +251,6 @@ const currentModeName = grid => {
   })[0];
 }
 
-
 const modeSwitcher = ({
   startupTime = 500,
   idleTime = 10000,

@@ -15,9 +15,11 @@ defineMode("ripples", grid => {
     },
     init() {
       sample.play()
+      ripples.clear
     },
     unload() { 
       sample.stop()
+      ripple.clear
     },
     onKey(key) {
       print(startedPlaying)
