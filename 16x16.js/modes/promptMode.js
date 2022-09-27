@@ -9,7 +9,7 @@ defineMode("Prompt Mode", grid => {
   let samples = [
     "./samples/prompts/windchime.mp3",
   ]
-  let backgroundFill = ['<', '>', '^', '_', '|']
+  let backgroundFill = ['', '', '', '', '']
 
   return {
     description: ("oblique grid strategies:\npress any key to begin"),
