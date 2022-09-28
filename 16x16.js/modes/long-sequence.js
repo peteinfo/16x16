@@ -32,19 +32,19 @@ defineMode("long-sequence", grid => {
     /* 18 - i */ "./samples/drums/subtle-glitch/EP12-XTg18.mp3",
     /* 19 - j*/ "./samples/drums/subtle-glitch/EP12-XTl12.mp3",
     // REPEATS 
-    /* 20 - k */ "./samples/drums/subtle-glitch/EP12-CRg13.mp3",
-    /* 21 - l */ "./samples/drums/subtle-glitch/EP12-KCl09.mp3",
-    /* 22 - m */ "./samples/drums/subtle-glitch/EP12-KCs12.mp3",
-    /* 23 - n */ "./samples/drums/subtle-glitch/EP12-KCs16.mp3",
-    /* 24 - o */ "./samples/drums/subtle-glitch/EP12-OH30.mp3",
-    /* 25 - p */ "./samples/drums/subtle-glitch/EP12-SK17.mp3",
-    /* 26 - q */ "./samples/drums/subtle-glitch/EP12-XTg04.mp3",
-    /* 27 - r */ "./samples/drums/subtle-glitch/EP12-XTg18.mp3",
-    /* 28 - s */ "./samples/drums/subtle-glitch/EP12-XTl12.mp3",
-    /* 29 - t */ "./samples/drums/subtle-glitch/EP12-1SR29.mp3",
-    /* 30 - u */ "./samples/drums/subtle-glitch/EP12-2SR30.mp3",
-    /* 31 - v */ "./samples/drums/subtle-glitch/EP12-CB03.mp3",
-    /* 32 - w */ "./samples/drums/subtle-glitch/EP12-CB06.mp3",
+    /* 20 - k */ "./samples/vibes/00.mp3",
+    /* 21 - l */ "./samples/vibes/01.mp3",
+    /* 22 - m */ "./samples/vibes/02.mp3",
+    /* 23 - n */ "./samples/vibes/03.mp3",
+    /* 24 - o */ "./samples/vibes/04.mp3",
+    /* 25 - p */ "./samples/vibes/05.mp3",
+    /* 26 - q */ "./samples/vibes/06.mp3",
+    /* 27 - r */ "./samples/vibes/07.mp3",
+    /* 28 - s */ "./samples/vibes/08.mp3",
+    /* 29 - t */ "./samples/vibes/09.mp3",
+    /* 30 - u */ "./samples/vibes/10.mp3",
+    /* 31 - v */ "./samples/vibes/00.mp3",
+    /* 32 - w */ "./samples/vibes/01.mp3",
     /* 33 - x */ "./samples/drums/subtle-glitch/EP12-CH13.mp3",
     /* 34 - y */ "./samples/drums/subtle-glitch/EP12-CPm14.mp3",
     /* 35 - z */ "./samples/drums/subtle-glitch/EP12-CPm20.mp3"
@@ -62,6 +62,7 @@ defineMode("long-sequence", grid => {
     },
 
     init() {
+      samples[0].play()
     },
 
     onKey(key) {
@@ -70,15 +71,20 @@ defineMode("long-sequence", grid => {
       // The samples only play if you trigger one first here (!!)
       // So playing a silent sample on every keypress, just to make sure the others play.
       // Only need to do this once after first key press.
-      // if (!firstKeyPressed) {
-      //   samples[0].play()
-      //   firstKeyPressed = true
-      // }
+       if (!firstKeyPressed) {
+         samples[0].play()
+         firstKeyPressed = true
+       }
 
       if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
       }
+      if (key.key.match(/^[P]$/)) {
+        print('play from here')
+        playhead01 = grid.cursor.index
+      }
+
     },
 
     update(x, y, index) {},
@@ -86,8 +92,9 @@ defineMode("long-sequence", grid => {
     draw(frameCounter) {
 
       // update the playhead position
-      playhead01 = mod(round(millis() / 250.0), 256)
-
+      //playhead01 = mod(round(millis() / 250.0), 256)
+      playhead01 
+      
       // and does the index contain a note to play?
       if (grid.sequence[playhead01] != '.') {
 

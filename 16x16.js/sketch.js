@@ -5,6 +5,7 @@
 // https://github.com/peteinfo/16x16
 
 let mainFont
+let silentSound
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 500,
@@ -17,6 +18,7 @@ function preload() {
   //mainFont = loadFont('/fonts/Courier_New/Courier_New_Bold.ttf')
   mainFont = loadFont('./fonts/Andale_Mono/Andale_Mono.ttf')
 
+  silentSound = loadSound('./samples/drums/basic/kick.mp3')
 }
 
 function setup() {
@@ -32,18 +34,21 @@ function setup() {
   //useMode("example")
   //useMode("gamer-of-life")
   //useMode("just-write")
-  //useMode("long-sequence")
+  useMode("long-sequence")
   //useMode("prompt")
   //useMode("random-access")
   //useMode("random")
   //useMode("reflections")
-  useMode("ripples")
+  //useMode("ripples")
   //useMode("sound-test")
   //useMode("wandering-cursor")
 
 
   // To debug a a mode do not call start() and just useMode instead and make adjustments to the background in draw()
   start()
+
+  // start sound engine
+  //PPPsilentSound.loop()
 }
 
 // returns value alternating based on time
@@ -55,6 +60,7 @@ const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
+
   const [phase, progress] = whatState()
   background(0)
   renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(9), unitOf(16), unitOf(16))
@@ -121,6 +127,7 @@ function mousePressed() {
     print(newChar)
     grid.sequence[grid.cursor.index] = newChar
   }
+  grid.mode.onKey(newChar)
 }
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))

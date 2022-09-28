@@ -150,7 +150,7 @@ const setupGrid = (width, height) => {
           this.moveTo(0, this.cursor.y)
           break;
       }
-      this.mode.onKey(e)
+      this.mode.onKey(e) // BUG: not sure this needs to be done? 
     },
     moveBy(x = 0, y = 0) {
       this.cursor = moveBy(this.cursor, x, y)
