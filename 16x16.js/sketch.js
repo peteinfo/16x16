@@ -8,9 +8,9 @@ let mainFont
 let silentSound
 
 const { active, start, idle, whatState } = modeSwitcher({
-  startupTime: 500,
-  idleTime: 5000, // 5000 for quick testing, 20000 for real use?
-  transitionTime: 1000,
+  startupTime: 1000,
+  idleTime: 30000, // 30 seconds until system gets bored and moves on
+  transitionTime: 3000,
 })
 
 function preload() {
@@ -31,11 +31,11 @@ function setup() {
   // setupGrid(16, 16)
 
   //useMode("design")
+  //useMode("prompt")
+  useMode("01-long-sequence")
   //useMode("example")
   //useMode("gamer-of-life")
   //useMode("just-write")
-  useMode("long-sequence")
-  //useMode("prompt")
   //useMode("random-access")
   //useMode("random")
   //useMode("reflections")

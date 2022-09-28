@@ -130,12 +130,18 @@ const setupGrid = (width, height) => {
       })
     },
     onKey(e) {
-      //print(e) // print to look at key code
+      print(e) // print to look at key code
       switch (e.key) {
         case "ArrowRight":
+          if (this.cursor.x == 15) {
+            this.moveBy(0, 1)
+          }
           this.moveBy(1, 0)
           break;
         case "ArrowLeft":
+          if (this.cursor.x == 0) {
+            this.moveBy(0, -1)
+          }
           this.moveBy(-1, 0)
           break;
         case "ArrowUp":
@@ -144,13 +150,29 @@ const setupGrid = (width, height) => {
         case "ArrowDown":
           this.moveBy(0, 1)
           break;
+        case "Backspace":
+          this.sequence[this.cursor.index] = '.'
+          if (this.cursor.x == 0) {
+            this.moveBy(0, -1)
+          }
+          this.moveBy(-1, 0)
+          break;
+        case " ":
+          this.sequence[this.cursor.index] = '.'
+          if (this.cursor.x == 15) {
+            this.moveBy(0, 1)
+          }
+          this.moveBy(1, 0)
+          break;
+        /*
         case "Enter":
           // enter moves to first position of next line
           this.moveBy(0, 1)
           this.moveTo(0, this.cursor.y)
           break;
+        */
       }
-      this.mode.onKey(e) // BUG: not sure this needs to be done? 
+      this.mode.onKey(e)
     },
     moveBy(x = 0, y = 0) {
       this.cursor = moveBy(this.cursor, x, y)
