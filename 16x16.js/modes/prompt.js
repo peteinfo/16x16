@@ -23,12 +23,12 @@ defineMode("prompt", grid => {
     init() {
       currentPrompt = random(prompts)
       grid.sequence.fill(backgroundFill[int(random(backgroundFill.length))])
-      samples[0].play()
+      //samples[0].play()
     },
 
     unload() {
       grid.sequence.fill('.')
-      samples[0].stop()
+      //samples[0].stop()
     },
 
     onKey(key) {

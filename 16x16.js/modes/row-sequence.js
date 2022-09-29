@@ -3,7 +3,7 @@
 //    MULTI TRACK
 // -------------------
 
-defineMode("short-sequence", grid => {
+defineMode("row-sequence", grid => {
 
   let samples
   let sampleFiles = [
@@ -70,7 +70,6 @@ defineMode("short-sequence", grid => {
     if (grid.sequence[playhead.pos] != '.') {
 
       // Great! Let's play a note
-      print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
       let sampleToPlay = '0'
 
       // Small fix to avoid out of bounds
@@ -82,7 +81,6 @@ defineMode("short-sequence", grid => {
         // as a is 97 in ascii, subtract 87 to shift to 10
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
-
       samples[sampleToPlay].rate(1)
       samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
@@ -91,10 +89,8 @@ defineMode("short-sequence", grid => {
   }
 
   return {
-    description: "level 1: just the first row\n[0-9] vibes [a-z] drums\n",
+    description: "level 1: playhead jumps to same row as cursor\n[0-9] vibes [a-z] drums\n",
     preload() {
-      //samples = samples.map(loadSound)
-
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
 
@@ -104,18 +100,12 @@ defineMode("short-sequence", grid => {
     },
 
     onKey(key) {
-
-      // WEIRD BUG ALERT - NEEDS FIXING
-      // The samples only play if you trigger one first here (!!)
-      // So playing a silent sample on every keypress, just to make sure the others play.
-      // Only need to do this once after first key press.
-      if (!firstKeyPressed) {
-        // play a sound to start it off?
-        firstKeyPressed = true
-      }
       if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
+        playhead.min = 16*grid.cursor.index.y
+        playhead.max = 16*grid.cursor.index.y + 16
+        playhead.pos = 16*grid.cursor.index.y + grid.cursor.index.x
       }
       if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
