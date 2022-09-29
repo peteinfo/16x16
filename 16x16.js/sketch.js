@@ -4,35 +4,34 @@
 
 // https://github.com/peteinfo/16x16
 
-let mainFont
-let silentSound
+// Sound Library is Howler:
+// https://github.com/goldfire/howler.js
+
+var mainFont
+var green
+var orange
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 1000,
-  idleTime: 30000, // 30 seconds until system gets bored and moves on
+  idleTime: 60000, // 60 seconds until system gets bored and moves on
   transitionTime: 3000,
 })
 
 function preload() {
   preloadModes()
-  //mainFont = loadFont('/fonts/Courier_New/Courier_New_Bold.ttf')
   mainFont = loadFont('./fonts/Andale_Mono/Andale_Mono.ttf')
-
-  silentSound = loadSound('./samples/drums/basic/kick.mp3')
 }
 
 function setup() {
   textFont(mainFont)
-  //textFont('Andale Mono') // can also try Courier or look at other mono fonts?
+  green = color(0, 192, 0)
+  orange = color(255, 165, 0)
   createCanvas(windowWidth, windowHeight)
-  //frameRate(24)
-
-  // Note: Not needed, `grid` is already initialised; TODO: this chould chnage to user initialisation.
-  // setupGrid(16, 16)
-
+  useMode("start")
   //useMode("design")
   //useMode("prompt")
-  useMode("01-long-sequence")
+  //useMode("long-sequence")
+  //useMode("short-sequence")
   //useMode("example")
   //useMode("gamer-of-life")
   //useMode("just-write")
@@ -43,12 +42,8 @@ function setup() {
   //useMode("sound-test")
   //useMode("wandering-cursor")
 
-
   // To debug a a mode do not call start() and just useMode instead and make adjustments to the background in draw()
   start()
-
-  // start sound engine
-  //PPPsilentSound.loop()
 }
 
 // returns value alternating based on time
@@ -60,7 +55,6 @@ const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
-
   const [phase, progress] = whatState()
   background(0)
   renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(9), unitOf(16), unitOf(16))
@@ -98,18 +92,25 @@ function mousePressed() {
   // left click
   if (mouseX < (windowWidth / 2 - unitOf(8))) {
     grid.moveBy(-1, 0)
+    grid.mode.onKey("mouseLeft")
+
   }
   // right click
   if (mouseX > (windowWidth / 2 + unitOf(8))) {
     grid.moveBy(1, 0)
+    grid.mode.onKey("mouseRight")
   }
   // up click
   if (mouseY < (windowHeight / 2 - unitOf(8))) {
     grid.moveBy(0, -1)
+    grid.mode.onKey("mouseUp")
+
   }
   // down click
   if (mouseY > (windowHeight / 2 + unitOf(8))) {
     grid.moveBy(0, +1)
+    grid.mode.onKey("mouseDown")
+
   }
   // click in grid
   if ((mouseX > (windowWidth / 2 - unitOf(8))) && (mouseX < (windowWidth / 2 + unitOf(8))) && (mouseY > (windowHeight / 2 - unitOf(8))) && (mouseY < (windowHeight / 2 + unitOf(8)))) {
@@ -121,13 +122,11 @@ function mousePressed() {
     if (newAscii == 123) newAscii = 48 // wrap z to 0
     if (newAscii == 58) newAscii = 97 // jump 9 to a
     let newChar = String.fromCharCode(newAscii)
-    print(currentChar)
-    print(currentAscii)
-    print(newAscii)
-    print(newChar)
     grid.sequence[grid.cursor.index] = newChar
+    //print(newChar)
+    // grid.mode.mousePressed()
+    grid.mode.onKey("mouseMiddle")
   }
-  grid.mode.onKey(newChar)
 }
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))
@@ -139,28 +138,16 @@ const renderGrid = (x = 0, y = 0) => {
   push()
   translate(x, y)
 
-
   const fontSize = unitOf(0.75)
-
-  // draw border around grid
-  /*
-  push()
-  stroke(0, 192, 0)
-  noFill()
-  rect(x, y, width, height)
-  pop()
-  */
 
   // Let the mode draw itself
   push()
   grid.drawMode()
   pop()
 
-
   noStroke()
   grid.forEach((char, index) => {
     const [x, y] = indexToPixelXY(index)
-
     // draw character at grid space
     fill(0, 192, 0)
     drawChar(char, fontSize, x, y)

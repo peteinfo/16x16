@@ -130,7 +130,7 @@ const setupGrid = (width, height) => {
       })
     },
     onKey(e) {
-      print(e) // print to look at key code
+      //print(e) // print to look at key code
       switch (e.key) {
         case "ArrowRight":
           if (this.cursor.x == 15) {
@@ -292,14 +292,14 @@ const modeSwitcher = ({
   }
 
   const active = () => {
-    console.log('switching from', phase, 'to active')
+    //console.log('switching from', phase, 'to active')
     if (phase != 'active' && phase != 'start') return
     phase = 'active'
     lastActive = millis()
   }
 
   const start = () => {
-    console.log('switching from', phase, 'to start')
+    //console.log('switching from', phase, 'to start')
     if (phase != null && phase != undefined && phase != 'preboot' && phase != 'switch') return
     phase = 'start'
     startedAt = millis()
@@ -309,7 +309,7 @@ const modeSwitcher = ({
   }
 
   const idle = () => {
-    console.log('switching from', phase, 'to idle')
+    //console.log('switching from', phase, 'to idle')
     if (phase == 'idle') return
     phase = 'idle'
     idleSince = millis()

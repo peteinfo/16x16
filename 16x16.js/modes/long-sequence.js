@@ -7,8 +7,28 @@
 // DISTORTION ISSUE:
 // https://www.reddit.com/r/p5js/comments/opo5h3/comment/h6rnsu6/
 
+// From: https://www.reddit.com/r/p5js/comments/opo5h3/sound_starts_to_get_distorted_after_a_while/h6rnsu6
+// Each instance of this class is an HTML Audio element
+// I used only built in JS methods so the distortion
+// should be gone. You will get clipping by playing
+// these all simultaneously so I reduced the volume to 0.2.
+/*
+class Dong {
+  constructor(pitch) {
+    this.pitch = pitch;
+  }
+  play() {
+    let s = new Audio("./samples/drums/subtle-glitch/EP12-CRg13.mp3");
+    s.mozPreservesPitch = false;
+    s.preservesPitch = false;
+    s.volume = 2.2;    // Reduced volume to avoid clipping
+    s.playbackRate = this.pitch
+    s.play();
+  }
+}
+*/
 
-defineMode("01-long-sequence", grid => {
+defineMode("long-sequence", grid => {
 
   let samples = [
     /* 00 - 0 */ "./samples/vibes/00.mp3",
@@ -49,7 +69,8 @@ defineMode("01-long-sequence", grid => {
     /* 35 - z */ "./samples/drums/subtle-glitch/EP12-CPm20.mp3"
   ]
 
-  let timer = 0
+  let sound
+
   let interval = 250 // ms between ticks
   let playhead01 = 0
   let playhead01_last = 0
@@ -63,18 +84,20 @@ defineMode("01-long-sequence", grid => {
   }
 
   return {
-    description: "level 1: a long sequence\n[0-9] vibes [a-z] drums\n[Enter] jumps playhead to cursor",
+    description: "level 2: a longer sequence\n[0-9] vibes [a-z] drums\n[Enter] jumps playhead to cursor",
     preload() {
-      //soundFormats('mp3');
       samples = samples.map(loadSound)
     },
 
     init() {
-      samples[0].play()
       setTimeout(tick, interval)
+      sound = new Audio("./samples/vibes/03.mp3");
     },
 
     onKey(key) {
+
+      print("sound")
+      sound.play()
 
       // WEIRD BUG ALERT - NEEDS FIXING
       // The samples only play if you trigger one first here (!!)
@@ -82,6 +105,7 @@ defineMode("01-long-sequence", grid => {
       // Only need to do this once after first key press.
       if (!firstKeyPressed) {
         samples[0].play()
+        print("play a sample")
         firstKeyPressed = true
       }
 
@@ -124,7 +148,7 @@ defineMode("01-long-sequence", grid => {
           }
 
           //samples[sampleToPlay].rate(2)
-          samples[sampleToPlay].pan(0.1)
+          //samples[sampleToPlay].pan(0.1)
           samples[sampleToPlay].stop()
           samples[sampleToPlay].play()
         }
