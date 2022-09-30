@@ -84,6 +84,7 @@ function keyPressed(e) {
   active()
   // pass key press to grid
   grid.onKey(e)
+  return false // IMPORTANT NOTE: return FALSE to prevent the key press from getting to the browser
 }
 
 function mousePressed() {
@@ -145,18 +146,19 @@ const renderGrid = (x = 0, y = 0) => {
   grid.drawMode()
   pop()
 
-  noStroke()
-  grid.forEach((char, index) => {
-    const [x, y] = indexToPixelXY(index)
-    // draw character at grid space
-    fill(0, 192, 0)
-    drawChar(char, fontSize, x, y)
-    // if cursor position, draw flashing cursor block
-    if (isCursorAt(grid, index)) {
-      fill(0, 255, 0, blinking(100, 50))
-      drawChar(cursorChar, fontSize, x, y);
-    }
-  }, true)
+    noStroke()
+    grid.forEach((char, index) => {
+      const [x, y] = indexToPixelXY(index)
+      // draw character at grid space
+      fill(0, 192, 0)
+      drawChar(char, fontSize, x, y)
+      // if cursor position, draw flashing cursor block
+      if (isCursorAt(grid, index)) {
+        fill(0, 255, 0, blinking(100, 50))
+        drawChar(cursorChar, fontSize, x, y);
+      }
+    }, true)
+  
 
 
   green.setAlpha(255)

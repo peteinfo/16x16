@@ -57,7 +57,6 @@ defineMode("short-sequence", grid => {
   }
 
   let playhead = new Playhead(0, 15, 200)
-  let firstKeyPressed = false
 
   function tick() {
     // this function is triggered every interval
@@ -91,8 +90,8 @@ defineMode("short-sequence", grid => {
   }
 
   return {
-    title: "\nlevel 1: first (16) steps",
-    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[backspace] clear sample\n[tab] to proceed",
+    title: "\nlevel 1: first (16) steps\n-------------------------\n[tab] to proceed\n [esc] return to start",
+    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[del] clear sample",
 
     preload() {
       //samples = samples.map(loadSound)
@@ -106,15 +105,6 @@ defineMode("short-sequence", grid => {
     },
 
     onKey(key) {
-
-      // WEIRD BUG ALERT - NEEDS FIXING
-      // The samples only play if you trigger one first here (!!)
-      // So playing a silent sample on every keypress, just to make sure the others play.
-      // Only need to do this once after first key press.
-      if (!firstKeyPressed) {
-        // play a sound to start it off?
-        firstKeyPressed = true
-      }
       if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
