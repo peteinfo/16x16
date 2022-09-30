@@ -1,31 +1,47 @@
-What sounds should we include in our experimental drum sequencer?
+How can a music interface be made more playful?
+One way to make a music interface more playful is to add visual or auditory feedback that changes in response to the user's input. This can help the user feel more engaged with the interface and encourage them to experiment with different sounds and rhythms.
 
+Can creativity prompts help people become more creative?
+There is no definitive answer to this question as everyone experiences creativity differently. However, some people may find that creativity prompts help them to become more creative by providing a structure or framework within which to generate new ideas.
+
+What do people want from an experimental grid-based music sequencer?
+Some people might want an easy way to make complex musical patterns, while others might want a more challenging and difficult way to create music.
+
+Will people get bored making music based around sequencing samples?
+It is possible that people could get bored making music based around sequencing samples, but it is also possible that they could find it to be a fun and challenging activity.
+
+Should we incorporate elements of game play into this sequencer?
+It depends on the type of user you are designing for. If you are designing for a more casual user, then incorporating game-like elements may be a good way to encourage them to keep using the interface.
+
+How can a player be given a sense of progress?
+One way to give a player a sense of progress is to add visual or auditory feedback that changes in response to the user's input. This can help the user feel more engaged with the interface and encourage them to experiment with different sounds and rhythms.
+
+Can music-sequencing be an art-form? And if so, how?
+Yes, music sequencing can definitely be considered an art form. It involves creating and arranging musical elements in a way that is aesthetically pleasing and evokes certain emotions in the listener.
+
+What sounds should we include in our experimental drum sequencer?
 We could add a variety of sounds to our experimental drum sequencer, including different percussion instruments, synth sounds, and even vocal samples.
 
-What kind of vocal sounds are there that we can use?
+What sounds can we use that will keep people's attention the longest?
+There is no definitive answer to this question as everyone's attention span is different. However, some general tips that may help include using sounds that are interesting and varied, and avoiding sounds that are repetitive or monotonous.
 
+What kind of vocal sounds are there that we can use?
 There are a variety of vocal sounds that we could use, including screams, whispers, moans, and even laughter.
 
 Could we sequence words from phonemes?
-
 Yes, we could sequence words from phonemes, which would give the drum sequencer a more human feel.
 
 Should we also change the rhythmic timing to give it a more human feel?
-
 Yes, we should also change the rhythmic timing to give it a more human feel. This would make the drum sequencer more expressive and allow for more complex rhythms.
 
 What other ways are there of changing the timing?
-
 We could also use swing or humanize functions to change the timing.
 
 Is setting a grid of 16 steps wide and 16 steps high too constrictive?
-
 No, setting a grid of 16 steps wide and 16 steps high is not too constrictive. This would give us a good amount of flexibility when it comes to sequencing our drums.
 
 Perhaps you could help us by listing some different types of rhythms we could use in our design?
-
 There are many different types of rhythms that we could use in our design, including simple 4/4, 6/8, 9/8, and 12/8 time signatures, as well as more complex polyrhythms.
 
 Tell us more about how we could use polyrhythms in the sequencer.
-
 Polyrhythms are rhythms that have more than one pulse, or beat, running through them. This can create a very complex and interesting sound.
