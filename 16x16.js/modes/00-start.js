@@ -26,13 +26,13 @@ defineMode("start", grid => {
         break;
       case 1:
         questionAnswer = ("Us: \"" + quotes[quotePointer] + "\"")
-        interval = 3500
+        interval = 3000
         break;
       case 2:
         questionAnswer = ("Us: \"" + quotes[quotePointer] + "\"\n\n" + "OpenAI: \"" + quotes[quotePointer + 1] + "\"")
         quotePointer += 3
         if ((quotePointer + 1) > quotes.length) quotePointer = 0
-        interval = 5000
+        interval = 6000
         break;
       default:
     }
@@ -56,7 +56,8 @@ defineMode("start", grid => {
       print("length = " + quotes.length)
       quotePointer = 0
       quoteStage = 0
-      setTimeout(tick, interval)
+      setTimeout(tick, 3000)
+      grid.sequence.fill('.')
     },
 
     unload() {
@@ -67,7 +68,7 @@ defineMode("start", grid => {
       if ((key.key == "Tab") || (key == "mouseMiddle")) {
         sample.rate(0.5)
         sample.play()
-        useMode("short-sequence")
+        useMode("first-steps")
       } else if (key.key == "f") {
         fullscreen(1) // fullscreen only works on user input, so putting it here as a hack
       } else {

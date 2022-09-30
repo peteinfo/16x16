@@ -333,13 +333,17 @@ const modeSwitcher = ({
           return ['idle', ...values]
         case 'switch':
           // use prompt mode when current is none prompt mode
+          /*
           const isPrompt = grid.mode.isPrompt || false
           useMode(
             isPrompt
               ? randomMode()
               : 'prompt'
           )
+          */
+          useMode('start')
           start()
+
           return ['switch', 1, 1]
       }
     }

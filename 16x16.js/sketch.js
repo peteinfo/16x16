@@ -13,7 +13,7 @@ var orange
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 1000,
-  idleTime: 60000, // 60 seconds until system gets bored and moves on
+  idleTime: 60000, // 60 seconds until system gets bored and moves right back to start page
   transitionTime: 1000,
 })
 
@@ -132,8 +132,9 @@ function mousePressed() {
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))
 
-
 const renderGrid = (x = 0, y = 0) => {
+
+
   grid.renderSequence()
 
   push()
@@ -141,25 +142,30 @@ const renderGrid = (x = 0, y = 0) => {
 
   const fontSize = unitOf(0.75)
 
+  noStroke()
+  grid.forEach((char, index) => {
+    const [x, y] = indexToPixelXY(index)
+    // draw character at grid space
+    //fill(0, 192, 0)
+
+    if (grid.mode.isPrompt) {
+      fill(0, 72, 0)
+    } else {
+      fill(0, 192, 0)
+    }
+
+    drawChar(char, fontSize, x, y)
+    // if cursor position, draw flashing cursor block
+    if (isCursorAt(grid, index)) {
+      fill(0, 255, 0, blinking(100, 50))
+      drawChar(cursorChar, fontSize, x, y);
+    }
+  }, true)
+
   // Let the mode draw itself
   push()
   grid.drawMode()
   pop()
-
-    noStroke()
-    grid.forEach((char, index) => {
-      const [x, y] = indexToPixelXY(index)
-      // draw character at grid space
-      fill(0, 192, 0)
-      drawChar(char, fontSize, x, y)
-      // if cursor position, draw flashing cursor block
-      if (isCursorAt(grid, index)) {
-        fill(0, 255, 0, blinking(100, 50))
-        drawChar(cursorChar, fontSize, x, y);
-      }
-    }, true)
-  
-
 
   green.setAlpha(255)
   fill(green)

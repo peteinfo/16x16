@@ -3,7 +3,7 @@
 //    MULTI TRACK
 // -------------------
 
-defineMode("short-sequence", grid => {
+defineMode("first-steps", grid => {
 
   let samples
   let sampleFiles = [
@@ -94,8 +94,6 @@ defineMode("short-sequence", grid => {
     info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[del] clear sample",
 
     preload() {
-      //samples = samples.map(loadSound)
-
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
 
@@ -103,18 +101,21 @@ defineMode("short-sequence", grid => {
       setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
     },
+     // unload is called when the mode actually unloads
+     unload() { 
+      // delete samples array
+      samples.length = 0;
+    },
 
     onKey(key) {
-      if (key.key.match(/^[0-9a-z]$/)) {
+      if ((key.key == "Tab") || (key == "mouseMiddle")) {
+        useMode("prompt")
+      } else if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
-      }
-      if (key.key == 'Enter') {
+      } else if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
         //playhead.min = 16*cursor.y
-        sound.rate(0.15)
-        sound.volume(0.5)
-        sound.play()
       }
     },
 
