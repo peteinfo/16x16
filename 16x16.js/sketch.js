@@ -14,7 +14,7 @@ var orange
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 1000,
   idleTime: 60000, // 60 seconds until system gets bored and moves on
-  transitionTime: 3000,
+  transitionTime: 1000,
 })
 
 function preload() {
@@ -158,7 +158,7 @@ const renderGrid = (x = 0, y = 0) => {
     }
   }, true)
 
-  
+
   green.setAlpha(255)
   fill(green)
   textSize(unitOf(0.4))

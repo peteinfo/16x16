@@ -92,7 +92,7 @@ defineMode("short-sequence", grid => {
 
   return {
     title: "\nlevel 1: first (16) steps",
-    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[backspace] clear sample\n[esc] proceed",
+    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[backspace] clear sample\n[tab] to proceed",
 
     preload() {
       //samples = samples.map(loadSound)

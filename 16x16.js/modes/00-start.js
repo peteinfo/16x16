@@ -8,7 +8,7 @@ defineMode("start", grid => {
 
   return {
     title: (" "),
-    info: ("\n[arrow] move cursor\n[enter] begin"),
+    info: ("\n[arrow] move cursor\n[tab] to begin"),
     isPrompt: true,
 
     preload() {
@@ -25,12 +25,14 @@ defineMode("start", grid => {
 
     onKey(key) {
       print(key)
-      if ((key.key == "Enter") || (key == "mouseMiddle")) {
+      if ((key.key == "Tab") || (key == "mouseMiddle")) {
         sample.rate(0.5)
         sample.play()
         useMode("short-sequence")
       } else {
-        sample.rate(2)
+        //fullscreen(1) // fullscreen only works on user input, so putting it here as a hack
+        sample.rate(3)
+        sample.volume(0.1)
         sample.play()
       }
     },
@@ -44,7 +46,7 @@ defineMode("start", grid => {
       textSize(unitOf(5))
       textLeading(unitOf(1.0))
       textAlign(CENTER, CENTER)
-      text('16x16', 0, 0, unitOf(16), unitOf(16))
+      text('16x16', 0, 0, unitOf(16), unitOf(6))
     },
   }
 })
