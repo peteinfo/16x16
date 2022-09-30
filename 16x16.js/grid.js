@@ -346,5 +346,7 @@ const modeSwitcher = ({
   }
 }
 
-const modeDescription = grid => grid.mode.description || currentModeName(grid)
+const modeTitle = grid => grid.mode.title || currentModeName(grid)
+const modeInfo = grid => grid.mode.info || currentModeName(grid)
+
 

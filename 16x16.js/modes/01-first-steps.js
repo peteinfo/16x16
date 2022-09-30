@@ -56,7 +56,7 @@ defineMode("short-sequence", grid => {
     }
   }
 
-  let playhead = new Playhead(0, 15, 150)
+  let playhead = new Playhead(0, 15, 200)
   let firstKeyPressed = false
 
   function tick() {
@@ -91,7 +91,9 @@ defineMode("short-sequence", grid => {
   }
 
   return {
-    description: "level 1: just the first row\n[0-9] vibes [a-z] drums\n",
+    title: "\nlevel 1: first (16) steps",
+    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[backspace] clear sample\n[esc] proceed",
+
     preload() {
       //samples = samples.map(loadSound)
 

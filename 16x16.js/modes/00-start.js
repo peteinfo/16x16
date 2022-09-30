@@ -7,7 +7,8 @@ defineMode("start", grid => {
   var sample
 
   return {
-    description: ("press [enter] to begin"),
+    title: (" "),
+    info: ("\n[arrow] move cursor\n[enter] begin"),
     isPrompt: true,
 
     preload() {
@@ -40,7 +41,7 @@ defineMode("start", grid => {
     draw() {
       green.setAlpha(100)
       fill(green)
-      textSize(unitOf(3.8))
+      textSize(unitOf(5))
       textLeading(unitOf(1.0))
       textAlign(CENTER, CENTER)
       text('16x16', 0, 0, unitOf(16), unitOf(16))

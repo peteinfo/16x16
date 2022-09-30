@@ -50,7 +50,7 @@ function setup() {
 const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-const unitOfOne = () => Math.min(windowWidth, windowHeight) / 21
+const unitOfOne = () => Math.min(windowWidth, windowHeight) / 24
 const unitOf = scale => unitOfOne() * scale
 
 
@@ -158,7 +158,14 @@ const renderGrid = (x = 0, y = 0) => {
     }
   }, true)
 
-  fill(0, 192, 0)
-  drawChar(modeDescription(grid), fontSize * 0.75, unitOf(0.125), unitOf(16) + fontSize / 2)
+  
+  green.setAlpha(255)
+  fill(green)
+  textSize(unitOf(0.4))
+  textLeading(unitOf(0.7))
+  textAlign(LEFT)
+  text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
+  text(modeInfo(grid), unitOf(8.35), unitOf(16), unitOf(7.5), unitOf(4))
+  //drawChar(modeInfo(grid), unitOf(0.5), unitOf(8.125), unitOf(16) + fontSize / 2)
   pop()
 }
