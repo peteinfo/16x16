@@ -7,9 +7,18 @@
 // Sound Library is Howler:
 // https://github.com/goldfire/howler.js
 
-var mainFont
-var green
-var orange
+let mainFont
+let green
+let orange
+
+// -------------------------------------
+//      Sequence Level Order Here
+// -------------------------------------
+let levels = [
+  "first-steps",
+  "full-grid",
+  "row-jump"]
+let currentLevel = 0
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 1000,

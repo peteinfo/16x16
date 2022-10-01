@@ -10,6 +10,7 @@ defineMode("start", grid => {
   let quoteStage
   let questionAnswer
   let interval = 1500
+  let timer // for being able to cancel the setTimeout call on exit
 
   function tick() {
     // this function is triggered every interval
@@ -40,8 +41,8 @@ defineMode("start", grid => {
   }
 
   return {
-    title: ("\n[arrow] move cursor\n[tab] to begin"),
-    info: (" "),
+    title: ("\nLEVEL 0: THE BEGINNING\n----------------------"),
+    info: ("\n[arrow] move cursor\n[tab] to begin"),
     isPrompt: true,
     showGrid: false,
 
@@ -56,16 +57,22 @@ defineMode("start", grid => {
       print("length = " + quotes.length)
       quotePointer = 0
       quoteStage = 0
-      setTimeout(tick, 3000)
+      timer = setTimeout(tick, 3000)
       grid.sequence.fill('.')
     },
 
     unload() {
+
+      // ------------------
+      // TODO: Kill the timer! (how to turn off a setTimeout?)
+      // ------------------
+      clearTimeout(timer)
+
     },
 
     onKey(key) {
       print(key)
-      if ((key.key == "Tab") || (key == "mouseMiddle")) {
+      if ((key.key == "Tab")) {
         sample.rate(0.5)
         sample.play()
         useMode("first-steps")
@@ -97,7 +104,7 @@ defineMode("start", grid => {
       textSize(unitOf(0.5))
       textLeading(unitOf(1.0))
       textAlign(LEFT, TOP)
-      text(questionAnswer, unitOf(1.5), unitOf(6), unitOf(13.5), unitOf(12))
+      text(questionAnswer, unitOf(1.5), unitOf(5), unitOf(13.5), unitOf(12))
     },
   }
 })

@@ -1,4 +1,4 @@
-defineMode("first-steps", grid => {
+defineMode("row-jump", grid => {
 
   let samples
   let sampleFiles = [
@@ -64,7 +64,7 @@ defineMode("first-steps", grid => {
     if (grid.sequence[playhead.pos] != '.') {
 
       // Great! Let's play a note
-      print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
+      //print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
       let sampleToPlay = '0'
 
       // Small fix to avoid out of bounds
@@ -85,8 +85,8 @@ defineMode("first-steps", grid => {
   }
 
   return {
-    title: "\nLEVEL 1: FIRST (16) STEPS\n-------------------------\n[tab] to proceed\n [esc] return to start",
-    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[del] clear sample",
+    title: "\nLEVEL 3: JUMP TO A ROW\n-----------------------\n[tab] to proceed\n [esc] return to start",
+    info: "\n[enter] jump to row\n[0-9] vibe samples\n[a-z] drum samples\n[del] clear sample",
 
     preload() {
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
@@ -110,7 +110,12 @@ defineMode("first-steps", grid => {
         grid.advanceBy(1)
       } else if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
-        //playhead.min = 16*cursor.y
+       
+        print("jump to row " + 16*grid.cursor.y)
+        //playhead.pos = grid.cursor.
+        playhead.min = 16*grid.cursor.y
+        playhead.max = 16*grid.cursor.y + 15
+        playhead.pos = 16*grid.cursor.y + playhead.pos%16
       }
     },
 

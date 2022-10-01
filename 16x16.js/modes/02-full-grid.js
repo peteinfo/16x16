@@ -1,4 +1,4 @@
-defineMode("first-steps", grid => {
+defineMode("full-grid", grid => {
 
   let samples
   let sampleFiles = [
@@ -51,7 +51,7 @@ defineMode("first-steps", grid => {
     }
   }
 
-  let playhead = new Playhead(0, 15, 200)
+  let playhead = new Playhead(0, 255, 200)
 
   function tick() {
     // this function is triggered every interval
@@ -85,7 +85,7 @@ defineMode("first-steps", grid => {
   }
 
   return {
-    title: "\nLEVEL 1: FIRST (16) STEPS\n-------------------------\n[tab] to proceed\n [esc] return to start",
+    title: "\nLEVEL 2: FULL GRID SEQUENCE\n---------------------------\n[tab] to proceed\n [esc] return to start",
     info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[del] clear sample",
 
     preload() {

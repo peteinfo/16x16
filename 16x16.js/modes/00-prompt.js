@@ -12,8 +12,8 @@ defineMode("prompt", grid => {
   let backgroundFill = ['_', '*', '|', '+', '=', ':']
 
   return {
-    title: "\noblique grid strategies:\n-------------------------\n[tab] to proceed\n [esc] return to start",
-    info: "\ntake some time to consider this strategy before proceeding with the next level",
+    title: "\nOBLIQUE GRID STRATEGIES\n-----------------------\nconsider this creativity prompt for the next level",
+    info: "\n[tab] to proceed\n [esc] return to start",
     isPrompt: true,
     preload() {
       prompts = loadStrings('./prompts/prompts.txt')
@@ -31,8 +31,14 @@ defineMode("prompt", grid => {
     },
 
     onKey(key) {
-      if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        useMode("prompt")
+      if ((key.key == "Tab")) {
+        currentLevel++
+        if (currentLevel >= levels.length) {
+          currentLevel = 0
+          useMode("start")
+        } else {
+          useMode(levels[currentLevel])
+        }
       }
       //currentPrompt = random(prompts)
       //samples[0].stop()
