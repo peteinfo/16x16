@@ -166,7 +166,7 @@ const renderGrid = (x = 0, y = 0) => {
     drawChar(char, fontSize, x, y)
     // if cursor position, draw flashing cursor block
     if (isCursorAt(grid, index)) {
-      fill(0, 255, 0, blinking(100, 50))
+      fill(0, 255, 0, blinking(150, 100))
       drawChar(cursorChar, fontSize, x, y);
     }
   }, true)

@@ -117,7 +117,7 @@ defineMode("first-steps", grid => {
     update(x, y, index) { },
 
     draw(frameCounter) {
-      fill(255, 165, 0, 100)    // orange playhead
+      fill(255, 165, 0, 200)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
     },
   }

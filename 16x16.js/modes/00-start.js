@@ -54,8 +54,8 @@ defineMode("start", grid => {
     },
 
     init() {
-      print("length = " + quotes.length)
-      quotePointer = 0
+      quotePointer = 3 * floor(random(quotes.length/3))
+      print("Quote file length = " + quotes.length + "   starting with " + quotePointer)
       quoteStage = 0
       timer = setTimeout(tick, 3000)
       grid.sequence.fill('.')
