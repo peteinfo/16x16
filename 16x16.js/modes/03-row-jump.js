@@ -89,8 +89,14 @@ defineMode("row-jump", grid => {
   }
 
   return {
-    title: "\nLEVEL 3: JUMP TO A ROW\n-----------------------\n[tab] to proceed\n [esc] return to start",
-    info: "\n[enter] jump to row\n[0-9] kalimba samples\n[a-z] kalimba samples\n[del] clear sample",
+    title: "LEVEL 3: JUMP TO A ROW \
+            ----------------------- \
+            [tab] next level \
+            [esc] last level",
+    info: "[enter] jump to row \
+            [0-9] kalimba samples \
+            [a-z] kalimba samples \
+            [del] clear sample",
 
     preload() {
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
@@ -100,8 +106,8 @@ defineMode("row-jump", grid => {
       setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
     },
-     // unload is called when the mode actually unloads
-     unload() { 
+    // unload is called when the mode actually unloads
+    unload() {
       // delete samples array
       samples.length = 0;
     },
@@ -114,12 +120,12 @@ defineMode("row-jump", grid => {
         grid.advanceBy(1)
       } else if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
-       
-        print("jump to row " + 16*grid.cursor.y)
+
+        print("jump to row " + 16 * grid.cursor.y)
         //playhead.pos = grid.cursor.
-        playhead.min = 16*grid.cursor.y
-        playhead.max = 16*grid.cursor.y + 15
-        playhead.pos = 16*grid.cursor.y + playhead.pos%16
+        playhead.min = 16 * grid.cursor.y
+        playhead.max = 16 * grid.cursor.y + 15
+        playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
       }
     },
 

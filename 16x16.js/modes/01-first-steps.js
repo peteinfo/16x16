@@ -85,8 +85,17 @@ defineMode("first-steps", grid => {
   }
 
   return {
-    title: "\nLEVEL 1: FIRST (16) STEPS\n-------------------------\n[tab] to proceed\n [esc] return to start",
-    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[del] clear sample",
+    title: "LEVEL 1: FIRST (16) STEPS \
+            ------------------------- \
+            Start with a sixteen step sequence on the first row.",
+    info: "[arrow] move cursor \
+            [>] next level \
+            [<] last level \
+            [0-9] vibe samples \
+            [a-z] drum samples \
+            [del] clear sample \ \ \ 
+            [tab] to proceed \
+            [esc] return to start",
 
     preload() {
       samples = sampleFiles.map(x => new Howl({ src: [x] }))

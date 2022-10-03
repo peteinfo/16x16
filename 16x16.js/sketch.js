@@ -15,6 +15,7 @@ let orange
 //      Sequence Level Order Here
 // -------------------------------------
 let levels = [
+  "start",
   "first-steps",
   "full-grid",
   "row-jump"]
@@ -182,8 +183,10 @@ const renderGrid = (x = 0, y = 0) => {
   textSize(unitOf(0.4))
   textLeading(unitOf(0.7))
   textAlign(LEFT)
-  text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
-  text(modeInfo(grid), unitOf(8.35), unitOf(16), unitOf(7.5), unitOf(4))
-  //drawChar(modeInfo(grid), unitOf(0.5), unitOf(8.125), unitOf(16) + fontSize / 2)
+  
+  text(modeTitle(grid), unitOf(-7), unitOf(0), unitOf(7), unitOf(16))
+  text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(7), unitOf(16))
+  //text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
+  //text(modeInfo(grid), unitOf(8.35), unitOf(16), unitOf(7.5), unitOf(4))
   pop()
 }

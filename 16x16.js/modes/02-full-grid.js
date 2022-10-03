@@ -85,8 +85,17 @@ defineMode("full-grid", grid => {
   }
 
   return {
-    title: "\nLEVEL 2: FULL GRID SEQUENCE\n---------------------------\n[tab] to proceed\n [esc] return to start",
-    info: "\n[arrow] move cursor\n[0-9] kalimba samples\n[a-z] synth pad samples\n[del] clear sample",
+    title: "LEVEL 2: FULL GRID SEQUENCE \
+            --------------------------- \
+            ",
+    info:   "[arrow] move cursor \
+            [>] next level \
+            [<] last level \
+            [0-9] kalimba samples \
+            [a-z] synth pad samples \
+            [del] clear sample \
+            [tab] to proceed \
+            [esc] return to start",
 
     preload() {
       samples = sampleFiles.map(x => new Howl({ src: [x] }))

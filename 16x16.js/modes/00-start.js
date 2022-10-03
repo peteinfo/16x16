@@ -41,8 +41,13 @@ defineMode("start", grid => {
   }
 
   return {
-    title: ("\nLEVEL 0: THE BEGINNING\n----------------------"),
-    info: ("\n[arrow] move cursor\n[tab] to begin"),
+    title: ("16x16 \
+            ---------------- \
+            A minimal audio-visual environment for exploring computer-aided creativity. \
+            Follow the instructions on the right and explore the different modes. Use the creativity prompts as needed. \
+            This project used machine learning (OpenAI) as a design partner."),
+    info: ("[arrow] move cursor \
+            [tab] next level"),
     isPrompt: true,
     showGrid: false,
 
@@ -54,7 +59,7 @@ defineMode("start", grid => {
     },
 
     init() {
-      quotePointer = 3 * floor(random(quotes.length/3))
+      quotePointer = 3 * floor(random(quotes.length / 3))
       print("Quote file length = " + quotes.length + "   starting with " + quotePointer)
       quoteStage = 0
       timer = setTimeout(tick, 3000)
@@ -91,12 +96,14 @@ defineMode("start", grid => {
     draw() {
 
       // 16x16 title
+      /*
       green.setAlpha(150)
       fill(green)
       textSize(unitOf(2.6))
       textLeading(unitOf(1.0))
       textAlign(CENTER, TOP)
       text('16x16', 0, unitOf(1.35), unitOf(16), unitOf(8))
+      */
 
       // question & answer
       orange.setAlpha(200)
@@ -104,7 +111,7 @@ defineMode("start", grid => {
       textSize(unitOf(0.5))
       textLeading(unitOf(1.0))
       textAlign(LEFT, TOP)
-      text(questionAnswer, unitOf(1.5), unitOf(5), unitOf(13.5), unitOf(12))
+      text(questionAnswer, unitOf(1.5), unitOf(3), unitOf(13.5), unitOf(12))
     },
   }
 })
