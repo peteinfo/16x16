@@ -7,3 +7,9 @@ Inspired by Orca: https://100r.co/site/orca.html
 ![](/images/16x16-title.png)
 ![](/images/16x16-rainfall.png)
 
+Using DALL-E to explore the sequencer design:
+
+![](/images/DALL-E-01.png)
+
+![](/images/DALL-E-0-1.png)
+
