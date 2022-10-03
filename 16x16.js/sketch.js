@@ -36,7 +36,7 @@ function setup() {
   green = color(0, 192, 0)
   orange = color(255, 165, 0)
   createCanvas(windowWidth, windowHeight)
-  useMode("start")
+  //useMode("start")
   //useMode("design")
   //useMode("prompt")
   //useMode("long-sequence")
@@ -47,12 +47,12 @@ function setup() {
   //useMode("random-access")
   //useMode("random")
   //useMode("reflections")
-  //useMode("ripples")
+  useMode("ripples")
   //useMode("sound-test")
   //useMode("wandering-cursor")
 
   // To debug a a mode do not call start() and just useMode instead and make adjustments to the background in draw()
-  start()
+  //start()
 }
 
 // returns value alternating based on time
