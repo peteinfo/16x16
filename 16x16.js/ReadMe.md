@@ -28,6 +28,7 @@ The system has three 'levels': sequencer, prompts and design.
 - **Polymeter**: Each row runs at a different speed
 - **Random Access** The playhead jumps randomly between positions
 - **Arrow Advance** Playhead only advances on every arrow key press
+- **Lamination** A one dimensional cellular automata: https://llllllll.co/t/lamination/58652
 
 
 ## prompt ideas
