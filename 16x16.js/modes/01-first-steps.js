@@ -85,17 +85,18 @@ defineMode("first-steps", grid => {
   }
 
   return {
-    title: "LEVEL 1: FIRST (16) STEPS \
-            ------------------------- \
-            Start with a sixteen step sequence on the first row.",
-    info: "[arrow] move cursor \
+    title: "\nLEVEL 1: FIRST (16) STEPS \n--------------------------- \
+            Build up your first sequence on the top row. \
+            ",
+    info: "\n[arrow] move cursor \
             [>] next level \
             [<] last level \
             [0-9] vibe samples \
             [a-z] drum samples \
-            [del] clear sample \ \ \ 
+            [del] clear sample \
             [tab] to proceed \
-            [esc] return to start",
+            [esc] return to start \
+            ",
 
     preload() {
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
@@ -113,7 +114,7 @@ defineMode("first-steps", grid => {
 
     onKey(key) {
       if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        useMode("prompt")
+        //useMode("prompt")
       } else if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)

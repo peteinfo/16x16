@@ -41,12 +41,13 @@ defineMode("start", grid => {
   }
 
   return {
-    title: ("16x16 \
-            ---------------- \
+    title: ("\n16x16 \
+            ------------------------- \
             A minimal audio-visual environment for exploring computer-aided creativity. \
-            Follow the instructions on the right and explore the different modes. Use the creativity prompts as needed. \
-            This project used machine learning (OpenAI) as a design partner."),
-    info: ("[arrow] move cursor \
+            \nFollow the instructions on the right and explore the different modes. Use the creativity prompts as needed. \
+            \n\nThis project used machine learning (OpenAI) as a design partner. \
+            "),
+    info: ("\n[arrow] move cursor \
             [tab] next level"),
     isPrompt: true,
     showGrid: false,
@@ -78,9 +79,9 @@ defineMode("start", grid => {
     onKey(key) {
       print(key)
       if ((key.key == "Tab")) {
-        sample.rate(0.5)
-        sample.play()
-        useMode("first-steps")
+        //sample.rate(0.5)
+        //sample.play()
+        //useMode("first-steps")
       } else if (key.key == "f") {
         fullscreen(1) // fullscreen only works on user input, so putting it here as a hack
       } else {

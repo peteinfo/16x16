@@ -89,14 +89,15 @@ defineMode("row-jump", grid => {
   }
 
   return {
-    title: "LEVEL 3: JUMP TO A ROW \
-            ----------------------- \
-            [tab] next level \
-            [esc] last level",
-    info: "[enter] jump to row \
+    title: "\nLEVEL 3: JUMP TO A ROW \n--------------------------- \
+            Work on multiple rows, and use [enter] to play the row that the cursor is on \
+            ",
+    info: "\n[enter] jump to row \
             [0-9] kalimba samples \
             [a-z] kalimba samples \
-            [del] clear sample",
+            [del] clear sample \
+            [tab] next level \
+            [esc] last level",
 
     preload() {
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
@@ -114,7 +115,7 @@ defineMode("row-jump", grid => {
 
     onKey(key) {
       if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        useMode("prompt")
+        //useMode("prompt")
       } else if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)

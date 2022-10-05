@@ -85,10 +85,10 @@ defineMode("full-grid", grid => {
   }
 
   return {
-    title: "LEVEL 2: FULL GRID SEQUENCE \
-            --------------------------- \
+    title: "\nLEVEL 2: FULL GRID SEQUENCE \n--------------------------- \
+            Enjoy the spaciousness of laying out a sequence over the full grid. Take time to build it up. \
             ",
-    info:   "[arrow] move cursor \
+    info:   "\n[arrow] move cursor \
             [>] next level \
             [<] last level \
             [0-9] kalimba samples \
@@ -113,7 +113,7 @@ defineMode("full-grid", grid => {
 
     onKey(key) {
       if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        useMode("prompt")
+        //useMode("prompt")
       } else if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)

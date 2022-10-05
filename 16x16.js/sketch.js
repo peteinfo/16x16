@@ -61,7 +61,8 @@ function setup() {
 const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-const unitOfOne = () => Math.min(windowWidth, windowHeight) / 24
+//const unitOfOne = () => Math.min(windowWidth, windowHeight) / 24
+const unitOfOne = () => Math.min(windowWidth / 40, windowHeight / 25)
 const unitOf = scale => unitOfOne() * scale
 
 
@@ -87,9 +88,9 @@ function windowResized() {
 
 function keyPressed(e) {
   if (e.key == 'Escape') {
-    print('MODE CHANGE')
-    idle()
-    return
+    //print('MODE CHANGE')
+    //idle()
+    //return
   }
   // indicate that user is still active
   active()
@@ -184,8 +185,8 @@ const renderGrid = (x = 0, y = 0) => {
   textLeading(unitOf(0.7))
   textAlign(LEFT)
   
-  text(modeTitle(grid), unitOf(-7), unitOf(0), unitOf(7), unitOf(16))
-  text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(7), unitOf(16))
+  text(modeTitle(grid), unitOf(-8), unitOf(0), unitOf(8), unitOf(16))
+  text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(8), unitOf(16))
   //text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
   //text(modeInfo(grid), unitOf(8.35), unitOf(16), unitOf(7.5), unitOf(4))
   pop()
