@@ -37,15 +37,15 @@ defineMode("start", grid => {
         break;
       default:
     }
-    setTimeout(tick, interval)
+    timer = setTimeout(tick, interval)
   }
 
   return {
     title: ("\n16x16 \
             ------------------------- \
             A minimal audio-visual environment for exploring computer-aided creativity. \
-            \nFollow the instructions on the right and explore the different modes. Use the creativity prompts as needed. \
-            \n\nThis project used machine learning (OpenAI) as a design partner. \
+            \nFollow the instructions on the right and explore using the different modes. Use the creativity prompts if you get stuck or need a new direction. \
+            \nThis project used machine learning (OpenAI) as a design partner. \
             "),
     info: ("\n[arrow] move cursor \
             [tab] next level"),
@@ -53,13 +53,19 @@ defineMode("start", grid => {
     showGrid: false,
 
     preload() {
+      /*
       sample = new Howl({
         src: ['./samples/fx/blip.mp3']
       })
       quotes = loadStrings('./prompts/design-conversation.txt')
+      */
     },
 
     init() {
+      sample = new Howl({
+        src: ['./samples/fx/blip.mp3']
+      })
+      quotes = loadStrings('./prompts/design-conversation.txt')
       quotePointer = 3 * floor(random(quotes.length / 3))
       print("Quote file length = " + quotes.length + "   starting with " + quotePointer)
       quoteStage = 0
@@ -68,12 +74,7 @@ defineMode("start", grid => {
     },
 
     unload() {
-
-      // ------------------
-      // TODO: Kill the timer! (how to turn off a setTimeout?)
-      // ------------------
       clearTimeout(timer)
-
     },
 
     onKey(key) {

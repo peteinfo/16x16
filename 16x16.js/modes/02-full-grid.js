@@ -1,5 +1,6 @@
 defineMode("full-grid", grid => {
 
+  let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/kalimba/00.mp3",
@@ -81,34 +82,34 @@ defineMode("full-grid", grid => {
       samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
-    setTimeout(tick, playhead.interval)
+    timer = setTimeout(tick, playhead.interval)
   }
 
   return {
     title: "\nLEVEL 2: FULL GRID SEQUENCE \n--------------------------- \
-            Enjoy the spaciousness of laying out a sequence over the full grid. Take time to build it up. \
-            ",
-    info:   "\n[arrow] move cursor \
-            [>] next level \
-            [<] last level \
-            [0-9] kalimba samples \
-            [a-z] synth pad samples \
-            [del] clear sample \
-            [tab] to proceed \
-            [esc] return to start",
+            Enjoy the spaciousness of laying out a sequence over the full grid. \
+            \n\nTake time to build it up. Have patience to hear it play. \
+            \nLet's try some different samples. The synth pads samples are longer to help fill the space.",
+    info:   "\n[0-9] kalimba samples \
+              [a-z] synth pad samples \
+            \n[tab] next level\
+              [esc] last level",
 
     preload() {
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      //samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
 
     init() {
-      setTimeout(tick, playhead.interval)
+      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
     },
      // unload is called when the mode actually unloads
      unload() { 
       // delete samples array
       samples.length = 0;
+      clearTimeout(timer)
+
     },
 
     onKey(key) {

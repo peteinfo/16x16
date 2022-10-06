@@ -61,15 +61,15 @@ function setup() {
 const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-//const unitOfOne = () => Math.min(windowWidth, windowHeight) / 24
-const unitOfOne = () => Math.min(windowWidth / 40, windowHeight / 25)
+const unitOfOne = () => Math.min(windowWidth, windowHeight) / 24
+//const unitOfOne = () => Math.min(windowWidth / 40, windowHeight / 25)
 const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
   const [phase, progress] = whatState()
   background(0)
-  renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(9), unitOf(16), unitOf(16))
+  renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8), unitOf(16), unitOf(16))
   if (phase == 'start') {
     background(0, (1 - progress) * 255)
   }
@@ -99,6 +99,7 @@ function keyPressed(e) {
   return false // IMPORTANT NOTE: return FALSE to prevent the key press from getting to the browser
 }
 
+/*
 function mousePressed() {
   // indicate that user is still active
   active()
@@ -141,6 +142,7 @@ function mousePressed() {
     grid.mode.onKey("mouseMiddle")
   }
 }
+*/
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))
 
@@ -161,7 +163,7 @@ const renderGrid = (x = 0, y = 0) => {
     //fill(0, 192, 0)
 
     if (grid.mode.isPrompt) {
-      fill(0, 72, 0)
+      fill(0, 100, 0)
     } else {
       fill(0, 192, 0)
     }

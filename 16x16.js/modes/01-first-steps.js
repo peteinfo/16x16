@@ -1,5 +1,6 @@
 defineMode("first-steps", grid => {
 
+  let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/vibes/00.mp3",
@@ -81,35 +82,38 @@ defineMode("first-steps", grid => {
       samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
-    setTimeout(tick, playhead.interval)
+    timer = setTimeout(tick, playhead.interval)
   }
 
   return {
     title: "\nLEVEL 1: FIRST (16) STEPS \n--------------------------- \
-            Build up your first sequence on the top row. \
+            Build up a sequence using only the top row. The orange playhead sweeps across and plays one sound sample at a time.\
             ",
-    info: "\n[arrow] move cursor \
-            [>] next level \
-            [<] last level \
-            [0-9] vibe samples \
-            [a-z] drum samples \
-            [del] clear sample \
-            [tab] to proceed \
-            [esc] return to start \
+    info: " \n [0-9] vibe samples \
+               [a-z] drum samples \
+            \n [tab] next level \
+               [esc] last level \
             ",
 
     preload() {
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      //samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
 
     init() {
-      setTimeout(tick, playhead.interval)
+      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      //setTimeout(tick, playhead.interval)
+      timer = setTimeout(tick, playhead.interval)
+
       grid.sequence.fill('.')
     },
      // unload is called when the mode actually unloads
      unload() { 
       // delete samples array
       samples.length = 0;
+    },
+
+    unload() {
+      clearTimeout(timer)
     },
 
     onKey(key) {
