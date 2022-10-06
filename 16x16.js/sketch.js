@@ -15,6 +15,7 @@ let orange
 //      Sequence Level Order Here
 // -------------------------------------
 let levels = [
+  "start",
   "first-steps",
   "full-grid",
   "row-jump"]
@@ -61,13 +62,14 @@ const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
 const unitOfOne = () => Math.min(windowWidth, windowHeight) / 24
+//const unitOfOne = () => Math.min(windowWidth / 40, windowHeight / 25)
 const unitOf = scale => unitOfOne() * scale
 
 
 function draw() {
   const [phase, progress] = whatState()
   background(0)
-  renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(9), unitOf(16), unitOf(16))
+  renderGrid(windowWidth / 2 - unitOf(8), windowHeight / 2 - unitOf(8), unitOf(16), unitOf(16))
   if (phase == 'start') {
     background(0, (1 - progress) * 255)
   }
@@ -86,9 +88,9 @@ function windowResized() {
 
 function keyPressed(e) {
   if (e.key == 'Escape') {
-    print('MODE CHANGE')
-    idle()
-    return
+    //print('MODE CHANGE')
+    //idle()
+    //return
   }
   // indicate that user is still active
   active()
@@ -97,6 +99,7 @@ function keyPressed(e) {
   return false // IMPORTANT NOTE: return FALSE to prevent the key press from getting to the browser
 }
 
+/*
 function mousePressed() {
   // indicate that user is still active
   active()
@@ -139,6 +142,7 @@ function mousePressed() {
     grid.mode.onKey("mouseMiddle")
   }
 }
+*/
 
 const drawChar = (c, fontSize, x, y) => (textSize(fontSize), text(c, x + fontSize * 1 / 3, y + fontSize))
 
@@ -159,7 +163,7 @@ const renderGrid = (x = 0, y = 0) => {
     //fill(0, 192, 0)
 
     if (grid.mode.isPrompt) {
-      fill(0, 72, 0)
+      fill(0, 100, 0)
     } else {
       fill(0, 192, 0)
     }
@@ -182,8 +186,10 @@ const renderGrid = (x = 0, y = 0) => {
   textSize(unitOf(0.4))
   textLeading(unitOf(0.7))
   textAlign(LEFT)
-  text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
-  text(modeInfo(grid), unitOf(8.35), unitOf(16), unitOf(7.5), unitOf(4))
-  //drawChar(modeInfo(grid), unitOf(0.5), unitOf(8.125), unitOf(16) + fontSize / 2)
+  
+  text(modeTitle(grid), unitOf(-8), unitOf(0), unitOf(8), unitOf(16))
+  text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(8), unitOf(16))
+  //text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
+  //text(modeInfo(grid), unitOf(8.35), unitOf(16), unitOf(7.5), unitOf(4))
   pop()
 }

@@ -130,8 +130,18 @@ const setupGrid = (width, height) => {
       })
     },
     onKey(e) {
+      print(e.key)
+
       //print(e) // print to look at key code
       switch (e.key) {
+        case "Tab":
+          if (currentLevel < levels.length-1) currentLevel++
+          useMode(levels[currentLevel])
+          break
+        case "Escape":
+          if (currentLevel > 0) currentLevel--
+          useMode(levels[currentLevel])
+          break
         case "ArrowRight":
           if (this.cursor.x == 15) {
             this.moveBy(0, 1)

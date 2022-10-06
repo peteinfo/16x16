@@ -1,5 +1,6 @@
 defineMode("first-steps", grid => {
 
+  let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/vibes/00.mp3",
@@ -81,19 +82,28 @@ defineMode("first-steps", grid => {
       samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
-    setTimeout(tick, playhead.interval)
+    timer = setTimeout(tick, playhead.interval)
   }
 
   return {
-    title: "\nLEVEL 1: FIRST (16) STEPS\n-------------------------\n[tab] to proceed\n [esc] return to start",
-    info: "\n[arrow] move cursor\n[0-9] vibe samples\n[a-z] drum samples\n[del] clear sample",
+    title: "\nLEVEL 1: FIRST (16) STEPS \n--------------------------- \
+            Build up a sequence using only the top row. The orange playhead sweeps across and plays one sound sample at a time.\
+            ",
+    info: " \n [0-9] vibe samples \
+               [a-z] drum samples \
+            \n [tab] next level \
+               [esc] last level \
+            ",
 
     preload() {
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      //samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
 
     init() {
-      setTimeout(tick, playhead.interval)
+      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      //setTimeout(tick, playhead.interval)
+      timer = setTimeout(tick, playhead.interval)
+
       grid.sequence.fill('.')
     },
      // unload is called when the mode actually unloads
@@ -102,9 +112,13 @@ defineMode("first-steps", grid => {
       samples.length = 0;
     },
 
+    unload() {
+      clearTimeout(timer)
+    },
+
     onKey(key) {
       if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        useMode("prompt")
+        //useMode("prompt")
       } else if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
