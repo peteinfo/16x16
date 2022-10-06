@@ -18,7 +18,9 @@ let levels = [
   "start",
   "first-steps",
   "full-grid",
-  "row-jump"]
+  "row-jump",
+  "rainfall",
+  "multiple"]
 let currentLevel = 0
 
 const { active, start, idle, whatState } = modeSwitcher({
@@ -37,8 +39,9 @@ function setup() {
   green = color(0, 192, 0)
   orange = color(255, 165, 0)
   createCanvas(windowWidth, windowHeight)
-  
-  useMode("start")
+
+  useMode(levels[0])
+  //useMode("start")
   //useMode("design")
   //useMode("prompt")
   //useMode("long-sequence")
@@ -186,7 +189,7 @@ const renderGrid = (x = 0, y = 0) => {
   textSize(unitOf(0.4))
   textLeading(unitOf(0.7))
   textAlign(LEFT)
-  
+
   text(modeTitle(grid), unitOf(-8), unitOf(0), unitOf(8), unitOf(16))
   text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(8), unitOf(16))
   //text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
