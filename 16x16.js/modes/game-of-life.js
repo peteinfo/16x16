@@ -37,7 +37,7 @@ defineMode("game-of-life", grid => {
       // cell under cursor dies
       if (grid.cursor.index == index)
         grid.sequence[index] = ''
-      // wait for half a second to udpate the system
+      // wait to udpate the system
       if (frameCounter % 42  != 0) return
       // follow the rules
       const isLive = grid.sequence[index] !== ''
