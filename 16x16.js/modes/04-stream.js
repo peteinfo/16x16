@@ -1,6 +1,5 @@
-defineMode("row-jump", grid => {
+defineMode("stream", grid => {
 
-  let track
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
@@ -70,7 +69,6 @@ defineMode("row-jump", grid => {
     if (grid.sequence[playhead.pos] != '.') {
 
       // Great! Let's play a note
-      //print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
       let sampleToPlay = '0'
 
       // Small fix to avoid out of bounds
@@ -91,12 +89,12 @@ defineMode("row-jump", grid => {
   }
 
   return {
-    title: "\nLEVEL 3: JUMP TO A ROW \n--------------------------- \
-            Work on multiple rows. Press [enter] to play the row that the cursor is on. \
-            \nUse this to cue up multiple tracks and jump between them.",
-    info: "\n[0-9] kalimba samples \
-            [a-z] synth pad samples \
-          \n[tab] next level\
+    title: "\nLEVEL 4: STREAM \n--------------------------- \
+            Drop some samples in the stream and let them float away. \
+            \nTODO: Add water & nature samples.",
+    info: "\n[0-9] water samples \
+            [a-z] nature samples \
+          \n\n[tab] next level\
             [esc] last level\
             \
           \n[enter] play row",
@@ -105,7 +103,6 @@ defineMode("row-jump", grid => {
     },
 
     init() {
-      track = 0
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
@@ -124,24 +121,34 @@ defineMode("row-jump", grid => {
       } else if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
 
-        track = grid.cursor.y
         print("jump to row " + 16 * grid.cursor.y)
+        //playhead.pos = grid.cursor.
         playhead.min = 16 * grid.cursor.y
         playhead.max = 16 * grid.cursor.y + 15
         playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
       }
     },
 
-    update(x, y, index) { },
+    update(x, y, index, frameCounter) {
+    },
 
     draw(frameCounter) {
-
-      fill(0, 192, 0, 25)
-      rectMode(CENTER)
-      rect(unitOf(8), unitOf((track+0.5)), unitOf(16), unitOf(0.83))
-
       fill(255, 165, 0, orangeAlpha)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
+
+      // wait to udpate the system
+      if (frameCounter % 20 != 0) return
+
+      let tempArray = []
+      for (n = 0; n < 16; n++) {
+        tempArray[n] = grid.sequence[n + 240]
+      }
+      for (n = grid.sequence.length - 1; n > 15; n--) {
+        grid.sequence[n] = grid.sequence[n - 16]
+      }
+      for (n = 0; n < 16; n++) {
+        grid.sequence[n] = tempArray[n]
+      }
     },
   }
 })

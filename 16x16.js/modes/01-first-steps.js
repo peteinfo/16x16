@@ -96,7 +96,6 @@ defineMode("first-steps", grid => {
             ",
 
     preload() {
-      //samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
 
     init() {
@@ -106,8 +105,8 @@ defineMode("first-steps", grid => {
 
       grid.sequence.fill('.')
     },
-     // unload is called when the mode actually unloads
-     unload() { 
+    // unload is called when the mode actually unloads
+    unload() {
       // delete samples array
       samples.length = 0;
     },
@@ -117,9 +116,7 @@ defineMode("first-steps", grid => {
     },
 
     onKey(key) {
-      if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        //useMode("prompt")
-      } else if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
       } else if (key.key == 'Enter') {
@@ -131,7 +128,7 @@ defineMode("first-steps", grid => {
     update(x, y, index) { },
 
     draw(frameCounter) {
-      fill(255, 165, 0, 200)    // orange playhead
+      fill(255, 165, 0, orangeAlpha)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
     },
   }

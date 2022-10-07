@@ -1,5 +1,6 @@
-defineMode("rainfall", grid => {
+defineMode("eight-track-select", grid => {
 
+  let track = 0
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
@@ -56,7 +57,7 @@ defineMode("rainfall", grid => {
     }
   }
 
-  let playhead = new Playhead(0, 15, 200)
+  let playhead = new Playhead(0, 31, 200)
 
   function tick() {
     // this function is triggered every interval
@@ -69,6 +70,7 @@ defineMode("rainfall", grid => {
     if (grid.sequence[playhead.pos] != '.') {
 
       // Great! Let's play a note
+      //print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
       let sampleToPlay = '0'
 
       // Small fix to avoid out of bounds
@@ -89,20 +91,21 @@ defineMode("rainfall", grid => {
   }
 
   return {
-    title: "\nLEVEL 4: RAINFALL \n--------------------------- \
-            Create an ever changing pattern from the falling notes.",
+    title: "\nLEVEL 7: EIGHT-TRACK SELECT \n--------------------------- \
+           The perfect sequencer to accompany a road trip. \
+           \nSelect which of the eight tracks to play by pressing [enter].",
+
     info: "\n[0-9] kalimba samples \
-            [a-z] synth pad samples \
-          \n[tab] next level\
-            [esc] last level\
-            \
-          \n[enter] play row",
+            [a-z] kalimba samples \
+        \n\n[enter] play track \
+        \n\n[tab] next level\
+              [esc] last level",
 
     preload() {
-      //samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
 
     init() {
+      track = 0
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
@@ -115,43 +118,33 @@ defineMode("rainfall", grid => {
     },
 
     onKey(key) {
-      if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        //useMode("prompt")
-      } else if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
       } else if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
 
+        track = floor(grid.cursor.y / 2)
+        print("track = " + track)
         print("jump to row " + 16 * grid.cursor.y)
         //playhead.pos = grid.cursor.
-        playhead.min = 16 * grid.cursor.y
-        playhead.max = 16 * grid.cursor.y + 15
-        playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
+        playhead.min = 32 * track
+        playhead.max = 32 * track + 31
+        playhead.pos = 32 * track + playhead.pos % 32
       }
     },
 
-    update(x, y, index, frameCounter) {
-    },
+    update(x, y, index) { },
 
     draw(frameCounter) {
-      fill(255, 165, 0, 100)    // orange playhead
+
+      fill(0, 192, 0, 25)
+      rectMode(CENTER)
+      rect(unitOf(8), unitOf((track + 0.5) * 2), unitOf(16), unitOf(1.83))
+
+
+      fill(255, 165, 0, orangeAlpha)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
-
-      // wait to udpate the system
-      if (frameCounter % 20 != 0) return
-
-      let tempArray = []
-      for (n = 0; n < 16; n++) {
-        tempArray[n] = grid.sequence[n+240]
-      }
-      for (n = grid.sequence.length-1; n > 15; n--) {
-        grid.sequence[n] = grid.sequence[n - 16]
-        print(grid.sequence.length)
-      }
-      for (n = 0; n < 16; n++) {
-       grid.sequence[n] = tempArray[n]
-      }
     },
   }
 })

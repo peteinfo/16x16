@@ -53,12 +53,6 @@ defineMode("start", grid => {
     showGrid: false,
 
     preload() {
-      /*
-      sample = new Howl({
-        src: ['./samples/fx/blip.mp3']
-      })
-      quotes = loadStrings('./prompts/design-conversation.txt')
-      */
     },
 
     init() {
