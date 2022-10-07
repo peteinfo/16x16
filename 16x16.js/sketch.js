@@ -10,6 +10,7 @@
 let mainFont
 let green
 let orange
+let orangeAlpha = 150
 
 // -------------------------------------
 //      Sequence Level Order Here
@@ -19,8 +20,10 @@ let levels = [
   "first-steps",
   "full-grid",
   "row-jump",
-  "rainfall",
-  "multiple"]
+  "stream",
+  "eight-track",
+  "rain",
+  "eight-track-select"]
 let currentLevel = 0
 
 const { active, start, idle, whatState } = modeSwitcher({
@@ -64,7 +67,7 @@ function setup() {
 const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-const unitOfOne = () => Math.min(windowWidth, windowHeight) / 24
+const unitOfOne = () => Math.min(windowWidth, windowHeight) / 26
 //const unitOfOne = () => Math.min(windowWidth / 40, windowHeight / 25)
 const unitOf = scale => unitOfOne() * scale
 

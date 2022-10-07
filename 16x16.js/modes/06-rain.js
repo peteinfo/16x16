@@ -1,4 +1,4 @@
-defineMode("multiple", grid => {
+defineMode("rain", grid => {
 
   let playheads = []
   let timers = []      // for being able to cancel the setTimeout call on exit
@@ -58,11 +58,9 @@ defineMode("multiple", grid => {
   }
 
   function tick(n) {
+
     // this function is triggered every interval
-    playheads[n].pos++;
-    if (playheads[n].pos >= playheads[n].max) {
-      playheads[n].pos = playheads[n].min
-    }
+    playheads[n].pos = (playheads[n].pos + 16) % 256
 
     // does the index contain a note to play?
     if (grid.sequence[playheads[n].pos] != '.') {
@@ -88,10 +86,11 @@ defineMode("multiple", grid => {
   }
 
   return {
-    title: "\nLEVEL 5: ALL ROWS \n--------------------------- \
-            ",
-    info: "\n[0-9] kalimba samples \
-            [a-z] synth pad samples \
+    title: "\nLEVEL 6: LIKE SAMPLES IN RAIN \n--------------------------- \
+            Rain-drops stream down the window, playing samples as they go. \
+            \n\nTODO: add Bladerunner / water drop samples",
+    info: "\n[0-9] rain falling samples \
+            [a-z] weather samples \
           \n[tab] next level\
             [esc] last level\
             \
@@ -105,10 +104,9 @@ defineMode("multiple", grid => {
       // init playhead array
       playheads = []
       for (n = 0; n < 16; n++) {
-        playheads[n] = new Playhead(n * 16, n * 16 + 16, 200)
+        playheads[n] = new Playhead(n, 256, random(200.0, 300.0))
         timers[n] = setTimeout(tick, playheads[n].interval, n)
       }
-      print(playheads)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
     },
@@ -118,15 +116,13 @@ defineMode("multiple", grid => {
       // delete samples array
       samples.length = 0;
 
-      for (n = 0; n < 16; n++) {
+      for (n = 0; n < timers.length; n++) {
         clearTimeout(timers[n])
       }
     },
 
     onKey(key) {
-      if ((key.key == "Tab") || (key == "mouseMiddle")) {
-        //useMode("prompt")
-      } else if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         grid.advanceBy(1)
       }
@@ -135,8 +131,8 @@ defineMode("multiple", grid => {
     update(x, y, index) { },
 
     draw(frameCounter) {
-      fill(255, 165, 0, 100)    // orange playhead
-      for (n = 0; n < 16; n++) {
+      fill(255, 165, 0, orangeAlpha)    // orange playhead
+      for (n = 0; n < playheads.length; n++) {
         drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playheads[n].pos))
       }
     },
