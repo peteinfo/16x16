@@ -11,6 +11,8 @@ let mainFont
 let green
 let orange
 let orangeAlpha = 150
+let prompts
+let currentPrompt = ''
 
 // -------------------------------------
 //      Sequence Level Order Here
@@ -21,10 +23,11 @@ let levels = [
   "full-grid",
   "row-jump",
   "stream",
-  "eight-track",
+  "eight-track-select",
   "rain",
-  "eight-track-select"]
-let currentLevel = 0
+  "eight-track",
+  "alphabet"]
+var currentLevel = 0
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 1000,
@@ -35,6 +38,7 @@ const { active, start, idle, whatState } = modeSwitcher({
 function preload() {
   preloadModes()
   mainFont = loadFont('./fonts/Andale_Mono/Andale_Mono.ttf')
+  prompts = loadStrings('./prompts/prompts.txt')
 }
 
 function setup() {
@@ -43,21 +47,9 @@ function setup() {
   orange = color(255, 165, 0)
   createCanvas(windowWidth, windowHeight)
 
+  currentPrompt = random(prompts)
+
   useMode(levels[0])
-  //useMode("start")
-  //useMode("design")
-  //useMode("prompt")
-  //useMode("long-sequence")
-  //useMode("short-sequence")
-  //useMode("example")
-  //useMode("gamer-of-life")
-  //useMode("just-write")
-  //useMode("random-access")
-  //useMode("random")
-  //useMode("reflections")
-  //useMode("ripples")
-  //useMode("sound-test")
-  //useMode("wandering-cursor")
 
   // To debug a a mode do not call start() and just useMode instead and make adjustments to the background in draw()
   start()
@@ -195,7 +187,28 @@ const renderGrid = (x = 0, y = 0) => {
 
   text(modeTitle(grid), unitOf(-8), unitOf(0), unitOf(8), unitOf(16))
   text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(8), unitOf(16))
-  //text(modeTitle(grid), unitOf(0.35), unitOf(16), unitOf(7.5), unitOf(4))
-  //text(modeInfo(grid), unitOf(8.35), unitOf(16), unitOf(7.5), unitOf(4))
+
+  // PROMPT - LEFT BLOCK
+
+  if (grid.mode.name != "start") {
+    fill(orange)
+    textSize(unitOf(0.4))
+    textLeading(unitOf(0.9))
+    textAlign(LEFT)
+    text("OBLIQUE (AI) STRATEGY:\n--------------------", unitOf(-8), unitOf(11.8), unitOf(8), unitOf(6));
+    textSize(unitOf(0.6))
+    textLeading(unitOf(0.9))
+    textAlign(LEFT)
+    text("\"" + currentPrompt + "\"", unitOf(-8), unitOf(13), unitOf(8), unitOf(6));
+
+    // PROMPT - BOTTOM ROW
+    // fill(orange)
+    // textSize(unitOf(1))
+    // textLeading(unitOf(1.0))
+    // textAlign(CENTER)
+    // text("\"imagine the music as a set of disconnected events\"", unitOf(-8), unitOf(17), unitOf(32), unitOf(2));
+
+  }
+
   pop()
 }

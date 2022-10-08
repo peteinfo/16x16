@@ -14,9 +14,6 @@ defineMode("start", grid => {
 
   function tick() {
     // this function is triggered every interval
-
-    print("quoteStage: " + quoteStage)
-
     quoteStage++
     quoteStage %= 3
 
@@ -45,7 +42,7 @@ defineMode("start", grid => {
             ------------------------- \
             A minimal audio-visual environment for exploring computer-aided creativity. \
             \nFollow the instructions on the right and explore using the different modes. Use the creativity prompts if you get stuck or need a new direction. \
-            \nThis project used machine learning (OpenAI) as a design partner. \
+            \nThis project explores using machine learning (OpenAI) in the design process. Prompts based on Eno and Schmidt's Oblique Strategies will be shown below.\
             "),
     info: ("\n[arrow] move cursor \
             [tab] next level"),
@@ -61,7 +58,7 @@ defineMode("start", grid => {
       })
       quotes = loadStrings('./prompts/design-conversation.txt')
       quotePointer = 3 * floor(random(quotes.length / 3))
-      print("Quote file length = " + quotes.length + "   starting with " + quotePointer)
+      //print("Quote file length = " + quotes.length + "   starting with " + quotePointer)
       quoteStage = 0
       timer = setTimeout(tick, 3000)
       grid.sequence.fill('.')
@@ -72,7 +69,7 @@ defineMode("start", grid => {
     },
 
     onKey(key) {
-      print(key)
+      //print(key)
       if ((key.key == "Tab")) {
         //sample.rate(0.5)
         //sample.play()

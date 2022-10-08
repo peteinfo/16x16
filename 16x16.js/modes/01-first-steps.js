@@ -86,6 +86,7 @@ defineMode("first-steps", grid => {
   }
 
   return {
+    
     title: "\nLEVEL 1: FIRST (16) STEPS \n--------------------------- \
             Build up a sequence using only the top row. The orange playhead sweeps across and plays one sound sample at a time.\
             ",
@@ -97,7 +98,7 @@ defineMode("first-steps", grid => {
 
     preload() {
     },
-
+    
     init() {
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
       //setTimeout(tick, playhead.interval)
