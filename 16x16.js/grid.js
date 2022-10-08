@@ -136,10 +136,12 @@ const setupGrid = (width, height) => {
       switch (e.key) {
         case "Tab":
           if (currentLevel < levels.length-1) currentLevel++
+          currentPrompt = random(prompts)
           useMode(levels[currentLevel])
           break
         case "Escape":
           if (currentLevel > 0) currentLevel--
+          currentPrompt = random(prompts)
           useMode(levels[currentLevel])
           break
         case "ArrowRight":

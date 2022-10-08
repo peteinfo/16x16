@@ -4,15 +4,15 @@ defineMode("eight-track-select", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/kalimba/00.mp3",
-    /* 01 - 1 */ "./samples/kalimba/01.mp3",
-    /* 02 - 2 */ "./samples/kalimba/02.mp3",
-    /* 03 - 3 */ "./samples/kalimba/03.mp3",
-    /* 04 - 4 */ "./samples/kalimba/04.mp3",
-    /* 05 - 5 */ "./samples/kalimba/05.mp3",
-    /* 06 - 6 */ "./samples/kalimba/06.mp3",
-    /* 07 - 7 */ "./samples/kalimba/07.mp3",
-    /* 08 - 8 */ "./samples/kalimba/08.mp3",
+    /* 00 - 0 */ "./samples/piano/00.wav",
+    /* 01 - 1 */ "./samples/piano/01.wav",
+    /* 02 - 2 */ "./samples/piano/02.wav",
+    /* 03 - 3 */ "./samples/piano/03.wav",
+    /* 04 - 4 */ "./samples/piano/04.wav",
+    /* 05 - 5 */ "./samples/piano/05.wav",
+    /* 06 - 6 */ "./samples/piano/06.wav",
+    /* 07 - 7 */ "./samples/piano/07.wav",
+    /* 08 - 8 */ "./samples/piano/08.wav",
     /* 09 - 9 */ "./samples/kalimba/09.mp3",
     /* 10 - a */ "./samples/kalimba/10.mp3",
     /* 10 - a */ "./samples/kalimba/11.mp3",
@@ -91,7 +91,7 @@ defineMode("eight-track-select", grid => {
   }
 
   return {
-    title: "\nLEVEL 7: EIGHT-TRACK SELECT \n--------------------------- \
+    title: "\nLEVEL 5: EIGHT-TRACK \n--------------------------- \
            The perfect sequencer to accompany a road trip. \
            \nSelect which of the eight tracks to play by pressing [enter].",
 
