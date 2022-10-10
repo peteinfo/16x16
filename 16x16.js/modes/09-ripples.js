@@ -9,7 +9,13 @@ defineMode("ripples", grid => {
     colour: [random(80, 100), random(100, 140), random(110, 200)]
   })
   return {
-    description: "drop a stone in the pond\nany key will produce a ripple",
+    title: "\nLEVEL 9: RIPPLES \n--------------------------- \
+    Drop a stone in the pond.\
+    \n",
+info: "\n[any] drop a stone \
+    \n\
+    \n[tab] next level \
+    \n[esc] last level ",
     preload() {
       sample = loadSound('./samples/nature/bbc-river-stream-brook.mp3')
     },

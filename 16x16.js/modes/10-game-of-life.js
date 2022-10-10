@@ -14,10 +14,17 @@
 //  Any dead cell with exactly three live neighbours be-
 //  comes a live cell, as if by reproduction.
 defineMode("game-of-life", grid => {
-  const liveCell = () => '.'
+  const liveCell = () => 'O'
   const birthRandCell = () => grid.setRandomCell(liveCell())
 
   return {
+    title: "\nLEVEL 10: CELLULAR AUTOMATA \n--------------------------- \
+    Let the pattern evolve.\
+    \n",
+info: "\n[space] add cells \
+    \n\
+    \n[tab] next level \
+    \n[esc] last level ",
     preload() {
 
     },
@@ -36,23 +43,23 @@ defineMode("game-of-life", grid => {
     update(x, y, index, frameCounter) {
       // cell under cursor dies
       if (grid.cursor.index == index)
-        grid.sequence[index] = ''
+        grid.sequence[index] = '.'
       // wait to udpate the system
       if (frameCounter % 42  != 0) return
       // follow the rules
-      const isLive = grid.sequence[index] !== ''
+      const isLive = grid.sequence[index] !== '.'
       let liveNeighbours = 0
       forNeighboursOf(x, y, ({index}) => {
         if (grid.sequence[index] !== '') liveNeighbours++
       }, false)
       if(liveNeighbours < 2) {
-        grid.sequence[index] = ''
+        grid.sequence[index] = '.'
       }
       else if(liveNeighbours >= 2 && liveNeighbours <= 3) {
         grid.sequence[index] = liveCell()
       }
       else if(liveNeighbours > 3) {
-        grid.sequence[index] = ''
+        grid.sequence[index] = '.'
       }
       else if (!isLive && liveNeighbours == 3) {
         grid.sequence[index] = liveCell()

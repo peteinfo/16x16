@@ -26,7 +26,9 @@ let levels = [
   "eight-track-select",
   "rain",
   "eight-track",
-  "alphabet"]
+  "alphabet",
+  "ripples",
+  "game-of-life"]
 var currentLevel = 0
 
 const { active, start, idle, whatState } = modeSwitcher({
