@@ -83,23 +83,26 @@ defineMode("row-jump", grid => {
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
 
-      samples[sampleToPlay].rate(1)
-      samples[sampleToPlay].stop()
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
   }
 
   return {
-    title: "\nLEVEL 3: JUMP TO A ROW \n--------------------------- \
-            Work on multiple rows. Press [enter] to play the row that the cursor is on. \
-            \nUse this to cue up multiple tracks and jump between them.",
-    info: "\n[0-9] kalimba samples \
-            [a-z] synth pad samples \
-          \n[tab] next level\
+    title: "\nLEVEL 3: JUMP TO A ROW \
+            --------------------------- \
+            Work on multiple rows. Press [enter] to play the row that the cursor is on.",
+    info: "\n\
+            [0-9] kalimba \
+            [a-z] synth pad \
+            \n\
+            [enter] play row \
+            \n\
+            [tab] next level\
             [esc] last level\
-            \
-          \n[enter] play row",
+            ",
 
     preload() {
     },
@@ -138,7 +141,7 @@ defineMode("row-jump", grid => {
 
       fill(0, 192, 0, 25)
       rectMode(CENTER)
-      rect(unitOf(8), unitOf((track+0.5)), unitOf(16), unitOf(0.83))
+      rect(unitOf(8), unitOf((track + 0.5)), unitOf(16), unitOf(0.83))
 
       fill(255, 165, 0, orangeAlpha)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))

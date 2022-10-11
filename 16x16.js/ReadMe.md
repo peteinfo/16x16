@@ -65,3 +65,21 @@ Constrain Keyboard input (0-9 a-z A-Z) and decide on how to turn that to integer
 
  - Orca. https://100r.co/site/orca.html
  - Norns 'Descartes' sequencer https://llllllll.co/t/descartes/58413
+
+
+
+## User Feedback
+
+#### Nick's Feedback
+
+- chooose your own sequencer adventure
+- keep samples mapped to the same key
+- punctuation marks? 
+- overall  tempo?
+- tap tempo? enter space bar?
+- random button - "do something" cheat command - auto populate? 
+- PROMPT OVER THE MODE - MODE CARRIES ON (time based or button based)
+- COPY AND PASTE??
+- track popularity of sounds?
+- TRACK KEY USE? link to prompts? boredom tracker? 
+

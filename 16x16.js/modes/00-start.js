@@ -40,10 +40,9 @@ defineMode("start", grid => {
   return {
     title: ("\n16x16 \
             ------------------------- \
-            A minimal audio-visual environment for exploring computer-aided creativity. \
-            \nFollow the instructions on the right and explore using the different modes. Use the creativity prompts if you get stuck or need a new direction. \
-            \nThis project explores using machine learning (OpenAI) in the design process. Prompts based on Eno and Schmidt's Oblique Strategies will be shown below.\
-            "),
+            A minimal audio-visual environment for exploring computer-aided creativity through esoteric music sequencing. \
+            \n\nExplore writing music in each mode using the key commands on the right. These commands may change between modes. \
+            \nThis project explores using machine learning (OpenAI) in the design process. A prompt based on Oblique Strategies will appear below."),
     info: ("\n[arrow] move cursor \
             [tab] next level"),
     isPrompt: true,

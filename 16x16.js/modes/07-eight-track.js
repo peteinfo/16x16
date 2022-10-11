@@ -82,8 +82,8 @@ defineMode("eight-track", grid => {
           sampleToPlay = grid.sequence[playheads[n].pos].charCodeAt(0) - 87
         }
 
-        samples[sampleToPlay].rate(1)
-        samples[sampleToPlay].stop()
+        //samples[sampleToPlay].rate(1)
+        //samples[sampleToPlay].stop()
         samples[sampleToPlay].play()
       }
     }
@@ -92,8 +92,7 @@ defineMode("eight-track", grid => {
 
   return {
     title: "\nLEVEL 7: MULTI-TRACK \n--------------------------- \
-            Eight tracks play simultaneously. \
-            \n\nStack up the samples.",
+            Eight tracks play simultaneously. Stack up the samples.",
     info: "\n[0-9] drum breaks \
             [a-e] bass samples\
             [f-z] synth samples\

@@ -3,22 +3,21 @@ abandon normal sequencers
 abandon normal grids
 accept advice
 a line has two sides
+a grid has four corners
 are there sections? consider transitions
 work against your better judgment
-assemble some of the instruments in a group and treat the group as one
-balance the consistency principle with the inconsistency principle
-breathe more deeply
+assemble some of the samples into a group
 move slowly, act quickly
 cascades of sound
 cascades of samples
 change instrument roles
+change sample roles
 change nothing and continue with immaculate consistency
 cluster analysis
+sample analysis
 consider different grid systems
 convert a melodic element into a rhythmic element
-cut a vital connection
 define an area as `safe' and use it as an anchor
-destroy, nothing, the most important thing
 discover the recipes you are using and abandon them
 do nothing for as long as possible
 don't be afraid of things because they're easy to do
@@ -28,24 +27,25 @@ don't break the silence
 don't stress one thing more than another
 do something boring
 do the words need changing?
-do we need holes?
+do we need gaps?
 emphasize differences
 emphasize repetitions
 emphasize the flaws
 faced with a choice, do both
-feedback recordings into an acoustic situation
 fill every beat with something
 ghost echoes
 give the game away
 give way to your worst impulse
 go slowly all the way round the outside
 honor thy error as a hidden intention
+honor thy grid as a hidden sample
 how would you have done it?
 humanize something free of error
 imagine the music as a moving chain or caterpillar
 imagine the music as a set of disconnected events
 imagine the music as a an infinite grid
 infinitesimal gradations
+infinitesimal grids
 into the impossible, from the possible
 is there something missing?
 can you take something away?
@@ -70,8 +70,6 @@ remove ambiguities and convert to specifics
 remove specifics and convert to ambiguities
 repetition is a form of change
 change is a form of repetition
-reverse
-short circuit
 shut the door and listen from outside
 listen from the other side of the room
 listen up close
@@ -80,7 +78,7 @@ spectrum analysis
 take a break, come back later
 take away the elements in order of apparent non-importance
 the inconsistency principle
-the tape is now the music
+the grid is now the music
 think of the radio
 who would listen to this?
 tidy up, neaten, polish

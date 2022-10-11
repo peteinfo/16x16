@@ -78,8 +78,9 @@ defineMode("first-steps", grid => {
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
 
-      samples[sampleToPlay].rate(1)
-      samples[sampleToPlay].stop()
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
+      samples[sampleToPlay].volume(random(0.5, 0.9))   // 'humanise' or vary the volume slightly
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)

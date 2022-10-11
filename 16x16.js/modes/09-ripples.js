@@ -10,9 +10,9 @@ defineMode("ripples", grid => {
   })
   return {
     title: "\nLEVEL 9: RIPPLES \n--------------------------- \
-    Drop a stone in the pond.\
+    Have a break from sequencing and drop a pebble in the pond.\
     \n",
-info: "\n[any] drop a stone \
+    info: "\n[any] drop a pebble \
     \n\
     \n[tab] next level \
     \n[esc] last level ",
@@ -20,10 +20,11 @@ info: "\n[any] drop a stone \
       sample = loadSound('./samples/nature/bbc-river-stream-brook.mp3')
     },
     init() {
+      grid.sequence.fill('.')
       sample.play()
       ripples.clear
     },
-    unload() { 
+    unload() {
       sample.stop()
       ripples.clear
     },
@@ -36,7 +37,7 @@ info: "\n[any] drop a stone \
       if (key.key.match(/^[0-9a-z]$/)) {
 
         let stones = ['O', '0', 'o']
-        let stone = pickRandom(stones)
+        let stone = pickRandom(stones)  
 
         grid.sequence[grid.cursor.index] = stone
         if (!ripples[grid.cursor.index]) {

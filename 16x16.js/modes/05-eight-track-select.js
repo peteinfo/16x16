@@ -83,8 +83,8 @@ defineMode("eight-track-select", grid => {
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
 
-      samples[sampleToPlay].rate(1)
-      samples[sampleToPlay].stop()
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
@@ -92,14 +92,16 @@ defineMode("eight-track-select", grid => {
 
   return {
     title: "\nLEVEL 5: EIGHT-TRACK \n--------------------------- \
-           The perfect sequencer to accompany a road trip. \
-           \nSelect which of the eight tracks to play by pressing [enter].",
+           The perfect sequencer to accompany a road trip. Select which of the eight tracks to play by pressing [enter].",
 
-    info: "\n[0-9] kalimba samples \
-            [a-z] kalimba samples \
-        \n\n[enter] play track \
-        \n\n[tab] next level\
-              [esc] last level",
+    info: "\n\
+            [0-9] piano \
+            [a-z] kalimba \
+            \n\n\
+            [enter] play track \
+            \n\
+            [tab] next level\
+            [esc] last level",
 
     preload() {
     },

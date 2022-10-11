@@ -4,6 +4,13 @@ defineMode("wandering-cursor", grid => {
   let ticker = null
   let lastTyped = randChar()
   return {
+    title: "\nLEVEL 9: WANDERING CURSOR \n--------------------------- \
+    Drop a pebble in the pond and have a break from sequencing.\
+    \n",
+    info: "\n[any] drop a pebble \
+    \n\
+    \n[tab] next level \
+    \n[esc] last level ",
     preload() {
 
     },

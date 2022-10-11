@@ -78,8 +78,8 @@ defineMode("rain", grid => {
         sampleToPlay = grid.sequence[playheads[n].pos].charCodeAt(0) - 87
       }
 
-      samples[sampleToPlay].rate(1)
-      samples[sampleToPlay].stop()
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
     timers[n] = setTimeout(tick, playheads[n].interval, n)
@@ -87,11 +87,12 @@ defineMode("rain", grid => {
 
   return {
     title: "\nLEVEL 6: LIKE SAMPLES IN RAIN \n--------------------------- \
-            Rain-drops stream down the window, playing samples as they go. \
-            \n\nTODO: add Bladerunner / water drop samples",
-    info: "\n[0-9] rain falling samples \
-            [a-z] weather samples \
-          \n[tab] next level\
+            Playheads stream down the window. Try to find some order in the noise.",
+    info: "\n\
+            [0-9] rain \
+            [a-z] weather \
+            \n\n\
+            [tab] next level\
             [esc] last level\
             \
           \n",

@@ -1,19 +1,19 @@
-defineMode("alphabet", grid => {
+defineMode("spell", grid => {
 
   let track
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/drums/808/clean/00",
-    /* 01 - 1 */ "./samples/drums/808/clean/01",
-    /* 02 - 2 */ "./samples/drums/808/clean/02",
-    /* 03 - 3 */ "./samples/drums/808/clean/03",
-    /* 04 - 4 */ "./samples/drums/808/clean/04",
-    /* 05 - 5 */ "./samples/drums/808/clean/05",
-    /* 06 - 6 */ "./samples/drums/808/clean/06",
-    /* 07 - 7 */ "./samples/drums/808/clean/07",
-    /* 08 - 8 */ "./samples/drums/808/clean/08",
-    /* 09 - 9 */ "./samples/drums/808/clean/0",
+    /* 00 - 0 */ "./samples/drums/808/clean/01",
+    /* 01 - 1 */ "./samples/drums/808/clean/02",
+    /* 02 - 2 */ "./samples/drums/808/clean/03",
+    /* 03 - 3 */ "./samples/drums/808/clean/04",
+    /* 04 - 4 */ "./samples/drums/808/clean/05",
+    /* 05 - 5 */ "./samples/drums/808/clean/06",
+    /* 06 - 6 */ "./samples/drums/808/clean/07",
+    /* 07 - 7 */ "./samples/drums/808/clean/08",
+    /* 08 - 8 */ "./samples/drums/808/clean/09",
+    /* 09 - 9 */ "./samples/drums/808/clean/01",
     /* 10 - a */ "./samples/alphabet/a",
     /* 11 - b */ "./samples/alphabet/b",
     /* 12 - c */ "./samples/alphabet/c",
@@ -79,23 +79,25 @@ defineMode("alphabet", grid => {
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
 
-      samples[sampleToPlay].rate(1)
-      samples[sampleToPlay].stop()
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
   }
 
   return {
-    title: "\nLEVEL 8: SPELL & SPEAK \n--------------------------- \
-            Alphabetical sequencing. With an 808 on the side.\
-            \n",
-    info: "\n[0-9] 808 drum kit \
+     title: "\nLEVEL 8: SPELL & SPEAK \n--------------------------- \
+            Alphabetical sequencing. With an 808 on the side.",
+    info:  "\n[0-9] 808 drum kit \
             \n[a-z] alphabet \
-          \n\n[tab] next level \
+            \n\n\
+            [enter] play row \
+            \n\
+            [tab] next level \
             [esc] last level \
-            \
-          \n[enter] play row",
+            \n\
+            ",
 
     preload() {
     },
@@ -104,7 +106,7 @@ defineMode("alphabet", grid => {
       track = 0
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x+".wav", x+""]}))
+      samples = sampleFiles.map(x => new Howl({ src: [x+".wav", x+".mp3"]}))
     },
     // unload is called when the mode actually unloads
     unload() {

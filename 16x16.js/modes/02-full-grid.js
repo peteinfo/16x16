@@ -78,8 +78,8 @@ defineMode("full-grid", grid => {
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
 
-      samples[sampleToPlay].rate(1)
-      samples[sampleToPlay].stop()
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
@@ -87,12 +87,13 @@ defineMode("full-grid", grid => {
 
   return {
     title: "\nLEVEL 2: FULL GRID SEQUENCE \n--------------------------- \
-            Lay out a sequence over the full grid. \
-            \n\nTake time to build it up. Have patience to hear it play. \
-            \nLet's try some different samples. The synth pads samples are longer to help fill the space.",
-    info: "\n[0-9] kalimba samples \
-              [a-z] synth pad samples \
-            \n[tab] next level\
+            Lay out a sequence over the full grid. Take time to build it up. Have patience to hear it play. \
+            \n\n\
+            ",
+    info: "\n [0-9] kalimba \
+              [a-z] synth pad \
+              \n\n\
+              [tab] next level\
               [esc] last level",
 
     preload() {

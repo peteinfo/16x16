@@ -81,8 +81,8 @@ defineMode("stream", grid => {
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
 
-      samples[sampleToPlay].rate(1)
-      samples[sampleToPlay].stop()
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
@@ -90,14 +90,15 @@ defineMode("stream", grid => {
 
   return {
     title: "\nLEVEL 4: DOWN STREAM \n--------------------------- \
-            Drop some samples in the stream and let them float away. \
-            \nTODO: Add water & nature samples.",
-    info: "\n[0-9] water samples \
-            [a-z] nature samples \
-          \n\n[tab] next level\
-            [esc] last level\
-            \
-          \n[enter] play row",
+            Samples dropped in the stream float down river.",
+    info: "\n\
+          [0-9] water \
+          [a-z] nature \
+          \n\n\
+          [enter] play row \
+          \n\
+          [tab] next level \
+          [esc] last level ",
 
     preload() {
     },
