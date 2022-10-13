@@ -14,6 +14,9 @@ The system has three 'levels': sequencer, prompts and design.
 
 ## sequencer mode ideas
 
+- **Space Invaders** ... shoot letters up from spaceship
+- **Delete / Subtractive** ... only delete letters
+- ...
 - **Reflect**. Mirror the X and/or Y axis.
 - **Snake**. Old school Nokia snake mode. The grid starts with a few scattered notes. Eat notes to play them.
 - **Game of Life**.  Cellular automata based sequencer. Note plays on change of state?

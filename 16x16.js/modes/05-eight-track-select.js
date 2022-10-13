@@ -100,8 +100,8 @@ defineMode("eight-track-select", grid => {
             \n\n\
             [enter] play track \
             \n\
-            [tab] next level\
-            [esc] last level",
+            [>] next level\
+            [<] last level",
 
     preload() {
     },

@@ -93,8 +93,8 @@ defineMode("first-steps", grid => {
             ",
     info: " \n [0-9] vibe samples \
                [a-z] drum samples \
-            \n [tab] next level \
-               [esc] last level \
+            \n [>] next level \
+               [<] last level \
             ",
 
     preload() {

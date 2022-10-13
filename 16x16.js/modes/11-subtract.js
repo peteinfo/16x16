@@ -1,6 +1,5 @@
-defineMode("row-jump", grid => {
+defineMode("subtract", grid => {
 
-  let track
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
@@ -14,36 +13,32 @@ defineMode("row-jump", grid => {
     /* 07 - 7 */ "./samples/kalimba/07.mp3",
     /* 08 - 8 */ "./samples/kalimba/08.mp3",
     /* 09 - 9 */ "./samples/kalimba/09.mp3",
-    /* 10 - a */ "./samples/kalimba/10.mp3",
-    /* 10 - a */ "./samples/kalimba/11.mp3",
-    /* 10 - a */ "./samples/kalimba/12.mp3",
-    /* 10 - a */ "./samples/kalimba/13.mp3",
-    /* 10 - a */ "./samples/kalimba/14.mp3",
-    /* 11 - b */ "./samples/kalimba/15.mp3",
-    /* 12 - c */ "./samples/kalimba/16.mp3",
-    /* 13 - d */ "./samples/kalimba/17.mp3",
-    /* 14 - e */ "./samples/kalimba/18.mp3",
-    /* 15 - f */ "./samples/kalimba/19.mp3",
-    /* 16 - g */ "./samples/kalimba/20.mp3",
-    /* 17 - h */ "./samples/kalimba/21.mp3",
-    /* 18 - i */ "./samples/kalimba/22.mp3",
-    /* 19 - j*/  "./samples/kalimba/23.mp3",
-    /* 20 - k */ "./samples/kalimba/24.mp3",
-    /* 21 - l */ "./samples/kalimba/25.mp3",
-    /* 22 - m */ "./samples/kalimba/26.mp3",
-    /* 23 - n */ "./samples/kalimba/27.mp3",
-    /* 24 - o */ "./samples/kalimba/28.mp3",
-    /* 25 - p */ "./samples/kalimba/00.mp3",
-    /* 26 - q */ "./samples/kalimba/01.mp3",
-    /* 27 - r */ "./samples/kalimba/02.mp3",
-    /* 28 - s */ "./samples/kalimba/03.mp3",
-    /* 29 - t */ "./samples/kalimba/04.mp3",
-    /* 30 - u */ "./samples/kalimba/05.mp3",
-    /* 31 - v */ "./samples/kalimba/06.mp3",
-    /* 32 - w */ "./samples/kalimba/07.mp3",
-    /* 33 - x */ "./samples/kalimba/08.mp3",
-    /* 34 - y */ "./samples/kalimba/09.mp3",
-    /* 35 - z */ "./samples/kalimba/10.mp3"
+    /* 10 - a */ "./samples/pads/01.mp3",
+    /* 11 - b */ "./samples/pads/02.mp3",
+    /* 12 - c */ "./samples/pads/03.mp3",
+    /* 13 - d */ "./samples/pads/04.mp3",
+    /* 14 - e */ "./samples/pads/05.mp3",
+    /* 15 - f */ "./samples/pads/06.mp3",
+    /* 16 - g */ "./samples/pads/07.mp3",
+    /* 17 - h */ "./samples/pads/08.mp3",
+    /* 18 - i */ "./samples/pads/09.mp3",
+    /* 19 - j */ "./samples/pads/10.mp3",
+    /* 20 - k */ "./samples/pads/11.mp3",
+    /* 21 - l */ "./samples/pads/12.mp3",
+    /* 22 - m */ "./samples/pads/13.mp3",
+    /* 23 - n */ "./samples/pads/14.mp3",
+    /* 24 - o */ "./samples/pads/15.mp3",
+    /* 25 - p */ "./samples/pads/16.mp3",
+    /* 26 - q */ "./samples/pads/17.mp3",
+    /* 27 - r */ "./samples/pads/18.mp3",
+    /* 28 - s */ "./samples/pads/19.mp3",
+    /* 29 - t */ "./samples/pads/20.mp3",
+    /* 30 - u */ "./samples/pads/21.mp3",
+    /* 31 - v */ "./samples/pads/22.mp3",
+    /* 32 - w */ "./samples/pads/23.mp3",
+    /* 33 - x */ "./samples/pads/24.mp3",
+    /* 34 - y */ "./samples/pads/25.mp3",
+    /* 35 - z */ "./samples/pads/26.mp3"
   ]
 
   class Playhead {
@@ -57,7 +52,7 @@ defineMode("row-jump", grid => {
     }
   }
 
-  let playhead = new Playhead(0, 15, 200)
+  let playhead = new Playhead(0, 255, 200)
 
   function tick() {
     // this function is triggered every interval
@@ -91,58 +86,54 @@ defineMode("row-jump", grid => {
   }
 
   return {
-    title: "\nLEVEL 3: JUMP TO A ROW \
-            --------------------------- \
-            Work on multiple rows. Press [enter] to play the row that the cursor is on.",
-    info: "\n\
-            [0-9] kalimba \
-            [a-z] synth pad \
-            \n\
-            [enter] play row \
-            \n\
-            [>] next level\
-            [<] last level\
+    title: "\nLEVEL 11: CHIP AWAY \n--------------------------- \
+            A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within. This is a one way process. \
+            \n\n\
             ",
+    info: "\n [0-9] kalimba \
+              [a-z] synth pad \
+              \n\n\
+              [del] chip away \
+              \n\
+              [>] next level\
+              [<] last level",
 
     preload() {
     },
 
     init() {
-      track = 0
-      timer = setTimeout(tick, playhead.interval)
-      grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      timer = setTimeout(tick, playhead.interval)
+      //grid.sequence.fill('.')
+      for (n in grid.sequence) {
+        print("CONTAINS: + " + n)
+        let ascii = Math.floor(random(48, 84))
+        if (ascii > 57) ascii += 39
+        grid.sequence[n] = String.fromCharCode(ascii)
+      }
+
     },
     // unload is called when the mode actually unloads
     unload() {
       // delete samples array
       samples.length = 0;
       clearTimeout(timer)
+
     },
 
     onKey(key) {
       if (key.key.match(/^[0-9a-z]$/)) {
-        grid.sequence[grid.cursor.index] = key.key
-        grid.advanceBy(1)
+        //grid.sequence[grid.cursor.index] = key.key
+        //grid.advanceBy(1)
       } else if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
-
-        track = grid.cursor.y
-        print("jump to row " + 16 * grid.cursor.y)
-        playhead.min = 16 * grid.cursor.y
-        playhead.max = 16 * grid.cursor.y + 15
-        playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
+        //playhead.min = 16*cursor.y
       }
     },
 
     update(x, y, index) { },
 
     draw(frameCounter) {
-
-      fill(0, 192, 0, 25)
-      rectMode(CENTER)
-      rect(unitOf(8), unitOf((track + 0.5)), unitOf(16), unitOf(0.83))
-
       fill(255, 165, 0, orangeAlpha)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
     },

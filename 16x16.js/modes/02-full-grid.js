@@ -93,8 +93,8 @@ defineMode("full-grid", grid => {
     info: "\n [0-9] kalimba \
               [a-z] synth pad \
               \n\n\
-              [tab] next level\
-              [esc] last level",
+              [>] next level\
+              [<] last level",
 
     preload() {
     },

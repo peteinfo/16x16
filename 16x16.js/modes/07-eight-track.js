@@ -96,8 +96,9 @@ defineMode("eight-track", grid => {
     info: "\n[0-9] drum breaks \
             [a-e] bass samples\
             [f-z] synth samples\
-          \n\n[tab] next level\
-            [esc] last level\
+            \n\n\
+            [>] next level\
+            [<] last level\
             \
           \n",
 

@@ -42,9 +42,9 @@ defineMode("start", grid => {
             ------------------------- \
             A minimal audio-visual environment for exploring computer-aided creativity through esoteric music sequencing. \
             \n\nExplore writing music in each mode using the key commands on the right. These commands may change between modes. \
-            \nThis project explores using machine learning (OpenAI) in the design process. A prompt based on Oblique Strategies will appear below."),
+            \nThis project explores using machine learning (OpenAI) in the design process. Prompts based on Oblique Strategies will help guide your creativity."),
     info: ("\n[arrow] move cursor \
-            [tab] next level"),
+            [>] next level"),
     isPrompt: true,
     showGrid: false,
 
@@ -61,6 +61,7 @@ defineMode("start", grid => {
       quoteStage = 0
       timer = setTimeout(tick, 3000)
       grid.sequence.fill('.')
+      grid.moveTo(0, 0)
     },
 
     unload() {

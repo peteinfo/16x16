@@ -101,8 +101,8 @@ defineMode("wandering-cursor", grid => {
             \n\n\
             [enter] play row \
             \n\
-            [tab] next level \
-            [esc] last level \
+            [>] next level \
+            [<] last level \
             \n\
             ",
 

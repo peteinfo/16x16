@@ -28,7 +28,8 @@ let levels = [
   "eight-track",
   "spell",
   "ripples",
-  "wandering-cursor"]
+  "wandering-cursor",
+  "subtract"]
   //"game-of-life"]
 var currentLevel = 0
 
@@ -198,11 +199,11 @@ const renderGrid = (x = 0, y = 0) => {
     textSize(unitOf(0.4))
     textLeading(unitOf(0.9))
     textAlign(LEFT)
-    text("OBLIQUE (AI) STRATEGY:\n--------------------", unitOf(-8), unitOf(11.8), unitOf(8), unitOf(6));
+    text("OBLIQUE (AI) STRATEGY:\n--------------------", unitOf(-8), unitOf(9.8), unitOf(8), unitOf(6));
     textSize(unitOf(0.6))
     textLeading(unitOf(0.9))
     textAlign(LEFT)
-    text("\"" + currentPrompt + "\"", unitOf(-8), unitOf(13), unitOf(8), unitOf(6));
+    text("\"" + currentPrompt + "\"", unitOf(-8), unitOf(11), unitOf(8), unitOf(6));
 
     // PROMPT - BOTTOM ROW
     // fill(orange)

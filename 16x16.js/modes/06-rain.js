@@ -92,8 +92,8 @@ defineMode("rain", grid => {
             [0-9] rain \
             [a-z] weather \
             \n\n\
-            [tab] next level\
-            [esc] last level\
+            [>] next level\
+            [<] last level\
             \
           \n",
 

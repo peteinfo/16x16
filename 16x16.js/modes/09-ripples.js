@@ -10,12 +10,12 @@ defineMode("ripples", grid => {
   })
   return {
     title: "\nLEVEL 9: RIPPLES \n--------------------------- \
-    Have a break from sequencing and drop a pebble in the pond.\
+    Take a break from sequencing and drop a pebble in the pond.\
     \n",
     info: "\n[any] drop a pebble \
     \n\
-    \n[tab] next level \
-    \n[esc] last level ",
+    \n[>] next level \
+    \n[<] last level ",
     preload() {
       sample = loadSound('./samples/nature/bbc-river-stream-brook.mp3')
     },
