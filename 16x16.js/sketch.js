@@ -200,7 +200,8 @@ const renderGrid = (x = 0, y = 0) => {
     textLeading(unitOf(0.9))
     textAlign(LEFT)
     text("OBLIQUE (AI) STRATEGY:\n--------------------", unitOf(-8), unitOf(9.8), unitOf(8), unitOf(6));
-    textSize(unitOf(0.6))
+    textSize(unitOf(0.5))
+    //textSize(unitOf(0.6))
     textLeading(unitOf(0.9))
     textAlign(LEFT)
     text("\"" + currentPrompt + "\"", unitOf(-8), unitOf(11), unitOf(8), unitOf(6));
