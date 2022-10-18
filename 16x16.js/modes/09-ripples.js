@@ -43,7 +43,7 @@ defineMode("ripples", grid => {
         if (!ripples[grid.cursor.index]) {
           ripples[grid.cursor.index] = createRipple()
         }
-        grid.advanceBy(1)
+        //grid.advanceBy(1)
       }
     },
     update(x, y, index) {

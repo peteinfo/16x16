@@ -2,7 +2,7 @@
 //    Prompt Mode
 // -------------------
 
-defineMode("start", grid => {
+defineMode("start-B", grid => {
 
   let sample
   let quotes
@@ -44,9 +44,8 @@ defineMode("start", grid => {
             \n\nExplore writing music in each mode using the key commands on the right. These commands may change between modes. \
             \nThis project explores using machine learning (OpenAI) in the design process. Prompts based on Oblique Strategies will help guide your creativity."),
     info: ("\n[arrow] move cursor \
-            [>] next level"),
-    isPrompt: true,
-    showGrid: false,
+            \n\n[>] first level"),
+
 
     preload() {
     },
@@ -92,19 +91,22 @@ defineMode("start", grid => {
       /*
       green.setAlpha(150)
       fill(green)
-      textSize(unitOf(2.6))
+      textSize(unitOf(4))
       textLeading(unitOf(1.0))
       textAlign(CENTER, TOP)
-      text('16x16', 0, unitOf(1.35), unitOf(16), unitOf(8))
+      text('16x16', 0, unitOf(7), unitOf(16), unitOf(8))
       */
 
       // question & answer
+
+      /*
       orange.setAlpha(200)
       fill(orange)
       textSize(unitOf(0.5))
       textLeading(unitOf(1.0))
       textAlign(LEFT, TOP)
       text(questionAnswer, unitOf(1.5), unitOf(3), unitOf(13.5), unitOf(12))
+      */
     },
   }
 })

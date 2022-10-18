@@ -130,7 +130,7 @@ const setupGrid = (width, height) => {
       })
     },
     onKey(e) {
-      print(e.key)
+      //print(e.key)
 
       //print(e) // print to look at key code
       switch (e.key) {
@@ -155,13 +155,13 @@ const setupGrid = (width, height) => {
           break
         case "ArrowRight":
           if (this.cursor.x == 15) {
-            this.moveBy(0, 1)
+            this.moveBy(-16, 0)
           }
           this.moveBy(1, 0)
           break;
         case "ArrowLeft":
           if (this.cursor.x == 0) {
-            this.moveBy(0, -1)
+            this.moveBy(16, 0)
           }
           this.moveBy(-1, 0)
           break;
@@ -174,16 +174,16 @@ const setupGrid = (width, height) => {
         case "Backspace":
           this.sequence[this.cursor.index] = '.'
           if (this.cursor.x == 0) {
-            this.moveBy(0, -1)
+            //this.moveBy(0, -1)
           }
-          this.moveBy(-1, 0)
+          //this.moveBy(-1, 0)
           break;
         case " ":
           this.sequence[this.cursor.index] = '.'
           if (this.cursor.x == 15) {
-            this.moveBy(0, 1)
+            //this.moveBy(0, 1)
           }
-          this.moveBy(1, 0)
+          //this.moveBy(1, 0)
           break;
         /*
         case "Enter":
@@ -362,7 +362,7 @@ const modeSwitcher = ({
               : 'prompt'
           )
           */
-          useMode('start')
+          useMode('start-A')
           start()
 
           return ['switch', 1, 1]

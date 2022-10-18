@@ -118,7 +118,7 @@ defineMode("spell", grid => {
     onKey(key) {
       if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
-        grid.advanceBy(1)
+        //grid.advanceBy(1)
       } else if (key.key == 'Enter') {
         // if Enter is pressed then jump playhead to that position
 

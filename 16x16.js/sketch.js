@@ -18,7 +18,8 @@ let currentPrompt = ''
 //      Sequence Level Order Here
 // -------------------------------------
 let levels = [
-  "start",
+  "start-A",
+  "start-B",
   "first-steps",
   "full-grid",
   "row-jump",
@@ -29,8 +30,10 @@ let levels = [
   "spell",
   "ripples",
   "wandering-cursor",
-  "subtract"]
-  //"game-of-life"]
+  "subtract",
+  "jump-back",
+]
+
 var currentLevel = 0
 
 const { active, start, idle, whatState } = modeSwitcher({
@@ -164,8 +167,8 @@ const renderGrid = (x = 0, y = 0) => {
     // draw character at grid space
     //fill(0, 192, 0)
 
-    if (grid.mode.isPrompt) {
-      fill(0, 100, 0)
+    if (grid.mode.paleGrid) {
+      fill(0, 50, 0)
     } else {
       fill(0, 192, 0)
     }
@@ -194,6 +197,7 @@ const renderGrid = (x = 0, y = 0) => {
 
   // PROMPT - LEFT BLOCK
 
+  /*
   if (grid.mode.name != "start") {
     fill(orange)
     textSize(unitOf(0.4))
@@ -214,6 +218,7 @@ const renderGrid = (x = 0, y = 0) => {
     // text("\"imagine the music as a set of disconnected events\"", unitOf(-8), unitOf(17), unitOf(32), unitOf(2));
 
   }
+  */
 
   pop()
 }
