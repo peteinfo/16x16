@@ -4,26 +4,26 @@ defineMode("jump-back", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/kalimba/00.mp3",
-    /* 01 - 1 */ "./samples/kalimba/01.mp3",
-    /* 02 - 2 */ "./samples/kalimba/02.mp3",
-    /* 03 - 3 */ "./samples/kalimba/03.mp3",
-    /* 04 - 4 */ "./samples/kalimba/04.mp3",
-    /* 05 - 5 */ "./samples/kalimba/05.mp3",
-    /* 06 - 6 */ "./samples/kalimba/06.mp3",
-    /* 07 - 7 */ "./samples/kalimba/07.mp3",
-    /* 08 - 8 */ "./samples/kalimba/08.mp3",
-    /* 09 - 9 */ "./samples/kalimba/09.mp3",
-    /* 10 - a */ "./samples/kalimba/10.mp3",
-    /* 10 - a */ "./samples/kalimba/11.mp3",
-    /* 10 - a */ "./samples/kalimba/12.mp3",
-    /* 10 - a */ "./samples/kalimba/13.mp3",
-    /* 10 - a */ "./samples/kalimba/14.mp3",
-    /* 11 - b */ "./samples/kalimba/15.mp3",
-    /* 12 - c */ "./samples/kalimba/16.mp3",
-    /* 13 - d */ "./samples/kalimba/17.mp3",
-    /* 14 - e */ "./samples/kalimba/18.mp3",
-    /* 15 - f */ "./samples/kalimba/19.mp3",
+    /* 00 - 0 */ "./samples/metal/01.wav",
+    /* 01 - 1 */ "./samples/metal/01.wav",
+    /* 02 - 2 */ "./samples/metal/02.wav",
+    /* 03 - 3 */ "./samples/metal/03.wav",
+    /* 04 - 4 */ "./samples/metal/04.wav",
+    /* 05 - 5 */ "./samples/metal/05.wav",
+    /* 06 - 6 */ "./samples/metal/06.wav",
+    /* 07 - 7 */ "./samples/metal/07.wav",
+    /* 08 - 8 */ "./samples/metal/08.wav",
+    /* 09 - 9 */ "./samples/metal/09.wav",
+    /* 10 - a */ "./samples/metal/01.wav",
+    /* 10 - a */ "./samples/metal/02.wav",
+    /* 10 - a */ "./samples/metal/03.wav",
+    /* 10 - a */ "./samples/metal/04.wav",
+    /* 10 - a */ "./samples/metal/05.wav",
+    /* 11 - b */ "./samples/metal/06.wav",
+    /* 12 - c */ "./samples/metal/07.wav",
+    /* 13 - d */ "./samples/metal/08.wav",
+    /* 14 - e */ "./samples/metal/09.wav",
+    /* 15 - f */ "./samples/metal/09.wav",
     /* 16 - g */ "./samples/kalimba/20.mp3",
     /* 17 - h */ "./samples/kalimba/21.mp3",
     /* 18 - i */ "./samples/kalimba/22.mp3",
@@ -131,7 +131,7 @@ defineMode("jump-back", grid => {
       if (key.key.match(/^[0]$/)) {
         grid.sequence[grid.cursor.index] = key.key
       }
-      if (key.key.match(/^[a-z]$/)) {
+      if (key.key.match(/^[1-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
       } else if (key.key == 'Enter') {

@@ -35,7 +35,7 @@ defineMode("prompt", grid => {
         currentLevel++
         if (currentLevel >= levels.length) {
           currentLevel = 0
-          useMode("start")
+          //useMode("start")
         } else {
           useMode(levels[currentLevel])
         }
