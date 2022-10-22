@@ -17,9 +17,9 @@ defineMode("ripples", grid => {
     \n[>] next level \
     \n[<] last level ",
     preload() {
-      sample = loadSound('./samples/nature/bbc-river-stream-brook.mp3')
     },
     init() {
+      sample = loadSound('./samples/long-samples/stream.mp3')
       grid.sequence.fill('.')
       sample.play()
       ripples.clear
