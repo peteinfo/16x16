@@ -2,7 +2,7 @@
 //    Prompt Mode
 // -------------------
 
-defineMode("start-B", grid => {
+defineMode("start", grid => {
 
   let sample
   let quotes
@@ -38,14 +38,19 @@ defineMode("start-B", grid => {
   }
 
   return {
-    title: ("\n16x16 \
-            ------------------------- \
-            A minimal audio-visual environment for exploring computer-aided creativity through esoteric music sequencing. \
-            \n\nExplore writing music in each mode using the key commands on the right. These commands may change between modes. \
-            \nThis project explores using machine learning (OpenAI) in the design process. Prompts based on Oblique Strategies will help guide your creativity."),
-    info: ("\n[arrow] move cursor \
-            \n\n[>] first level"),
 
+    title:
+      "\n16x16 \
+      ------------------------- \
+      A minimal audio-visual environment for exploring computer-aided creativity through esoteric music sequencing.\
+      \n\nExplore composing music in each mode using the key commands on the right. Note that these commands may change between modes.\
+      \n\nPress the SPACE BAR to begin.",
+
+    info:
+      "\n[arrow key] move cursor \
+      [space bar] next level",
+
+    showPrompt: false,
 
     preload() {
     },
@@ -76,9 +81,9 @@ defineMode("start-B", grid => {
       } else if (key.key == "f") {
         fullscreen(1) // fullscreen only works on user input, so putting it here as a hack
       } else {
-        sample.rate(3)
-        sample.volume(0.1)
-        sample.play()
+        //sample.rate(3)
+        //sample.volume(0.1)
+        //sample.play()
       }
     },
 

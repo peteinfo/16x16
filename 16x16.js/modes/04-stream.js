@@ -92,13 +92,13 @@ defineMode("stream", grid => {
     title: "\nLEVEL 4: DOWN STREAM \n--------------------------- \
             Samples dropped in the stream float down river.",
     info: "\n\
-          [0-9] water \
-          [a-z] nature \
-          \n\n\
-          [enter] play row \
-          \n\
-          [>] next level \
-          [<] last level ",
+          [1-9] water samples\
+          [enter] play row\
+          [arrow key] move cursor\
+          [space bar] next level\
+          ",
+
+    showPrompt: true,
 
     preload() {
     },

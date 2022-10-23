@@ -95,13 +95,13 @@ defineMode("eight-track-select", grid => {
            The perfect sequencer to accompany a road trip. Select which of the eight tracks to play by pressing [enter].",
 
     info: "\n\
-            [0-9] piano \
-            [a-z] kalimba \
-            \n\n\
+            [1-9] piano \
             [enter] play track \
-            \n\
-            [>] next level\
-            [<] last level",
+            [arrow key] move cursor\
+            [space bar] next level",
+
+    showPrompt: true,
+
 
     preload() {
     },

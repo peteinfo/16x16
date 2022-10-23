@@ -24,63 +24,18 @@ the inconsistency principle and the grid is now the music
 think of the radio and who would listen to this?
 tidy up, neaten, polish and use an unacceptable color
 use fewer notes and use more notes
-change one thing, and another will change automatically
 how would someone else do it? how would you like it to be?
-what to increase? what to reduce? what to maintain?
-what were the branch points in the evolution of this entity?
-what is the simplest solution?
-what mistakes did you make last time?
-are there sections? consider transitions
-turn it upside down
 what would your closest friend do? what is the reality of the situation?
 would anyone want to listen to this?
 would it make any sense at all?
 what would your grandmother say?
 what would a child do?
-is there something missing?
-can you take something away?
 what is the most important thing?
 what is the least important thing?
 what are you really trying to say?
 say it in your own words
 say it in the opposite way
-is the tuning appropriate?
-just continue
-focus on the centre
-listen in total darkness, or in a very large room, very quietly
-listen to the quiet voice
-look at a very small object; look at its center
-look at the order in which you do things
-look closely at the most embarrassing details and amplify them
-make a blank valuable by putting it in an exquisite frame
-make an exhaustive list of everything you might do and do the last
-make a sudden, destructive, unpredictable action; incorporate
-mechanicalize something idiosyncratic
-mute and continue
-only one element of each kind
-(organic) machinery
-overtly resist change
-remember those quiet evenings
-remove ambiguities and convert to specifics
-remove specifics and convert to ambiguities
-repetition is a form of change
-change is a form of repetition
-shut the door and listen from outside
-listen from the other side of the room
-listen up close
-simple subtraction
-spectrum analysis
-take a break, come back later
 take away the elements in order of apparent nonimportance
-the inconsistency principle
-the grid is now the music
-think of the radio
-who would listen to this?
-tidy up, neaten, polish
-trust in the you of now
-turn it upside down
-use an old idea
-use a new idea
 abandon normal instruments and pick up some bongos
 abandon normal sequencers and use your feet
 abandon normal grids and use a abacus
@@ -140,9 +95,9 @@ use a grid to lay out your beats and notes, and then sequence them in an interes
 find a sample of music that you love and then create a track based on that
 create a grid of 16 squares, each representing a different beat or note
 start with a simple 4-beat measure and add more complexity as you go
-experiment with different ways of sequencing the beats and notes, using different instruments or sounds for each square
-create a melody by stringing together a series of notes, and then add a bassline and drums to create a complete track
-add effects and processing to your track to create a unique sound
+experiment with different ways of sequencing the beats and notes
+use different sounds for each square
+create a melody by stringing together a series of notes
 create a sample-based track by chopping up and rearranging samples of different sounds and instruments
 layer different samples on top of each other to create a dense, complex sound
 sequence the samples in a creative way to create a original track
@@ -160,10 +115,11 @@ use a grid to create a rhythm by playing notes in a specific order
 use a grid to create harmony by playing notes in a specific order
 use a grid to create a soundscape by playing notes in a specific order
 brainstorm creative ways to compose music in an experimental way
-try out new compositional techniques that push the boundaries of traditional music composition
-write music that is designed to be performed in an unconventional way, such as using alternative instruments or non-traditional performance spaces
-create music that incorporates chance elements, such as using random number generators to determine musical parameters
-write music that is intended to provoke an emotional reaction in the listener, such as by intentionally employing atypical harmonies or rhythms
-experiment with alternative ways of notation, such as graphic notation or extended technique notation, in order to create new sonic textures and timbres
+consider new compositional techniques that push the boundaries of traditional music composition
+write music that is designed to be performed in an unconventional way
+create music that incorporates chance elements
+write music that is intended to provoke an emotional reaction in the listener
+employ atypical harmonies or rhythms
+experiment with alternative ways of notation, in order to create new sonic textures and timbres
 use found sounds and everyday objects to create music that is both unique and personal
-challenge yourself to write music that is outside of your comfort zone, such as by exploring new genres or styles that you are not familiar with
+challenge yourself to write music that is outside of your comfort zone

@@ -95,14 +95,14 @@ defineMode("row-jump", grid => {
             --------------------------- \
             Work on multiple rows. Press [enter] to play the row that the cursor is on.",
     info: "\n\
-            [0-9] kalimba \
-            [a-z] synth pad \
-            \n\
-            [enter] play row \
-            \n\
-            [>] next level\
-            [<] last level\
+            [1-9] kalimba\
+            [enter] play row\
+            [arrow key] move cursor\
+            [space bar] next level\
             ",
+
+    showPrompt: true,
+
 
     preload() {
     },

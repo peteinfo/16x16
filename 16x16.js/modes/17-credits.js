@@ -2,7 +2,7 @@
 //    Prompt Mode
 // -------------------
 
-defineMode("start-A", grid => {
+defineMode("credits", grid => {
 
   let sample
   let quotes
@@ -38,9 +38,23 @@ defineMode("start-A", grid => {
   }
 
   return {
-    title: (""),
-    info: ("press [>] to begin"),
+    title:
+      "\n16x16 CREDTIS \
+      ------------------------- \
+      Thanks for playing! \n\
+      \Created in 2022 by: \
+      \n- Pete Bennett \
+      \n- Jens Ewald \
+      \n- Dave Webb \
+      \n\nHeavily inspired by the Orca live-coding language. \
+      \n\nDesign process and oblique prompts partially guided by OpenAI:",
+    info:
+      "[space bar] start again",
+
+    showPrompt: false,
+
     paleGrid: true,
+
 
     preload() {
     },

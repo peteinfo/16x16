@@ -4,46 +4,42 @@ defineMode("rain", grid => {
   let timers = []      // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/kalimba/00.mp3",
-    /* 01 - 1 */ "./samples/kalimba/01.mp3",
-    /* 02 - 2 */ "./samples/kalimba/02.mp3",
-    /* 03 - 3 */ "./samples/kalimba/03.mp3",
-    /* 04 - 4 */ "./samples/kalimba/04.mp3",
-    /* 05 - 5 */ "./samples/kalimba/05.mp3",
-    /* 06 - 6 */ "./samples/kalimba/06.mp3",
-    /* 07 - 7 */ "./samples/kalimba/07.mp3",
-    /* 08 - 8 */ "./samples/kalimba/08.mp3",
-    /* 09 - 9 */ "./samples/kalimba/09.mp3",
-    /* 10 - a */ "./samples/kalimba/10.mp3",
-    /* 10 - a */ "./samples/kalimba/11.mp3",
-    /* 10 - a */ "./samples/kalimba/12.mp3",
-    /* 10 - a */ "./samples/kalimba/13.mp3",
-    /* 10 - a */ "./samples/kalimba/14.mp3",
-    /* 11 - b */ "./samples/drums/subtle-glitch/EP12-CRg13.mp3",
-    /* 12 - c */ "./samples/drums/subtle-glitch/EP12-KCl09.mp3",
-    /* 13 - d */ "./samples/drums/subtle-glitch/EP12-KCs12.mp3",
-    /* 14 - e */ "./samples/drums/subtle-glitch/EP12-KCs16.mp3",
-    /* 15 - f */ "./samples/drums/subtle-glitch/EP12-OH30.mp3",
-    /* 16 - g */ "./samples/drums/subtle-glitch/EP12-SK17.mp3",
-    /* 17 - h */ "./samples/drums/subtle-glitch/EP12-XTg04.mp3",
-    /* 18 - i */ "./samples/drums/subtle-glitch/EP12-XTg18.mp3",
-    /* 19 - j*/ "./samples/drums/subtle-glitch/EP12-XTl12.mp3",
-    /* 20 - k */ "./samples/drums/basic/kick.mp3",
-    /* 21 - l */ "./samples/drums/basic/type.mp3",
-    /* 22 - m */ "./samples/drums/basic/tom.mp3",
-    /* 23 - n */ "./samples/drums/subtle-glitch/EP12-1SR29.mp3",
-    /* 24 - o */ "./samples/drums/subtle-glitch/EP12-2SR30.mp3",
-    /* 25 - p */ "./samples/drums/subtle-glitch/EP12-CB03.mp3",
-    /* 26 - q */ "./samples/drums/subtle-glitch/EP12-CB06.mp3",
-    /* 27 - r */ "./samples/drums/subtle-glitch/EP12-CH13.mp3",
-    /* 28 - s */ "./samples/drums/subtle-glitch/EP12-CPm14.mp3",
-    /* 29 - t */ "./samples/drums/subtle-glitch/EP12-CPm20.mp3",
-    /* 30 - u */ "./samples/vibes/10.mp3",
-    /* 31 - v */ "./samples/vibes/00.mp3",
-    /* 32 - w */ "./samples/vibes/01.mp3",
-    /* 33 - x */ "./samples/drums/subtle-glitch/EP12-CH13.mp3",
-    /* 34 - y */ "./samples/drums/subtle-glitch/EP12-CPm14.mp3",
-    /* 35 - z */ "./samples/drums/subtle-glitch/EP12-CPm20.mp3"
+    /* 00 - 0 */ "./samples/nothing/0",
+    /* 01 - 1 */ "./samples/synth-plip/01",
+    /* 02 - 2 */ "./samples/synth-plip/02",
+    /* 03 - 3 */ "./samples/synth-plip/03",
+    /* 04 - 4 */ "./samples/synth-plip/04",
+    /* 05 - 5 */ "./samples/synth-plip/05",
+    /* 06 - 6 */ "./samples/synth-plip/06",
+    /* 07 - 7 */ "./samples/synth-plip/07",
+    /* 08 - 8 */ "./samples/synth-plip/08",
+    /* 09 - 9 */ "./samples/synth-plip/09",
+    /* 10 - a */ "./samples/nothing/0",
+    /* 11 - b */ "./samples/nothing/0",
+    /* 12 - c */ "./samples/nothing/0",
+    /* 13 - d */ "./samples/nothing/0",
+    /* 14 - e */ "./samples/nothing/0",
+    /* 15 - f */ "./samples/nothing/0",
+    /* 16 - g */ "./samples/nothing/0",
+    /* 17 - h */ "./samples/nothing/0",
+    /* 18 - i */ "./samples/nothing/0",
+    /* 19 - j */ "./samples/nothing/0",
+    /* 20 - k */ "./samples/nothing/0",
+    /* 21 - l */ "./samples/nothing/0",
+    /* 22 - m */ "./samples/nothing/0",
+    /* 23 - n */ "./samples/nothing/0",
+    /* 24 - o */ "./samples/nothing/0",
+    /* 25 - p */ "./samples/nothing/0",
+    /* 26 - q */ "./samples/nothing/0",
+    /* 27 - r */ "./samples/nothing/0",
+    /* 28 - s */ "./samples/nothing/0",
+    /* 29 - t */ "./samples/nothing/0",
+    /* 30 - u */ "./samples/nothing/0",
+    /* 31 - v */ "./samples/nothing/0",
+    /* 32 - w */ "./samples/nothing/0",
+    /* 33 - x */ "./samples/nothing/0",
+    /* 34 - y */ "./samples/nothing/0",
+    /* 35 - z */ "./samples/nothing/0"
   ]
 
   class Playhead {
@@ -89,13 +85,12 @@ defineMode("rain", grid => {
     title: "\nLEVEL 6: LIKE SAMPLES IN RAIN \n--------------------------- \
             Playheads stream down the window. Try to find some order in the noise.",
     info: "\n\
-            [0-9] rain \
-            [a-z] weather \
-            \n\n\
-            [>] next level\
-            [<] last level\
-            \
-          \n",
+            [1-9] rain \
+            [arrow key] move cursor\
+            [space bar] next level",
+
+    showPrompt: true,
+
 
     preload() {
       //samples = sampleFiles.map(x => new Howl({ src: [x] }))

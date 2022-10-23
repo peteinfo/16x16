@@ -1,8 +1,6 @@
-defineMode("eight-track", grid => {
+defineMode("14-blank", grid => {
 
-  let interval = 200
-  let playheads = []
-  let timer
+  let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/nothing/0",
@@ -44,106 +42,100 @@ defineMode("eight-track", grid => {
   ]
 
   class Playhead {
-    constructor(min, max) {
+    constructor(min, max, speed) {
       this.pos = min
       this.min = min
       this.max = max
       this.posLast = min
+      this.interval = speed
+
     }
   }
 
-  function tick(n) {
+  let playhead = new Playhead(0, 15, 200)
 
-    // for all playheads (which are going at the same speed)
-    for (n = 0; n < playheads.length; n++) {
-      // this function is triggered every interval
-      playheads[n].pos++;
-      if (playheads[n].pos >= playheads[n].max) {
-        playheads[n].pos = playheads[n].min
-      }
-
-      // does the index contain a note to play?
-      if (grid.sequence[playheads[n].pos] != '.') {
-
-        // Great! Let's play a note
-        let sampleToPlay = '0'
-
-        // Small fix to avoid out of bounds
-        if (grid.sequence[playheads[n].pos] && grid.sequence[playheads[n].pos].match(/^[0-9]$/)) {
-          sampleToPlay = grid.sequence[playheads[n].pos]
-        }
-        else if (grid.sequence[playheads[n].pos].match(/^[a-z]$/)) {
-          // convert from ascii
-          // as a is 97 in ascii, subtract 87 to shift to 10
-          sampleToPlay = grid.sequence[playheads[n].pos].charCodeAt(0) - 87
-        }
-
-        //samples[sampleToPlay].rate(1)
-        //samples[sampleToPlay].stop()
-        samples[sampleToPlay].play()
-      }
+  function tick() {
+    // this function is triggered every interval
+    playhead.pos++;
+    if (playhead.pos > playhead.max) {
+      playhead.pos = playhead.min
     }
-    timer = setTimeout(tick, interval)
+
+    // does the index contain a note to play?
+    if (grid.sequence[playhead.pos] != '.') {
+
+      // Great! Let's play a note
+      //print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
+      let sampleToPlay = '0'
+
+      // Small fix to avoid out of bounds
+      if (grid.sequence[playhead.pos] && grid.sequence[playhead.pos].match(/^[0-9]$/)) {
+        sampleToPlay = grid.sequence[playhead.pos]
+      }
+      else if (grid.sequence[playhead.pos].match(/^[a-z]$/)) {
+        // convert from ascii
+        // as a is 97 in ascii, subtract 87 to shift to 10
+        sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
+      }
+
+      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].stop()
+      samples[sampleToPlay].volume(random(0.5, 0.9))   // 'humanise' or vary the volume slightly
+      samples[sampleToPlay].play()
+    }
+    timer = setTimeout(tick, playhead.interval)
   }
 
   return {
-    title: "\nLEVEL 7: MULTI-TRACK \n--------------------------- \
-            Eight tracks play simultaneously. Stack up the samples.",
-    info: "\n[1-9] drum breaks \
-            [arrow key] move cursor\
-            [space bar] next level",
 
-    showPrompt: true,
+    title:
+      "\nLEVEL 14: UNDER CONSTRUCTION\
+       --------------------------- \
+      New mode coming soon!",
 
+      info:
+      "\n[1-9] ??? \n\
+      [arrow key] move cursor\
+      [backspace] clear sample\
+      [space bar] next level",
+
+    showPrompt: false,
 
     preload() {
     },
 
     init() {
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      //setTimeout(tick, playhead.interval)
+      timer = setTimeout(tick, playhead.interval)
 
-
-      // init playhead array
-      playheads = []
-      for (n = 0; n < 8; n++) {
-        playheads[n] = new Playhead(n * 32, n * 32 + 32)
-      }
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
-
-      timer = setTimeout(tick, interval)
-
     },
-
     // unload is called when the mode actually unloads
     unload() {
       // delete samples array
       samples.length = 0;
+    },
 
+    unload() {
       clearTimeout(timer)
-
     },
 
     onKey(key) {
-      if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[1-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
+      } else if (key.key == 'Enter') {
+        // if Enter is pressed then jump playhead to that position
+        //playhead.min = 16*cursor.y
       }
     },
 
     update(x, y, index) { },
 
     draw(frameCounter) {
-
-      fill(0, 192, 0, 25)
-      rectMode(CENTER)
-      for (n = 0; n < 8; n++) {
-        rect(unitOf(8), unitOf((n + 0.5) * 2), unitOf(16), unitOf(1.83))
-      }
-
       fill(255, 165, 0, orangeAlpha)    // orange playhead
-      for (n = 0; n < playheads.length; n++) {
-        drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playheads[n].pos))
-      }
+      drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
     },
   }
 })

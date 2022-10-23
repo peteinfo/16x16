@@ -98,18 +98,20 @@ defineMode("jump-back", grid => {
   }
 
   return {
-    title: "\nLEVEL 12: JUMP BACK \
-            --------------------------- \
-            A zero will jump the playhead back to the beginning of the row.",
-    info: "\n\
-            [0] jump to start \
-            [enter] play row \
-            \n\
-            [a-z] percussion \
-            \n\
-            [>] next level\
-            [<] last level\
-            ",
+    title: 
+      "\nLEVEL 12: JUMP BACK \
+      --------------------------- \
+      A zero will jump the playhead back to the beginning of the row.",
+      
+    info: 
+      "\n[0] jump to start\
+      \n[enter] play row\
+      \n[a-z] percussion\
+      \n[arrow key] move cursor\
+      \n[space bar] next level",
+
+    showPrompt: true,
+
 
     preload() {
     },

@@ -86,17 +86,19 @@ defineMode("subtract", grid => {
   }
 
   return {
-    title: "\nLEVEL 11: CHIP AWAY \n--------------------------- \
-            A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within. This is a one way process. \
-            \n\n\
-            ",
-    info: "\n [0-9] kalimba \
-              [a-z] synth pad \
-              \n\n\
-              [del] chip away \
-              \n\
-              [>] next level\
-              [<] last level",
+    title: 
+      "\nLEVEL 11: CHIP AWAY \n--------------------------- \
+      A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within. This is a one way process.",
+      
+    info: 
+      "\n[1-9] kalimba \
+      \n[a-z] synth pad \
+      \n[del] chip away \
+      \n[arrow key] move cursor\
+      \n[space bar] next level",
+
+    showPrompt: true,
+
 
     preload() {
     },
@@ -106,7 +108,6 @@ defineMode("subtract", grid => {
       timer = setTimeout(tick, playhead.interval)
       //grid.sequence.fill('.')
       for (n in grid.sequence) {
-        print("CONTAINS: + " + n)
         let ascii = Math.floor(random(48, 84))
         if (ascii > 57) ascii += 39
         grid.sequence[n] = String.fromCharCode(ascii)
