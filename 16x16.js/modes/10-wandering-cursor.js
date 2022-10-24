@@ -11,16 +11,16 @@ defineMode("wandering-cursor", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/drums/808/clean/01",
-    /* 01 - 1 */ "./samples/drums/808/clean/02",
-    /* 02 - 2 */ "./samples/drums/808/clean/03",
-    /* 03 - 3 */ "./samples/drums/808/clean/04",
-    /* 04 - 4 */ "./samples/drums/808/clean/05",
-    /* 05 - 5 */ "./samples/drums/808/clean/06",
-    /* 06 - 6 */ "./samples/drums/808/clean/07",
-    /* 07 - 7 */ "./samples/drums/808/clean/08",
-    /* 08 - 8 */ "./samples/drums/808/clean/09",
-    /* 09 - 9 */ "./samples/drums/808/clean/01",
+    /* 00 - 0 */ "./samples/nothing/0",
+    /* 01 - 1 */ "./samples/drumkit-808-clean/02",
+    /* 02 - 2 */ "./samples/drumkit-808-clean/03",
+    /* 03 - 3 */ "./samples/drumkit-808-clean/04",
+    /* 04 - 4 */ "./samples/drumkit-808-clean/05",
+    /* 05 - 5 */ "./samples/drumkit-808-clean/06",
+    /* 06 - 6 */ "./samples/drumkit-808-clean/07",
+    /* 07 - 7 */ "./samples/drumkit-808-clean/08",
+    /* 08 - 8 */ "./samples/drumkit-808-clean/09",
+    /* 09 - 9 */ "./samples/drumkit-808-clean/01",
     /* 10 - a */ "./samples/alphabet/a",
     /* 11 - b */ "./samples/alphabet/b",
     /* 12 - c */ "./samples/alphabet/c",
@@ -62,7 +62,7 @@ defineMode("wandering-cursor", grid => {
 
   let playhead = new Playhead(0, 15, 200)
 
- function tick() {
+  function tick() {
     // this function is triggered every interval
     playhead.pos++;
     if (playhead.pos > playhead.max) {
@@ -94,17 +94,18 @@ defineMode("wandering-cursor", grid => {
   }
 
   return {
-     title: "\nLEVEL 10: WANDERING CURSOR \n--------------------------- \
-            Let the automated cursor do the work for you. Decide whether to fight the cursor or let it guide you in new directions.",
-    info:  "\n[0-9] 808 drum kit \
-            \n[a-z] alphabet \
-            \n\n\
-            [enter] play row \
-            \n\
-            [>] next level \
-            [<] last level \
-            \n\
-            ",
+    title:
+      "\nLEVEL 10: WANDERING CURSOR \n--------------------------- \
+       Let the automated cursor do the work for you. Decide whether to fight the cursor or let it guide you in new directions.",
+    info: 
+      "\n[1-9] 808 drum kit\
+       \n[a-z] alphabet\
+       \n[space] play row\
+       \n[arrow] move cursor\
+       \n[enter] next level",
+       
+    showPrompt: true,
+
 
     preload() {
     },
@@ -121,7 +122,7 @@ defineMode("wandering-cursor", grid => {
       track = 0
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x+".wav", x+".mp3"]}))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
     },
     // unload is called when the mode actually unloads
     unload() {
@@ -152,7 +153,7 @@ defineMode("wandering-cursor", grid => {
 
       fill(0, 192, 0, 25)
       rectMode(CENTER)
-      rect(unitOf(8), unitOf((track+0.5)), unitOf(16), unitOf(0.83))
+      rect(unitOf(8), unitOf((track + 0.5)), unitOf(16), unitOf(0.83))
 
       fill(255, 165, 0, orangeAlpha)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))

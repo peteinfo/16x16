@@ -114,6 +114,9 @@ const indexToPixelXY = (index, mode = null) => {
 const setupGrid = (width, height) => {
   return {
     description: "",
+    title: "",
+    info: "",
+    showPrompt: true,
     w: width, h: height,
     mode: undefined, // the current mode
     sequence: Array(width * height).fill('.'), // create string of length,
@@ -132,10 +135,9 @@ const setupGrid = (width, height) => {
     onKey(e) {
       //print(e.key)
 
-      //print(e) // print to look at key code
+      print(e) // print to look at key code
       switch (e.key) {
-        case ">":
-        case ".":
+        case "Enter":
           currentLevel++
           if (currentLevel > levels.length - 1) {
             currentLevel = 0;
@@ -143,8 +145,7 @@ const setupGrid = (width, height) => {
           currentPrompt = random(prompts)
           useMode(levels[currentLevel])
           break
-        case "<":
-        case ",":
+        case "Tab":
           currentLevel--
           print(currentLevel)
           if (currentLevel < 0) {
@@ -362,7 +363,7 @@ const modeSwitcher = ({
               : 'prompt'
           )
           */
-          useMode('start-A')
+          useMode('start')
           start()
 
           return ['switch', 1, 1]
@@ -376,5 +377,5 @@ const modeSwitcher = ({
 
 const modeTitle = grid => grid.mode.title
 const modeInfo = grid => grid.mode.info
-
+const modeShowPrompt = grid => grid.mode.showPrompt
 

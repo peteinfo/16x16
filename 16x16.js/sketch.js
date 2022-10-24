@@ -18,8 +18,7 @@ let currentPrompt = ''
 //      Sequence Level Order Here
 // -------------------------------------
 let levels = [
-  "start-A",
-  "start-B",
+  "start",
   "first-steps",
   "full-grid",
   "row-jump",
@@ -32,6 +31,11 @@ let levels = [
   "wandering-cursor",
   "subtract",
   "jump-back",
+  "13-blank",
+  "14-blank",
+  "15-blank",
+  "16-blank",
+  "credits"
 ]
 
 var currentLevel = 0
@@ -168,7 +172,7 @@ const renderGrid = (x = 0, y = 0) => {
     //fill(0, 192, 0)
 
     if (grid.mode.paleGrid) {
-      fill(0, 50, 0)
+      fill(0, 100, 0)
     } else {
       fill(0, 192, 0)
     }
@@ -197,8 +201,11 @@ const renderGrid = (x = 0, y = 0) => {
 
   // PROMPT - LEFT BLOCK
 
-  /*
-  if (grid.mode.name != "start") {
+
+  //if ((grid.mode.name != "start") && (grid.mode.name != "credits")) {
+
+  if (grid.mode.showPrompt == true) {
+
     fill(orange)
     textSize(unitOf(0.4))
     textLeading(unitOf(0.9))
@@ -218,7 +225,7 @@ const renderGrid = (x = 0, y = 0) => {
     // text("\"imagine the music as a set of disconnected events\"", unitOf(-8), unitOf(17), unitOf(32), unitOf(2));
 
   }
-  */
+
 
   pop()
 }

@@ -4,46 +4,46 @@ defineMode("jump-back", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/metal/01.wav",
-    /* 01 - 1 */ "./samples/metal/01.wav",
-    /* 02 - 2 */ "./samples/metal/02.wav",
-    /* 03 - 3 */ "./samples/metal/03.wav",
-    /* 04 - 4 */ "./samples/metal/04.wav",
-    /* 05 - 5 */ "./samples/metal/05.wav",
-    /* 06 - 6 */ "./samples/metal/06.wav",
-    /* 07 - 7 */ "./samples/metal/07.wav",
-    /* 08 - 8 */ "./samples/metal/08.wav",
-    /* 09 - 9 */ "./samples/metal/09.wav",
-    /* 10 - a */ "./samples/metal/01.wav",
-    /* 10 - a */ "./samples/metal/02.wav",
-    /* 10 - a */ "./samples/metal/03.wav",
-    /* 10 - a */ "./samples/metal/04.wav",
-    /* 10 - a */ "./samples/metal/05.wav",
-    /* 11 - b */ "./samples/metal/06.wav",
-    /* 12 - c */ "./samples/metal/07.wav",
-    /* 13 - d */ "./samples/metal/08.wav",
-    /* 14 - e */ "./samples/metal/09.wav",
-    /* 15 - f */ "./samples/metal/09.wav",
-    /* 16 - g */ "./samples/kalimba/20.mp3",
-    /* 17 - h */ "./samples/kalimba/21.mp3",
-    /* 18 - i */ "./samples/kalimba/22.mp3",
-    /* 19 - j*/  "./samples/kalimba/23.mp3",
-    /* 20 - k */ "./samples/kalimba/24.mp3",
-    /* 21 - l */ "./samples/kalimba/25.mp3",
-    /* 22 - m */ "./samples/kalimba/26.mp3",
-    /* 23 - n */ "./samples/kalimba/27.mp3",
-    /* 24 - o */ "./samples/kalimba/28.mp3",
-    /* 25 - p */ "./samples/kalimba/00.mp3",
-    /* 26 - q */ "./samples/kalimba/01.mp3",
-    /* 27 - r */ "./samples/kalimba/02.mp3",
-    /* 28 - s */ "./samples/kalimba/03.mp3",
-    /* 29 - t */ "./samples/kalimba/04.mp3",
-    /* 30 - u */ "./samples/kalimba/05.mp3",
-    /* 31 - v */ "./samples/kalimba/06.mp3",
-    /* 32 - w */ "./samples/kalimba/07.mp3",
-    /* 33 - x */ "./samples/kalimba/08.mp3",
-    /* 34 - y */ "./samples/kalimba/09.mp3",
-    /* 35 - z */ "./samples/kalimba/10.mp3"
+    // /* 00 - 0 */ "./samples/metal/01.wav",
+    /* 01 - 1 */ "./samples/metal/01",
+    /* 02 - 2 */ "./samples/metal/02",
+    /* 03 - 3 */ "./samples/metal/03",
+    /* 04 - 4 */ "./samples/metal/04",
+    /* 05 - 5 */ "./samples/metal/05",
+    /* 06 - 6 */ "./samples/metal/06",
+    /* 07 - 7 */ "./samples/metal/07",
+    /* 08 - 8 */ "./samples/metal/08",
+    /* 09 - 9 */ "./samples/metal/09"
+    // /* 10 - a */ "./samples/metal/01",
+    // /* 10 - a */ "./samples/metal/02",
+    // /* 10 - a */ "./samples/metal/03",
+    // /* 10 - a */ "./samples/metal/04",
+    // /* 10 - a */ "./samples/metal/05",
+    // /* 11 - b */ "./samples/metal/06",
+    // /* 12 - c */ "./samples/metal/07",
+    // /* 13 - d */ "./samples/metal/08",
+    // /* 14 - e */ "./samples/metal/09",
+    // /* 15 - f */ "./samples/metal/09",
+    // /* 16 - g */ "./samples/kalimba/20",
+    // /* 17 - h */ "./samples/kalimba/21",
+    // /* 18 - i */ "./samples/kalimba/22",
+    // /* 19 - j*/  "./samples/kalimba/23",
+    // /* 20 - k */ "./samples/kalimba/24",
+    // /* 21 - l */ "./samples/kalimba/25",
+    // /* 22 - m */ "./samples/kalimba/26",
+    // /* 23 - n */ "./samples/kalimba/27",
+    // /* 24 - o */ "./samples/kalimba/28",
+    // /* 25 - p */ "./samples/kalimba/00",
+    // /* 26 - q */ "./samples/kalimba/01",
+    // /* 27 - r */ "./samples/kalimba/02",
+    // /* 28 - s */ "./samples/kalimba/03",
+    // /* 29 - t */ "./samples/kalimba/04",
+    // /* 30 - u */ "./samples/kalimba/05",
+    // /* 31 - v */ "./samples/kalimba/06",
+    // /* 32 - w */ "./samples/kalimba/07",
+    // /* 33 - x */ "./samples/kalimba/08",
+    // /* 34 - y */ "./samples/kalimba/09",
+    // /* 35 - z */ "./samples/kalimba/10"
   ]
 
   class Playhead {
@@ -75,7 +75,7 @@ defineMode("jump-back", grid => {
         playhead.pos = 16 * floor(playhead.pos / 16)
       }
 
-      if (grid.sequence[playhead.pos].match(/^[a-z]$/)) {
+      if (grid.sequence[playhead.pos].match(/^[1-9]$/)) {
         // Great! Let's play a note
         print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
         let sampleToPlay = '0'
@@ -98,18 +98,20 @@ defineMode("jump-back", grid => {
   }
 
   return {
-    title: "\nLEVEL 12: JUMP BACK \
-            --------------------------- \
-            A zero will jump the playhead back to the beginning of the row.",
-    info: "\n\
-            [0] jump to start \
-            [enter] play row \
-            \n\
-            [a-z] percussion \
-            \n\
-            [>] next level\
-            [<] last level\
-            ",
+    title: 
+      "\nLEVEL 12: JUMP BACK \
+      --------------------------- \
+      A zero will jump the playhead back to the beginning of the row.",
+      
+    info: 
+      "\n[1-9] chime\
+      \n[0] goto start of row\
+      \n[space] play row\
+      \n[arrow] move cursor\
+      \n[enter] next level",
+
+    showPrompt: true,
+
 
     preload() {
     },
@@ -118,7 +120,7 @@ defineMode("jump-back", grid => {
       track = 0
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
     },
     // unload is called when the mode actually unloads
     unload() {
@@ -128,13 +130,13 @@ defineMode("jump-back", grid => {
     },
 
     onKey(key) {
-      if (key.key.match(/^[0]$/)) {
+      if (key.key.match(/^[g]$/)) {
         grid.sequence[grid.cursor.index] = key.key
       }
-      if (key.key.match(/^[1-9a-z]$/)) {
+      if (key.key.match(/^[1-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
-      } else if (key.key == 'Enter') {
+      } else if (key.key == ' ') {
         // if Enter is pressed then jump playhead to that position
 
         track = grid.cursor.y
