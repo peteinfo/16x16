@@ -91,6 +91,7 @@ defineMode("eight-track", grid => {
             Eight tracks play simultaneously. Stack up the samples.",
     info: "\n[1-9] drum breaks \
             [arrow] move cursor\
+            [tab] last level\n\
             [enter] next level",
 
     showPrompt: true,

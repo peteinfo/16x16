@@ -95,8 +95,8 @@ defineMode("full-grid", grid => {
       "\n[1-9] synth pad\n\
       [arrow] move cursor\n\
       [delete] clear sample\n\
-      [enter] next level\
-      ",
+      [tab] last level\n\
+      [enter] next level",
 
     showPrompt: true,
 

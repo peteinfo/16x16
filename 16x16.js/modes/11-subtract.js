@@ -96,7 +96,8 @@ defineMode("subtract", grid => {
       \n[a-z] synth pad \
       \n[del] chip away \
       \n[arrow] move cursor\
-      \n[enter] next level",
+      \n[tab] last level\n\
+      [enter] next level",
 
     showPrompt: true,
 

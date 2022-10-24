@@ -47,7 +47,7 @@ defineMode("credits", grid => {
       \n- Jens Ewald \
       \n- Dave Webb \
       \n\nInspired by the Orca live-coding language. \
-      \n\nDesign process and oblique prompts partially guided by OpenAI:",
+      \n\nDesign process and oblique prompts guided by OpenAI:",
     info:
       "[enter] start again",
 

@@ -95,8 +95,9 @@ defineMode("13-blank", grid => {
 
     info:
       "\n[1-9] ??? \n\
-      [arrow] move cursor\
-      [delete] clear sample\
+      [arrow] move cursor\n\
+      [delete] clear sample\n\
+      [tab] last level\n\
       [enter] next level",
 
     showPrompt: false,

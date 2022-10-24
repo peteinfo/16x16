@@ -102,6 +102,7 @@ defineMode("wandering-cursor", grid => {
        \n[a-z] alphabet\
        \n[space] play row\
        \n[arrow] move cursor\
+       \n[tab] last level\
        \n[enter] next level",
        
     showPrompt: true,

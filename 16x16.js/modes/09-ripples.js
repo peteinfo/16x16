@@ -14,9 +14,10 @@ defineMode("ripples", grid => {
       Take a break from sequencing and drop a pebble in the pond.",
 
     info:
-      "\n[any] drop a pebble \
+      "\n[1-9] drop a pebble \
       \n[arrow] move cursor\
-      \n[enter] next level",
+      \n[tab] last level\n\
+      [enter] next level",
 
     showPrompt: false,
 
@@ -40,7 +41,7 @@ defineMode("ripples", grid => {
         //sample.play()
         startedPlaying = true
       }
-      if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[1-9]$/)) {
 
         let stones = ['O', '0', 'o']
         let stone = pickRandom(stones)

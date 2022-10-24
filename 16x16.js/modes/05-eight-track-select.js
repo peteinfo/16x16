@@ -98,6 +98,7 @@ defineMode("eight-track-select", grid => {
             [1-9] piano \
             [space] play track \
             [arrow] move cursor\
+            [tab] last level\
             [enter] next level",
 
     showPrompt: true,

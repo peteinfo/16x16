@@ -47,7 +47,8 @@ defineMode("start", grid => {
       \n\nPress ENTER to begin.",
 
     info:
-      "\n[arrow] move cursor \
+      "\n[arrow] move cursor\n\
+      [tab] last level\n\
       [enter] next level",
 
     showPrompt: false,

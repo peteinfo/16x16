@@ -93,11 +93,12 @@ defineMode("row-jump", grid => {
   return {
     title: "\nLEVEL 3: JUMP TO A ROW \
             --------------------------- \
-            Create a pattern on each. Press [enter] to play the row that the cursor is on.",
+            Create a pattern on each row. Press [enter] to play the row that the cursor is on.",
     info: "\n\
             [1-9] kalimba\n\
             [space] play row\n\
             [arrow] move cursor\n\
+            [tab] last level\n\
             [enter] next level\
             ",
 

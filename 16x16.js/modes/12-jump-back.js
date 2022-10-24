@@ -108,7 +108,8 @@ defineMode("jump-back", grid => {
       \n[0] goto start of row\
       \n[space] play row\
       \n[arrow] move cursor\
-      \n[enter] next level",
+      \n[tab] last level\n\
+      [enter] next level",
 
     showPrompt: true,
 

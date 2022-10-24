@@ -87,6 +87,7 @@ defineMode("rain", grid => {
     info: "\n\
             [1-9] synth blip\n\
             [arrow] move cursor\n\
+            [tab] last level\n\
             [enter] next level",
 
     showPrompt: true,
