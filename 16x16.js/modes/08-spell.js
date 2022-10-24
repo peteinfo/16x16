@@ -93,9 +93,9 @@ defineMode("spell", grid => {
     info: 
       "\n[1-9] 808 drum kit\n\
       [a-z] alphabet\n\
-      [enter] play row\
-      [arrow key] move cursor\
-      [space bar] next level",
+      [space] play row\n\
+      [arrow] move cursor\n\
+      [enter] next level",
 
     showPrompt: true,
 

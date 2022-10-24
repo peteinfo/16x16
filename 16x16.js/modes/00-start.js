@@ -44,11 +44,11 @@ defineMode("start", grid => {
       ------------------------- \
       A minimal audio-visual environment for exploring computer-aided creativity through esoteric music sequencing.\
       \n\nExplore composing music in each mode using the key commands on the right. Note that these commands may change between modes.\
-      \n\nPress the SPACE BAR to begin.",
+      \n\nPress ENTER to begin.",
 
     info:
-      "\n[arrow key] move cursor \
-      [space bar] next level",
+      "\n[arrow] move cursor \
+      [enter] next level",
 
     showPrompt: false,
 

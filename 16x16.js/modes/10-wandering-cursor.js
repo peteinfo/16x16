@@ -100,9 +100,9 @@ defineMode("wandering-cursor", grid => {
     info: 
       "\n[1-9] 808 drum kit\
        \n[a-z] alphabet\
-       \n[enter] play row\
-       \n[arrow key] move cursor\
-       \n[space bar] next level",
+       \n[space] play row\
+       \n[arrow] move cursor\
+       \n[enter] next level",
        
     showPrompt: true,
 

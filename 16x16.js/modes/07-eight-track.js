@@ -90,8 +90,8 @@ defineMode("eight-track", grid => {
     title: "\nLEVEL 7: MULTI-TRACK \n--------------------------- \
             Eight tracks play simultaneously. Stack up the samples.",
     info: "\n[1-9] drum breaks \
-            [arrow key] move cursor\
-            [space bar] next level",
+            [arrow] move cursor\
+            [enter] next level",
 
     showPrompt: true,
 
@@ -108,7 +108,7 @@ defineMode("eight-track", grid => {
         playheads[n] = new Playhead(n * 32, n * 32 + 32)
       }
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
 
       timer = setTimeout(tick, interval)
 

@@ -3,46 +3,46 @@ defineMode("stream", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/piano/00.wav",
-    /* 01 - 1 */ "./samples/piano/01.wav",
-    /* 02 - 2 */ "./samples/piano/02.wav",
-    /* 03 - 3 */ "./samples/piano/03.wav",
-    /* 04 - 4 */ "./samples/piano/04.wav",
-    /* 05 - 5 */ "./samples/piano/05.wav",
-    /* 06 - 6 */ "./samples/piano/06.wav",
-    /* 07 - 7 */ "./samples/piano/07.wav",
-    /* 08 - 8 */ "./samples/piano/08.wav",
-    /* 09 - 9 */ "./samples/kalimba/09.mp3",
-    /* 10 - a */ "./samples/kalimba/10.mp3",
-    /* 10 - a */ "./samples/kalimba/11.mp3",
-    /* 10 - a */ "./samples/kalimba/12.mp3",
-    /* 10 - a */ "./samples/kalimba/13.mp3",
-    /* 10 - a */ "./samples/kalimba/14.mp3",
-    /* 11 - b */ "./samples/kalimba/15.mp3",
-    /* 12 - c */ "./samples/kalimba/16.mp3",
-    /* 13 - d */ "./samples/kalimba/17.mp3",
-    /* 14 - e */ "./samples/kalimba/18.mp3",
-    /* 15 - f */ "./samples/kalimba/19.mp3",
-    /* 16 - g */ "./samples/kalimba/20.mp3",
-    /* 17 - h */ "./samples/kalimba/21.mp3",
-    /* 18 - i */ "./samples/kalimba/22.mp3",
-    /* 19 - j*/  "./samples/kalimba/23.mp3",
-    /* 20 - k */ "./samples/kalimba/24.mp3",
-    /* 21 - l */ "./samples/kalimba/25.mp3",
-    /* 22 - m */ "./samples/kalimba/26.mp3",
-    /* 23 - n */ "./samples/kalimba/27.mp3",
-    /* 24 - o */ "./samples/kalimba/28.mp3",
-    /* 25 - p */ "./samples/kalimba/00.mp3",
-    /* 26 - q */ "./samples/kalimba/01.mp3",
-    /* 27 - r */ "./samples/kalimba/02.mp3",
-    /* 28 - s */ "./samples/kalimba/03.mp3",
-    /* 29 - t */ "./samples/kalimba/04.mp3",
-    /* 30 - u */ "./samples/kalimba/05.mp3",
-    /* 31 - v */ "./samples/kalimba/06.mp3",
-    /* 32 - w */ "./samples/kalimba/07.mp3",
-    /* 33 - x */ "./samples/kalimba/08.mp3",
-    /* 34 - y */ "./samples/kalimba/09.mp3",
-    /* 35 - z */ "./samples/kalimba/10.mp3"
+    ///* 00 - 0 */ "./samples/piano/00",
+    /* 01 - 1 */ "./samples/piano/01",
+    /* 02 - 2 */ "./samples/piano/02",
+    /* 03 - 3 */ "./samples/piano/03",
+    /* 04 - 4 */ "./samples/piano/04",
+    /* 05 - 5 */ "./samples/piano/05",
+    /* 06 - 6 */ "./samples/piano/06",
+    /* 07 - 7 */ "./samples/piano/07",
+    /* 08 - 8 */ "./samples/piano/08",
+    /* 09 - 9 */ "./samples/piano/09.mp3",
+    // /* 10 - a */ "./samples/kalimba/10",
+    // /* 10 - a */ "./samples/kalimba/11",
+    // /* 10 - a */ "./samples/kalimba/12",
+    // /* 10 - a */ "./samples/kalimba/13",
+    // /* 10 - a */ "./samples/kalimba/14",
+    // /* 11 - b */ "./samples/kalimba/15",
+    // /* 12 - c */ "./samples/kalimba/16",
+    // /* 13 - d */ "./samples/kalimba/17",
+    // /* 14 - e */ "./samples/kalimba/18",
+    // /* 15 - f */ "./samples/kalimba/19",
+    // /* 16 - g */ "./samples/kalimba/20",
+    // /* 17 - h */ "./samples/kalimba/21",
+    // /* 18 - i */ "./samples/kalimba/22",
+    // /* 19 - j*/  "./samples/kalimba/23",
+    // /* 20 - k */ "./samples/kalimba/24",
+    // /* 21 - l */ "./samples/kalimba/25",
+    // /* 22 - m */ "./samples/kalimba/26",
+    // /* 23 - n */ "./samples/kalimba/27",
+    // /* 24 - o */ "./samples/kalimba/28",
+    // /* 25 - p */ "./samples/kalimba/00",
+    // /* 26 - q */ "./samples/kalimba/01",
+    // /* 27 - r */ "./samples/kalimba/02",
+    // /* 28 - s */ "./samples/kalimba/03",
+    // /* 29 - t */ "./samples/kalimba/04",
+    // /* 30 - u */ "./samples/kalimba/05",
+    // /* 31 - v */ "./samples/kalimba/06",
+    // /* 32 - w */ "./samples/kalimba/07",
+    // /* 33 - x */ "./samples/kalimba/08",
+    // /* 34 - y */ "./samples/kalimba/09",
+    // /* 35 - z */ "./samples/kalimba/10"
   ]
 
   class Playhead {
@@ -56,10 +56,24 @@ defineMode("stream", grid => {
     }
   }
 
-  let playhead = new Playhead(0, 15, 200)
+  let playhead = new Playhead(128, 143, 200)
 
   function tick() {
     // this function is triggered every interval
+
+    // shift all notes down one row
+    let tempArray = []
+    for (n = 0; n < 16; n++) {
+      tempArray[n] = grid.sequence[n + 240]
+    }
+    for (n = grid.sequence.length - 1; n > 15; n--) {
+      grid.sequence[n] = grid.sequence[n - 16]
+    }
+    for (n = 0; n < 16; n++) {
+      grid.sequence[n] = tempArray[n]
+    }
+
+    // now update the playhead
     playhead.pos++;
     if (playhead.pos > playhead.max) {
       playhead.pos = playhead.min
@@ -91,11 +105,9 @@ defineMode("stream", grid => {
   return {
     title: "\nLEVEL 4: DOWN STREAM \n--------------------------- \
             Samples dropped in the stream float down river.",
-    info: "\n\
-          [1-9] water samples\
-          [enter] play row\
-          [arrow key] move cursor\
-          [space bar] next level\
+    info: "\n[1-9] piano \n\
+          [arrow] move cursor \n\
+          [enter] next level \n\
           ",
 
     showPrompt: true,
@@ -106,7 +118,7 @@ defineMode("stream", grid => {
     init() {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
     },
     // unload is called when the mode actually unloads
     unload() {
@@ -116,17 +128,17 @@ defineMode("stream", grid => {
     },
 
     onKey(key) {
-      if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[1-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
-      } else if (key.key == 'Enter') {
-        // if Enter is pressed then jump playhead to that position
+        // } else if (key.key == 'Enter') {
+        //   // if Enter is pressed then jump playhead to that position
 
-        print("jump to row " + 16 * grid.cursor.y)
-        //playhead.pos = grid.cursor.
-        playhead.min = 16 * grid.cursor.y
-        playhead.max = 16 * grid.cursor.y + 15
-        playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
+        //   print("jump to row " + 16 * grid.cursor.y)
+        //   //playhead.pos = grid.cursor.
+        //   playhead.min = 16 * grid.cursor.y
+        //   playhead.max = 16 * grid.cursor.y + 15
+        //   playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
       }
     },
 
@@ -138,18 +150,9 @@ defineMode("stream", grid => {
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
 
       // wait to udpate the system
-      if (frameCounter % 20 != 0) return
+      //if (frameCounter % 20 != 0) return
 
-      let tempArray = []
-      for (n = 0; n < 16; n++) {
-        tempArray[n] = grid.sequence[n + 240]
-      }
-      for (n = grid.sequence.length - 1; n > 15; n--) {
-        grid.sequence[n] = grid.sequence[n - 16]
-      }
-      for (n = 0; n < 16; n++) {
-        grid.sequence[n] = tempArray[n]
-      }
+
     },
   }
 })

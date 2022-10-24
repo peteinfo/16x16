@@ -30,7 +30,7 @@ defineMode("credits", grid => {
         questionAnswer = ("Us: \"" + quotes[quotePointer] + "\"\n\n" + "OpenAI: \"" + quotes[quotePointer + 1] + "\"")
         quotePointer += 3
         if ((quotePointer + 1) > quotes.length) quotePointer = 0
-        interval = 6000
+        interval = 10000
         break;
       default:
     }
@@ -41,15 +41,15 @@ defineMode("credits", grid => {
     title:
       "\n16x16 CREDTIS \
       ------------------------- \
-      Thanks for playing! \n\
-      \Created in 2022 by: \
+      Thanks for playing!\
+      \n\nCreated in 2022 by: \
       \n- Pete Bennett \
       \n- Jens Ewald \
       \n- Dave Webb \
-      \n\nHeavily inspired by the Orca live-coding language. \
+      \n\nInspired by the Orca live-coding language. \
       \n\nDesign process and oblique prompts partially guided by OpenAI:",
     info:
-      "[space bar] start again",
+      "[enter] start again",
 
     showPrompt: false,
 

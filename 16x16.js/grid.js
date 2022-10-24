@@ -135,9 +135,9 @@ const setupGrid = (width, height) => {
     onKey(e) {
       //print(e.key)
 
-      //print(e) // print to look at key code
+      print(e) // print to look at key code
       switch (e.key) {
-        case " ":
+        case "Enter":
           currentLevel++
           if (currentLevel > levels.length - 1) {
             currentLevel = 0;
@@ -145,8 +145,7 @@ const setupGrid = (width, height) => {
           currentPrompt = random(prompts)
           useMode(levels[currentLevel])
           break
-        case "<":
-        case ",":
+        case "Tab":
           currentLevel--
           print(currentLevel)
           if (currentLevel < 0) {

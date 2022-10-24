@@ -15,10 +15,10 @@ defineMode("ripples", grid => {
 
     info:
       "\n[any] drop a pebble \
-      \n[arrow key] move cursor\
-      \n[space bar] next level",
+      \n[arrow] move cursor\
+      \n[enter] next level",
 
-    showPrompt: true,
+    showPrompt: false,
 
     preload() {
       sample = loadSound('./samples/long-samples/stream.mp3')
@@ -26,6 +26,7 @@ defineMode("ripples", grid => {
     
     init() {
       grid.sequence.fill('.')
+      sample.volume(0.5)
       sample.play()
       ripples.clear
     },
@@ -36,7 +37,7 @@ defineMode("ripples", grid => {
     onKey(key) {
       print(startedPlaying)
       if (!startedPlaying) {
-        sample.play()
+        //sample.play()
         startedPlaying = true
       }
       if (key.key.match(/^[0-9a-z]$/)) {

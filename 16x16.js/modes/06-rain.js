@@ -5,41 +5,41 @@ defineMode("rain", grid => {
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/nothing/0",
-    /* 01 - 1 */ "./samples/synth-plip/01",
-    /* 02 - 2 */ "./samples/synth-plip/02",
-    /* 03 - 3 */ "./samples/synth-plip/03",
-    /* 04 - 4 */ "./samples/synth-plip/04",
-    /* 05 - 5 */ "./samples/synth-plip/05",
-    /* 06 - 6 */ "./samples/synth-plip/06",
-    /* 07 - 7 */ "./samples/synth-plip/07",
-    /* 08 - 8 */ "./samples/synth-plip/08",
-    /* 09 - 9 */ "./samples/synth-plip/09",
-    /* 10 - a */ "./samples/nothing/0",
-    /* 11 - b */ "./samples/nothing/0",
-    /* 12 - c */ "./samples/nothing/0",
-    /* 13 - d */ "./samples/nothing/0",
-    /* 14 - e */ "./samples/nothing/0",
-    /* 15 - f */ "./samples/nothing/0",
-    /* 16 - g */ "./samples/nothing/0",
-    /* 17 - h */ "./samples/nothing/0",
-    /* 18 - i */ "./samples/nothing/0",
-    /* 19 - j */ "./samples/nothing/0",
-    /* 20 - k */ "./samples/nothing/0",
-    /* 21 - l */ "./samples/nothing/0",
-    /* 22 - m */ "./samples/nothing/0",
-    /* 23 - n */ "./samples/nothing/0",
-    /* 24 - o */ "./samples/nothing/0",
-    /* 25 - p */ "./samples/nothing/0",
-    /* 26 - q */ "./samples/nothing/0",
-    /* 27 - r */ "./samples/nothing/0",
-    /* 28 - s */ "./samples/nothing/0",
-    /* 29 - t */ "./samples/nothing/0",
-    /* 30 - u */ "./samples/nothing/0",
-    /* 31 - v */ "./samples/nothing/0",
-    /* 32 - w */ "./samples/nothing/0",
-    /* 33 - x */ "./samples/nothing/0",
-    /* 34 - y */ "./samples/nothing/0",
-    /* 35 - z */ "./samples/nothing/0"
+    /* 01 - 1 */ "./samples/synth-mow2/01",
+    /* 02 - 2 */ "./samples/synth-mow2/02",
+    /* 03 - 3 */ "./samples/synth-mow2/03",
+    /* 04 - 4 */ "./samples/synth-mow2/04",
+    /* 05 - 5 */ "./samples/synth-mow2/05",
+    /* 06 - 6 */ "./samples/synth-mow2/06",
+    /* 07 - 7 */ "./samples/synth-mow2/07",
+    /* 08 - 8 */ "./samples/synth-mow2/08",
+    /* 09 - 9 */ "./samples/synth-mow2/09",
+    // /* 10 - a */ "./samples/nothing/0",
+    // /* 11 - b */ "./samples/nothing/0",
+    // /* 12 - c */ "./samples/nothing/0",
+    // /* 13 - d */ "./samples/nothing/0",
+    // /* 14 - e */ "./samples/nothing/0",
+    // /* 15 - f */ "./samples/nothing/0",
+    // /* 16 - g */ "./samples/nothing/0",
+    // /* 17 - h */ "./samples/nothing/0",
+    // /* 18 - i */ "./samples/nothing/0",
+    // /* 19 - j */ "./samples/nothing/0",
+    // /* 20 - k */ "./samples/nothing/0",
+    // /* 21 - l */ "./samples/nothing/0",
+    // /* 22 - m */ "./samples/nothing/0",
+    // /* 23 - n */ "./samples/nothing/0",
+    // /* 24 - o */ "./samples/nothing/0",
+    // /* 25 - p */ "./samples/nothing/0",
+    // /* 26 - q */ "./samples/nothing/0",
+    // /* 27 - r */ "./samples/nothing/0",
+    // /* 28 - s */ "./samples/nothing/0",
+    // /* 29 - t */ "./samples/nothing/0",
+    // /* 30 - u */ "./samples/nothing/0",
+    // /* 31 - v */ "./samples/nothing/0",
+    // /* 32 - w */ "./samples/nothing/0",
+    // /* 33 - x */ "./samples/nothing/0",
+    // /* 34 - y */ "./samples/nothing/0",
+    // /* 35 - z */ "./samples/nothing/0"
   ]
 
   class Playhead {
@@ -74,7 +74,7 @@ defineMode("rain", grid => {
         sampleToPlay = grid.sequence[playheads[n].pos].charCodeAt(0) - 87
       }
 
-      //samples[sampleToPlay].rate(1)
+      //samples[sampleToPlay].rate(2)
       //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
@@ -85,9 +85,9 @@ defineMode("rain", grid => {
     title: "\nLEVEL 6: LIKE SAMPLES IN RAIN \n--------------------------- \
             Playheads stream down the window. Try to find some order in the noise.",
     info: "\n\
-            [1-9] rain \
-            [arrow key] move cursor\
-            [space bar] next level",
+            [1-9] synth blip\n\
+            [arrow] move cursor\n\
+            [enter] next level",
 
     showPrompt: true,
 
@@ -104,7 +104,7 @@ defineMode("rain", grid => {
         timers[n] = setTimeout(tick, playheads[n].interval, n)
       }
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
     },
 
     // unload is called when the mode actually unloads

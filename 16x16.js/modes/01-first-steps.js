@@ -94,10 +94,10 @@ defineMode("first-steps", grid => {
       ",
 
     info:
-      "\n[1-9] place synth pad\
-      [arrow key] move cursor\
-      [backspace] clear sample\
-      [space bar] next level",
+      "\n[1-9] synth blip\n\
+      [arrow] move cursor\
+      [delete] clear sample\
+      [enter] next level",
 
     showPrompt: false,
 

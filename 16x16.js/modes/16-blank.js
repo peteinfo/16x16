@@ -95,9 +95,9 @@ defineMode("16-blank", grid => {
 
       info:
       "\n[1-9] ??? \n\
-      [arrow key] move cursor\
-      [backspace] clear sample\
-      [space bar] next level",
+      [arrow] move cursor\
+      [delete] clear sample\
+      [enter] next level",
 
     showPrompt: false,
 
