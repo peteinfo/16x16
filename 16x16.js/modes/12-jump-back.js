@@ -4,7 +4,7 @@ defineMode("jump-back", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    // /* 00 - 0 */ "./samples/metal/01.wav",
+     /* 00 - 0 */ "./samples/nothing/0",
     /* 01 - 1 */ "./samples/metal/01",
     /* 02 - 2 */ "./samples/metal/02",
     /* 03 - 3 */ "./samples/metal/03",
@@ -75,25 +75,13 @@ defineMode("jump-back", grid => {
         playhead.pos = 16 * floor(playhead.pos / 16)
       }
 
-      if (grid.sequence[playhead.pos].match(/^[1-9]$/)) {
-        // Great! Let's play a note
-        print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
-        let sampleToPlay = '0'
+      let sampleToPlay = '0'
 
-        // convert from ascii
-        // as a is 97 in ascii, subtract 87 to shift to 10
-        sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
-
-        //samples[sampleToPlay].rate(1)
-        //samples[sampleToPlay].stop()
+      if (grid.sequence[playhead.pos] && grid.sequence[playhead.pos].match(/^[1-9]$/)) {
+        sampleToPlay = grid.sequence[playhead.pos]
         samples[sampleToPlay].play()
       }
-
-
     }
-
-
-
     timer = setTimeout(tick, playhead.interval)
   }
 
@@ -108,6 +96,7 @@ defineMode("jump-back", grid => {
       \n[0] goto start of row\
       \n[space] play row\
       \n[arrow] move cursor\
+      \n[delete] clear sample\
       \n[tab] last level\n\
       [enter] next level",
 
@@ -131,14 +120,14 @@ defineMode("jump-back", grid => {
     },
 
     onKey(key) {
-      if (key.key.match(/^[g]$/)) {
-        grid.sequence[grid.cursor.index] = key.key
+      if (key.key.match(/^[0]$/)) {
+        //grid.sequence[grid.cursor.index] = key.key
       }
-      if (key.key.match(/^[1-9]$/)) {
+      if (key.key.match(/^[0-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
       } else if (key.key == ' ') {
-        // if Enter is pressed then jump playhead to that position
+        // if space is pressed then jump playhead to that position
 
         track = grid.cursor.y
         print("jump to row " + 16 * grid.cursor.y)

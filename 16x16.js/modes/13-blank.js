@@ -1,5 +1,7 @@
 defineMode("13-blank", grid => {
 
+  let currentVal = 0
+
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
@@ -61,8 +63,12 @@ defineMode("13-blank", grid => {
       playhead.pos = playhead.min
     }
 
+    currentVal = 0
+
+
     // does the index contain a note to play?
     if (grid.sequence[playhead.pos] != '.') {
+
 
       // Great! Let's play a note
       //print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
@@ -71,6 +77,7 @@ defineMode("13-blank", grid => {
       // Small fix to avoid out of bounds
       if (grid.sequence[playhead.pos] && grid.sequence[playhead.pos].match(/^[0-9]$/)) {
         sampleToPlay = grid.sequence[playhead.pos]
+        currentVal = grid.sequence[playhead.pos]
       }
       else if (grid.sequence[playhead.pos].match(/^[a-z]$/)) {
         // convert from ascii
@@ -112,14 +119,11 @@ defineMode("13-blank", grid => {
 
       grid.sequence.fill('.')
     },
-    // unload is called when the mode actually unloads
-    unload() {
-      // delete samples array
-      samples.length = 0;
-    },
 
+    // unload is called when the mode unloads
     unload() {
       clearTimeout(timer)
+      samples.length = 0;
     },
 
     onKey(key) {
@@ -135,8 +139,16 @@ defineMode("13-blank", grid => {
     update(x, y, index) { },
 
     draw(frameCounter) {
+     
+      // example of drawing a circle to screen
+      fill(10*currentVal, 10*currentVal, 25*currentVal, 100)
+      ellipseMode(CENTER)
+      ellipse(unitOf(8), unitOf(8), unitOf(currentVal*3), unitOf(currentVal*3))
+
+
       fill(255, 165, 0, orangeAlpha)    // orange playhead
       drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
+
     },
   }
 })

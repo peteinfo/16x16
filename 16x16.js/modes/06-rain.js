@@ -87,6 +87,7 @@ defineMode("rain", grid => {
     info: "\n\
             [1-9] synth blip\n\
             [arrow] move cursor\n\
+            [delete] clear sample\
             [tab] last level\n\
             [enter] next level",
 
@@ -119,7 +120,7 @@ defineMode("rain", grid => {
     },
 
     onKey(key) {
-      if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[1-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
       }

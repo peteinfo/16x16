@@ -49,7 +49,7 @@ defineMode("credits", grid => {
       \n\nInspired by the Orca live-coding language. \
       \n\nDesign process and oblique prompts guided by OpenAI:",
     info:
-      "[enter] start again",
+      "[enter] return to start",
 
     showPrompt: false,
 
@@ -57,15 +57,15 @@ defineMode("credits", grid => {
 
 
     preload() {
+      quotes = loadStrings('./prompts/design-conversation.txt')
     },
 
     init() {
       sample = new Howl({
         src: ['./samples/fx/blip.mp3']
       })
-      quotes = loadStrings('./prompts/design-conversation.txt')
       quotePointer = 3 * floor(random(quotes.length / 3))
-      //print("Quote file length = " + quotes.length + "   starting with " + quotePointer)
+      print("Quote file length = " + quotes.length + "   starting with " + quotePointer)
       quoteStage = 0
       timer = setTimeout(tick, 3000)
       grid.sequence.fill('.')

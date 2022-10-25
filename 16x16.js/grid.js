@@ -133,9 +133,7 @@ const setupGrid = (width, height) => {
       })
     },
     onKey(e) {
-      //print(e.key)
-
-      print(e) // print to look at key code
+      //print(e) // print to look at key code
       switch (e.key) {
         case "Enter":
           currentLevel++
@@ -179,13 +177,13 @@ const setupGrid = (width, height) => {
           }
           //this.moveBy(-1, 0)
           break;
-        case " ":
-          this.sequence[this.cursor.index] = '.'
-          if (this.cursor.x == 15) {
-            //this.moveBy(0, 1)
-          }
-          //this.moveBy(1, 0)
-          break;
+        // case " ":
+        //   this.sequence[this.cursor.index] = '.'
+        //   if (this.cursor.x == 15) {
+        //     //this.moveBy(0, 1)
+        //   }
+        //   //this.moveBy(1, 0)
+        //   break;
         /*
         case "Enter":
           // enter moves to first position of next line

@@ -4,7 +4,7 @@ defineMode("eight-track-select", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    /* 00 - 0 */ "./samples/piano/00",
+    /* 00 - 0 */ "./samples/nothing/0",
     /* 01 - 1 */ "./samples/piano/01",
     /* 02 - 2 */ "./samples/piano/02",
     /* 03 - 3 */ "./samples/piano/03",
@@ -13,7 +13,7 @@ defineMode("eight-track-select", grid => {
     /* 06 - 6 */ "./samples/piano/06",
     /* 07 - 7 */ "./samples/piano/07",
     /* 08 - 8 */ "./samples/piano/08",
-    /* 09 - 9 */ "./samples/kalimba/09",
+    /* 09 - 9 */ "./samples/piano/09",
     /* 10 - a */ "./samples/kalimba/10",
     /* 10 - a */ "./samples/kalimba/11",
     /* 10 - a */ "./samples/kalimba/12",
@@ -98,6 +98,7 @@ defineMode("eight-track-select", grid => {
             [1-9] piano \
             [space] play track \
             [arrow] move cursor\
+            [delete] clear sample\n\
             [tab] last level\
             [enter] next level",
 
@@ -121,10 +122,10 @@ defineMode("eight-track-select", grid => {
     },
 
     onKey(key) {
-      if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[1-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
-      } else if (key.key == 'Enter') {
+      } else if (key.key == ' ') {
         // if Enter is pressed then jump playhead to that position
 
         track = floor(grid.cursor.y / 2)

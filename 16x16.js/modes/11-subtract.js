@@ -94,8 +94,8 @@ defineMode("subtract", grid => {
     info: 
       "\n[1-9] kalimba \
       \n[a-z] synth pad \
-      \n[del] chip away \
       \n[arrow] move cursor\
+      \n[delete] chip away\
       \n[tab] last level\n\
       [enter] next level",
 

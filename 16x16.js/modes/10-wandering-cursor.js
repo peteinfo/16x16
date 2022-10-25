@@ -102,6 +102,7 @@ defineMode("wandering-cursor", grid => {
        \n[a-z] alphabet\
        \n[space] play row\
        \n[arrow] move cursor\
+       \n[delete] clear sample\
        \n[tab] last level\
        \n[enter] next level",
        
@@ -137,7 +138,7 @@ defineMode("wandering-cursor", grid => {
       if (key.key.match(/^[0-9a-z]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
-      } else if (key.key == 'Enter') {
+      } else if (key.key == ' ') {
         // if Enter is pressed then jump playhead to that position
 
         track = grid.cursor.y

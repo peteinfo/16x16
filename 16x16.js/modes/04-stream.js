@@ -3,7 +3,7 @@ defineMode("stream", grid => {
   let timer // for being able to cancel the setTimeout call on exit
   let samples
   let sampleFiles = [
-    ///* 00 - 0 */ "./samples/piano/00",
+    /* 00 - 0 */ "./samples/nothing/0",
     /* 01 - 1 */ "./samples/piano/01",
     /* 02 - 2 */ "./samples/piano/02",
     /* 03 - 3 */ "./samples/piano/03",
@@ -12,7 +12,7 @@ defineMode("stream", grid => {
     /* 06 - 6 */ "./samples/piano/06",
     /* 07 - 7 */ "./samples/piano/07",
     /* 08 - 8 */ "./samples/piano/08",
-    /* 09 - 9 */ "./samples/piano/09.mp3",
+    /* 09 - 9 */ "./samples/piano/09",
     // /* 10 - a */ "./samples/kalimba/10",
     // /* 10 - a */ "./samples/kalimba/11",
     // /* 10 - a */ "./samples/kalimba/12",
@@ -56,7 +56,7 @@ defineMode("stream", grid => {
     }
   }
 
-  let playhead = new Playhead(128, 143, 200)
+  let playhead = new Playhead(132, 139, 200)
 
   function tick() {
     // this function is triggered every interval
@@ -86,14 +86,16 @@ defineMode("stream", grid => {
       let sampleToPlay = '0'
 
       // Small fix to avoid out of bounds
-      if (grid.sequence[playhead.pos] && grid.sequence[playhead.pos].match(/^[0-9]$/)) {
+      if (grid.sequence[playhead.pos] && grid.sequence[playhead.pos].match(/^[1-9]$/)) {
         sampleToPlay = grid.sequence[playhead.pos]
       }
+      /*
       else if (grid.sequence[playhead.pos].match(/^[a-z]$/)) {
         // convert from ascii
         // as a is 97 in ascii, subtract 87 to shift to 10
         sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
       }
+      */
 
       //samples[sampleToPlay].rate(1)
       //samples[sampleToPlay].stop()
@@ -107,6 +109,7 @@ defineMode("stream", grid => {
             Samples dropped in the stream float down river.",
     info: "\n[1-9] piano\n\
           [arrow] move cursor \n\
+          [delete] clear sample\n\
           [tab] last level\n\
           [enter] next level\
           ",

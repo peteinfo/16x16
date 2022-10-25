@@ -48,7 +48,6 @@ defineMode("start", grid => {
 
     info:
       "\n[arrow] move cursor\n\
-      [tab] last level\n\
       [enter] next level",
 
     showPrompt: false,

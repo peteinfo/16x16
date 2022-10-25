@@ -16,8 +16,9 @@ defineMode("ripples", grid => {
     info:
       "\n[1-9] drop a pebble \
       \n[arrow] move cursor\
-      \n[tab] last level\n\
-      [enter] next level",
+      \n[delete] clear sample\
+      \n[tab] last level\
+      \n[enter] next level",
 
     showPrompt: false,
 
@@ -27,20 +28,18 @@ defineMode("ripples", grid => {
     
     init() {
       grid.sequence.fill('.')
-      sample.volume(0.5)
+      //sample.volume(0.5)
       sample.play()
       ripples.clear
     },
+    
     unload() {
       sample.stop()
       ripples.clear
     },
+
     onKey(key) {
-      print(startedPlaying)
-      if (!startedPlaying) {
-        //sample.play()
-        startedPlaying = true
-      }
+    
       if (key.key.match(/^[1-9]$/)) {
 
         let stones = ['O', '0', 'o']
@@ -50,11 +49,12 @@ defineMode("ripples", grid => {
         if (!ripples[grid.cursor.index]) {
           ripples[grid.cursor.index] = createRipple()
         }
-        //grid.advanceBy(1)
       }
     },
+
     update(x, y, index) {
     },
+
     draw() {
       Object.entries(ripples).map(([key, ripple]) => {
         // Transform the ripple

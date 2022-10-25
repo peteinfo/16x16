@@ -18,6 +18,7 @@ let currentPrompt = ''
 //      Sequence Level Order Here
 // -------------------------------------
 let levels = [
+  "13-blank",
   "start",
   "first-steps",
   "full-grid",
@@ -197,7 +198,7 @@ const renderGrid = (x = 0, y = 0) => {
   textAlign(LEFT)
 
   text(modeTitle(grid), unitOf(-8), unitOf(0), unitOf(8), unitOf(16))
-  text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(8), unitOf(16))
+  text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(8.5), unitOf(16))
 
   // PROMPT - LEFT BLOCK
 
@@ -211,8 +212,8 @@ const renderGrid = (x = 0, y = 0) => {
     textLeading(unitOf(0.9))
     textAlign(LEFT)
     text("OBLIQUE (AI) STRATEGY:\n--------------------", unitOf(-8), unitOf(9.8), unitOf(8), unitOf(6));
-    textSize(unitOf(0.5))
-    //textSize(unitOf(0.6))
+    //textSize(unitOf(0.5))
+    textSize(unitOf(0.6))
     textLeading(unitOf(0.9))
     textAlign(LEFT)
     text("\"" + currentPrompt + "\"", unitOf(-8), unitOf(11), unitOf(8), unitOf(6));
@@ -225,7 +226,6 @@ const renderGrid = (x = 0, y = 0) => {
     // text("\"imagine the music as a set of disconnected events\"", unitOf(-8), unitOf(17), unitOf(32), unitOf(2));
 
   }
-
 
   pop()
 }
