@@ -126,7 +126,7 @@ defineMode("row-jump", grid => {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
       } else if (key.key == ' ') {
-        // if Enter is pressed then jump playhead to that position
+        // if Space is pressed then jump playhead to that position
 
         track = grid.cursor.y
         print("jump to row " + 16 * grid.cursor.y)

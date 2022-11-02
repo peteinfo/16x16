@@ -56,7 +56,7 @@ defineMode("stream", grid => {
     }
   }
 
-  let playhead = new Playhead(132, 139, 200)
+  let playhead = new Playhead(132, 140, 200)
 
   function tick() {
     // this function is triggered every interval
