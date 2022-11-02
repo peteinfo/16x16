@@ -18,6 +18,7 @@ let currentPrompt = ''
 //      Sequence Level Order Here
 // -------------------------------------
 let levels = [
+  "off-the-grid",
   "start",
   "first-steps",
   "full-grid",
@@ -34,7 +35,7 @@ let levels = [
   "13-blank",
   "14-blank",
   "15-blank",
-  "16-blank",
+  "off-the-grid",
   "credits"
 ]
 
@@ -159,32 +160,31 @@ const renderGrid = (x = 0, y = 0) => {
 
 
   grid.renderSequence()
-
   push()
   translate(x, y)
 
-  const fontSize = unitOf(0.75)
+  // ----- draw the grid -----
 
-  noStroke()
-  grid.forEach((char, index) => {
-    const [x, y] = indexToPixelXY(index)
-    // draw character at grid space
-    //fill(0, 192, 0)
-
-    if (grid.mode.paleGrid) {
-      fill(0, 100, 0)
-    } else {
-      fill(0, 192, 0)
-    }
-
-    drawChar(char, fontSize, x, y)
-    // if cursor position, draw flashing cursor block
-    if (isCursorAt(grid, index)) {
-      fill(0, 255, 0, blinking(150, 100))
-      drawChar(cursorChar, fontSize, x, y);
-    }
-  }, true)
-
+  if (grid.mode.hideGrid == true) {
+  } else {
+    const fontSize = unitOf(0.75)
+    noStroke()
+    grid.forEach((char, index) => {
+      const [x, y] = indexToPixelXY(index)
+      // draw character at grid space
+      if (grid.mode.paleGrid) {
+        fill(0, 100, 0)
+      } else {
+        fill(0, 192, 0)
+      }
+      drawChar(char, fontSize, x, y)
+      // if cursor position, draw flashing cursor block
+      if (isCursorAt(grid, index)) {
+        fill(0, 255, 0, blinking(150, 100))
+        drawChar(cursorChar, fontSize, x, y);
+      }
+    }, true)
+  }
   // Let the mode draw itself
   push()
   grid.drawMode()
@@ -200,7 +200,6 @@ const renderGrid = (x = 0, y = 0) => {
   text(modeInfo(grid), unitOf(17), unitOf(0), unitOf(8.5), unitOf(16))
 
   // PROMPT - LEFT BLOCK
-
 
   //if ((grid.mode.name != "start") && (grid.mode.name != "credits")) {
 
@@ -223,7 +222,6 @@ const renderGrid = (x = 0, y = 0) => {
     // textLeading(unitOf(1.0))
     // textAlign(CENTER)
     // text("\"imagine the music as a set of disconnected events\"", unitOf(-8), unitOf(17), unitOf(32), unitOf(2));
-
   }
 
   pop()
