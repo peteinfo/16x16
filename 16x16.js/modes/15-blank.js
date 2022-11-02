@@ -77,6 +77,17 @@ defineMode("15-blank", grid => {
     
     this.run=function(){
       noStroke();
+      renderSurface()
+      push()
+      translate(unitOf(8), unitOf(8))
+      rotate(PI)
+      translate(-unitOf(8), -unitOf(8))
+      renderSurface()
+      pop()
+      disturber.ey+=(homeY-disturber.ey)/25
+    }
+
+    function renderSurface(){
       beginShape()
       for(let i=1; i<numBlobs; i++){
         let xPos=i*step;
@@ -95,7 +106,6 @@ defineMode("15-blank", grid => {
       fill(255,150)
       noStroke();
       endShape()
-      disturber.ey+=(homeY-disturber.ey)/25
     }
     
     this.disturb=function(x,y){
