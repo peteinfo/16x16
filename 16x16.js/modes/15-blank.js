@@ -41,6 +41,8 @@ defineMode("15-blank", grid => {
     /* 35 - z */ "./samples/nothing/0"
   ]
 
+  let disturber
+
   class Playhead {
     constructor(min, max, speed) {
       this.pos = min
@@ -52,49 +54,94 @@ defineMode("15-blank", grid => {
     }
   }
 
-  let playhead = new Playhead(0, 15, 200)
+  function Disturber(w,h){
+    let yPos=[];
+    let vel=[];
+    let numBlobs=200;
+    for(let i=0; i<numBlobs; i++){
+      yPos[i]=0;
+      vel[i]=0;
+    }
+    let dampMin=0.02;
+    let dampMax=0.5;
+    let damp=0.1;
+    let strengthMin=0.01;
+    let strengthMax=0.4;
+    let strength=0.1;
+    let step;
+    let numRotations=1;
+    let disturber={x:w/2,y:h/2,ey:h/2};
+    let homeY=w/2;
+    step=w/numBlobs;
+    
+    
+    this.run=function(){
+      noStroke();
+      beginShape()
+      for(let i=1; i<numBlobs; i++){
+        let xPos=i*step;
+        fill(255  );
+        ellipse(disturber.x,disturber.ey,5);
+        let distFromMouse=abs(xPos-disturber.x)/width;
+        strength=map(distFromMouse,0,1,strengthMin,strengthMax);
+        damp=map(distFromMouse,0,1,dampMin,dampMax);
+        vel[i]+=(disturber.ey-yPos[i])*strength;
+        yPos[i]+=vel[i];
+        vertex(xPos, yPos[i]);
+        vel[i]*=(1-damp);
+      }
+      vertex(w, h)
+      vertex(0,h)
+      fill(255,150)
+      noStroke();
+      endShape()
+      disturber.ey+=(homeY-disturber.ey)/25
+    }
+    
+    this.disturb=function(x,y){
+      disturber.x+=(x-disturber.x)/1;
+      disturber.y=y;
+      disturber.ey+=(disturber.y-disturber.ey)/1;
+    }
+  }
+  
+
+  let playhead = new Playhead(0, 15, 800)// 0.8sec seems about right
 
   function tick() {
     // this function is triggered every interval
-    playhead.pos++;
-    if (playhead.pos > playhead.max) {
-      playhead.pos = playhead.min
-    }
+    playhead.pos = (playhead.pos + 16) % 256
 
-    // does the index contain a note to play?
-    if (grid.sequence[playhead.pos] != '.') {
-
-      // Great! Let's play a note
-      //print("PLAY NOTE! index: " + playhead.pos + " contains: " + grid.sequence[playhead.pos])
-      let sampleToPlay = '0'
-
-      // Small fix to avoid out of bounds
-      if (grid.sequence[playhead.pos] && grid.sequence[playhead.pos].match(/^[0-9]$/)) {
-        sampleToPlay = grid.sequence[playhead.pos]
+    // check for just one active cell in this playhead row
+    // determine the x position and the value
+    let activePos=-1
+    let valAsNum=-1
+    for(let i=0; i<16; i++){
+      if (grid.sequence[playhead.pos+i] != '.') {
+        let cellVal=grid.sequence[playhead.pos+i]
+        valAsNum=parseInt(cellVal,10)
+        activePos=i
+        break
       }
-      else if (grid.sequence[playhead.pos].match(/^[a-z]$/)) {
-        // convert from ascii
-        // as a is 97 in ascii, subtract 87 to shift to 10
-        sampleToPlay = grid.sequence[playhead.pos].charCodeAt(0) - 87
-      }
-
-      //samples[sampleToPlay].rate(1)
-      //samples[sampleToPlay].stop()
-      samples[sampleToPlay].volume(random(0.5, 0.9))   // 'humanise' or vary the volume slightly
-      samples[sampleToPlay].play()
     }
+    if(activePos>-1){
+      disturber.disturb((activePos+0.5)*(unitOfOne()), unitOf(16)*valAsNum/9)
+    } 
+    // console.log(playhead.pos, fromIndex(playhead.pos).y, activePos, valAsNum)
+    //disturb the surface at this x position and this value as a disturbance magnitude and direction
+    //1 to 9=-4 to 4, 5 is neutral?
     timer = setTimeout(tick, playhead.interval)
   }
 
   return {
 
     title:
-      "\nLEVEL 15: UNDER CONSTRUCTION\
+      "\nLEVEL 15: DISTURB\
        --------------------------- \
-      New mode coming soon!",
+      Disturb the surface by placing one obstacle in a row",
 
       info:
-      "\n[1-9] ??? \n\
+      "\n[1-9] strength of displacement \n\
       [arrow] move cursor\n\
       [delete] clear sample\n\
       [tab] last level\n\
@@ -109,7 +156,7 @@ defineMode("15-blank", grid => {
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
       //setTimeout(tick, playhead.interval)
       timer = setTimeout(tick, playhead.interval)
-
+      disturber=new Disturber(unitOf(16), unitOf(16))
       grid.sequence.fill('.')
     },
     // unload is called when the mode actually unloads
@@ -124,6 +171,12 @@ defineMode("15-blank", grid => {
 
     onKey(key) {
       if (key.key.match(/^[1-9]$/)) {
+        //we can only have one active cell in each row so clear the row before assigning the new value
+        let row=fromIndex(grid.cursor.index).y
+        for(let i=0; i<16; i++){
+          // console.log(xyToIndex({x:i,y:row}))
+          grid.sequence[xyToIndex({x:i,y:row})]='.'
+        }
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
       } else if (key.key == 'Enter') {
@@ -135,8 +188,10 @@ defineMode("15-blank", grid => {
     update(x, y, index) { },
 
     draw(frameCounter) {
+      disturber.run()
       fill(255, 165, 0, orangeAlpha)    // orange playhead
-      drawChar(cursorChar, unitOf(0.75), ...indexToPixelXY(playhead.pos))
+      let playheadPos=indexToPixelXY(playhead.pos)
+      rect(playheadPos[0],playheadPos[1],unitOf(16),unitOfOne())
     },
   }
 })
