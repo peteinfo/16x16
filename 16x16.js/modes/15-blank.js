@@ -62,8 +62,8 @@ defineMode("15-blank", grid => {
       yPos[i]=0;
       vel[i]=0;
     }
-    let dampMin=0.02;
-    let dampMax=0.5;
+    let dampMin=0.01;
+    let dampMax=0.4;
     let damp=0.1;
     let strengthMin=0.01;
     let strengthMax=0.4;
