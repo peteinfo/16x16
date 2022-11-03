@@ -57,7 +57,7 @@ defineMode("15-blank", grid => {
   function Disturber(w,h){
     let yPos=[];
     let vel=[];
-    let numBlobs=200;
+    let numBlobs=500;
     for(let i=0; i<numBlobs; i++){
       yPos[i]=0;
       vel[i]=0;
@@ -77,10 +77,10 @@ defineMode("15-blank", grid => {
     
     this.run=function(){
       noStroke();
-      renderSurface()
+      //renderSurface()
       push()
       translate(unitOf(8), unitOf(8))
-      rotate(PI)
+      scale(width/w,height/h)
       translate(-unitOf(8), -unitOf(8))
       renderSurface()
       pop()
@@ -91,8 +91,9 @@ defineMode("15-blank", grid => {
       beginShape()
       for(let i=1; i<numBlobs; i++){
         let xPos=i*step;
-        fill(255  );
-        ellipse(disturber.x,disturber.ey,5);
+        // show the 'disturber' if you want to 
+        // fill(255  );
+        // ellipse(disturber.x,disturber.ey,5);
         let distFromMouse=abs(xPos-disturber.x)/width;
         strength=map(distFromMouse,0,1,strengthMin,strengthMax);
         damp=map(distFromMouse,0,1,dampMin,dampMax);
@@ -109,6 +110,7 @@ defineMode("15-blank", grid => {
     }
     
     this.disturb=function(x,y){
+      let ex=w*x/unitOf(16)
       disturber.x+=(x-disturber.x)/1;
       disturber.y=y;
       disturber.ey+=(disturber.y-disturber.ey)/1;
