@@ -135,7 +135,7 @@ defineMode("15-blank", grid => {
       }
     }
     if(activePos>-1){
-      disturber.disturb((activePos+0.5)*(unitOfOne()), unitOf(16)*valAsNum/9)
+      disturber.disturb((activePos+1)*(unitOfOne()), 1.3*unitOf(16)*valAsNum/9)
     } 
     // console.log(playhead.pos, fromIndex(playhead.pos).y, activePos, valAsNum)
     //disturb the surface at this x position and this value as a disturbance magnitude and direction
