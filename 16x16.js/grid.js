@@ -117,6 +117,7 @@ const setupGrid = (width, height) => {
     title: "",
     info: "",
     showPrompt: true,
+    hideGrid: false,
     w: width, h: height,
     mode: undefined, // the current mode
     sequence: Array(width * height).fill('.'), // create string of length,
