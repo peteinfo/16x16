@@ -18,7 +18,6 @@ let currentPrompt = ''
 //      Sequence Level Order Here
 // -------------------------------------
 let levels = [
-  "off-the-grid",
   "start",
   "first-steps",
   "full-grid",
@@ -32,7 +31,7 @@ let levels = [
   "wandering-cursor",
   "subtract",
   "jump-back",
-  "13-blank",
+  "7-segment",
   "14-blank",
   "15-blank",
   "off-the-grid",

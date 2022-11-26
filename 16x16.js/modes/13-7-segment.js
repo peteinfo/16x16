@@ -1,4 +1,4 @@
-defineMode("13-blank", grid => {
+defineMode("7-segment", grid => {
 
   let currentVal = 0
   let rapples=[]
@@ -237,9 +237,9 @@ defineMode("13-blank", grid => {
   return {
 
     title:
-      "\nLEVEL 13: WIBBLES\
+      "\nLEVEL 13: 7 SEGMENT\
        --------------------------- \
-      use the numbers to make a variety of overlapping wibbles",
+      The numbers fold ",
 
     info:
       "\n[0-4] horizontal wibbles \n\

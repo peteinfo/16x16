@@ -97,14 +97,14 @@ defineMode("15-blank", grid => {
         let distFromMouse=abs(xPos-disturber.x)/width;
         strength=map(distFromMouse,0,1,strengthMin,strengthMax);
         damp=map(distFromMouse,0,1,dampMin,dampMax);
-        vel[i]+=(disturber.ey-yPos[i])*strength;
+        vel[i]+=(disturber.ey-yPos[i])*strength/7;     // PETE: I've slowed it down a bit
         yPos[i]+=vel[i];
-        vertex(xPos, yPos[i]);
+        vertex(xPos, 300 + yPos[i]/2);      // PETE: playing with vertical position
         vel[i]*=(1-damp);
       }
       vertex(w, h)
       vertex(0,h)
-      fill(255,150)
+      fill(0, 255, 155, 25)       // PETE: I've made it green
       noStroke();
       endShape()
     }
