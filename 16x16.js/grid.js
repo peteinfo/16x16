@@ -174,7 +174,7 @@ const setupGrid = (width, height) => {
           this.moveBy(0, 1)
           break;
         case "Backspace":
-          this.sequence[this.cursor.index] = '.'
+          if(!this.mode.immutable) this.sequence[this.cursor.index] = '.'
           if (this.cursor.x == 0) {
             //this.moveBy(0, -1)
           }
