@@ -279,11 +279,7 @@ const defineMode = (name, func) => modes[name] = { name, ...func(grid) }
 
 const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
-const pickRandom = array => {
-  for (let index = 0; index < array.length; index++) {
-    if (Math.random() > 0.5) return array[index]
-  }
-}
+const pickRandom = array => array[Math.floor(Math.random()*array.length)]
 
 const allModes = () => Object.keys(modes).filter(m => m != 'prompt')
 
