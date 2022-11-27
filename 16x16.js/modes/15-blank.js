@@ -149,13 +149,13 @@ defineMode("15-blank", grid => {
 
     level: true,
     title: 
-      "DISTURB\n\-----------------\n\
-      Disturb the surface by placing one obstacle in a row",
+      "WAVEPOOL\n\-----------------\n\
+      Back to visuals. Create some waves by placing numbers one to nine.",
 
       info:
-      "\n[1-9] place sample\n\
+      "\n[1-9] make wave\n\
       [arrows] move cursor\n\
-      [delete] clear sample\n\
+      [delete] calm down\n\
       [tab] prev level\n\
       [enter] next level",
 
