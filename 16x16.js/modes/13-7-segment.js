@@ -268,6 +268,7 @@ defineMode("7-segment", grid => {
         return new Rapple(gridPos.index, gridPos.x, gridPos.y, s)
       })
       sample.play()
+      grid.moveTo(7,7)
     },
 
     // unload is called when the mode unloads

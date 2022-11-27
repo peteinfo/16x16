@@ -114,7 +114,7 @@ defineMode("subtract", grid => {
         if (ascii > 57) ascii += 39
         grid.sequence[n] = String.fromCharCode(ascii)
       }
-
+      grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads
     unload() {

@@ -109,6 +109,7 @@ defineMode("full-grid", grid => {
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
+      grid.moveTo(0, 7)
     },
     // unload is called when the mode actually unloads
     unload() {

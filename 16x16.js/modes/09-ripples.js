@@ -32,6 +32,7 @@ defineMode("ripples", grid => {
       //sample.volume(0.5)
       sample.play()
       ripples.clear
+      grid.moveTo(7,7)
     },
     
     unload() {

@@ -171,6 +171,7 @@ defineMode("15-blank", grid => {
       timer = setTimeout(tick, playhead.interval)
       disturber=new Disturber(unitOf(16), unitOf(16))
       grid.sequence.fill('.')
+      grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads
     unload() {

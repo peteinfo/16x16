@@ -108,6 +108,7 @@ defineMode("rain", grid => {
       }
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      grid.moveTo(7,8)
     },
 
     // unload is called when the mode actually unloads

@@ -143,6 +143,7 @@ const setupGrid = (width, height) => {
             currentLevel = 0;
           }
           currentPrompt = random(prompts)
+          this.moveTo(0,0)
           useMode(levels[currentLevel])
           break
         case "Tab":
@@ -151,6 +152,7 @@ const setupGrid = (width, height) => {
             currentLevel = levels.length - 1
           }
           currentPrompt = random(prompts)
+          this.moveTo(0,0)
           useMode(levels[currentLevel])
           break
         case "ArrowRight":
@@ -325,7 +327,7 @@ const modeSwitcher = ({
     startedAt = millis()
     // move to back to the origin when starting a new mode
     // this keeps it out of the way in the prompt mode
-    grid.moveTo(7, 8)
+    grid.moveTo(0, 0)
   }
 
   const idle = () => {

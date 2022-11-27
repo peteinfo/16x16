@@ -124,6 +124,7 @@ defineMode("stream", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      grid.moveTo(7,0)
     },
     // unload is called when the mode actually unloads
     unload() {

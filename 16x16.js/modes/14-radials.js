@@ -182,6 +182,7 @@ defineMode("14-blank", grid => {
       timer = setTimeout(tick, playhead.interval)
 
       grid.sequence.fill('.')
+      grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads
     unload() {
