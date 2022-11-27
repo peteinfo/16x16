@@ -89,7 +89,8 @@ defineMode("row-sequence", grid => {
   }
 
   return {
-    description: "level 1: playhead jumps to same row as cursor\n[0-9] vibes [a-z] drums\n",
+    description: "level 1: playhead jumps to same row as cursor\n[0-9] place sample
+",
     preload() {
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
     },

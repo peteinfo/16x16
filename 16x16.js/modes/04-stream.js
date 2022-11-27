@@ -108,10 +108,10 @@ defineMode("stream", grid => {
     level: true,
     title: "DOWN STREAM \n--------------------------- \
             Samples dropped in the stream float down river.",
-    info: "\n[1-9] piano\n\
-          [arrow] move cursor \n\
+    info: "\n[1-9] place sample\n\
+          [arrows] move cursor \n\
           [delete] clear sample\n\
-          [tab] last level\n\
+          [tab] prev level\n\
           [enter] next level\
           ",
 

@@ -244,11 +244,11 @@ defineMode("7-segment", grid => {
 
     info:
       "\n[0-4] horizontal wibbles \n\
-      [5-9] vertical wibbles \n\
-      [arrow] move cursor\n\
+      [5-9] place sample\n\
+      [arrows] move cursor\n\
       [space] jump to row\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,

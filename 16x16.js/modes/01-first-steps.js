@@ -95,10 +95,10 @@ defineMode("first-steps", grid => {
       ",
 
     info:
-      "\n[1-9] synth blip\n\
-      [arrow] move cursor\n\
+      "\n[1-9] place sample\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,

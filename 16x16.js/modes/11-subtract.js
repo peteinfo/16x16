@@ -92,11 +92,11 @@ defineMode("subtract", grid => {
       A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within. This is a one way process.",
       
     info: 
-      "\n[1-9] kalimba \
+      "\n[1-9] place sample\
       \n[a-z] synth pad \
-      \n[arrow] move cursor\
+      \n[arrows] move cursor\
       \n[delete] chip away\
-      \n[tab] last level\n\
+      \n[tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,

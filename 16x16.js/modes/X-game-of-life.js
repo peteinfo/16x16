@@ -25,7 +25,7 @@ defineMode("game-of-life", grid => {
 info: "\n[space] add cells \
     \n\
     \n[tab] next level \
-    \n[esc] last level ",
+    \n[esc] prev level ",
     preload() {
 
     },

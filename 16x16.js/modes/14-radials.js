@@ -165,9 +165,9 @@ defineMode("14-blank", grid => {
 
       info:
       "\n[a-l] radial move \n\
-      [arrow] move cursor\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,

@@ -95,12 +95,12 @@ defineMode("off-the-grid", grid => {
       The sequencing has taken a toll and the foundations of the grid become loose. Brownian motion sequencing ensues.",
 
     info:
-      "\n[1-9] chime\
+      "\n[1-9] place sample\
       \n[0] goto start of row\
       \n[space] play row\
-      \n[arrow] move cursor\
+      \n[arrows] move cursor\
       \n[delete] clear sample\
-      \n[tab] last level\n\
+      \n[tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,

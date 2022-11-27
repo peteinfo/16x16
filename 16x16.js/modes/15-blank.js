@@ -154,10 +154,10 @@ defineMode("15-blank", grid => {
       Disturb the surface by placing one obstacle in a row",
 
       info:
-      "\n[1-9] strength of displacement \n\
-      [arrow] move cursor\n\
+      "\n[1-9] place sample\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,

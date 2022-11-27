@@ -92,12 +92,12 @@ defineMode("spell", grid => {
       "SPELL & SPEAK \n--------------------------- \
       Alphabetical sequencing. With an 808 on the side.",
     info: 
-      "\n[1-9] 808 drum kit\n\
+      "\n[1-9] place sample\n\
       [a-z] alphabet\n\
       [space] play row\n\
-      [arrow] move cursor\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,

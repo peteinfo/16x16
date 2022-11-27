@@ -11,7 +11,7 @@ defineMode("wandering-cursor", grid => {
     info: "\n[any] drop a pebble \
     \n\
     \n[tab] next level \
-    \n[esc] last level ",
+    \n[esc] prev level ",
     preload() {
 
     },

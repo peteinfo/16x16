@@ -16,9 +16,9 @@ defineMode("ripples", grid => {
 
     info:
       "\n[1-9] drop a pebble \
-      \n[arrow] move cursor\
+      \n[arrows] move cursor\
       \n[delete] clear sample\
-      \n[tab] last level\
+      \n[tab] prev level\
       \n[enter] next level",
 
     showPrompt: false,

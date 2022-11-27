@@ -99,12 +99,12 @@ defineMode("wandering-cursor", grid => {
       "WANDERING CURSOR \n--------------------------- \
        Let the automated cursor do the work for you. Decide whether to fight the cursor or let it guide you in new directions.",
     info: 
-      "\n[1-9] 808 drum kit\
+      "\n[1-9] place sample\
        \n[a-z] alphabet\
        \n[space] play row\
-       \n[arrow] move cursor\
+       \n[arrows] move cursor\
        \n[delete] clear sample\
-       \n[tab] last level\
+       \n[tab] prev level\
        \n[enter] next level",
        
     showPrompt: true,

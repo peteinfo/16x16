@@ -96,11 +96,11 @@ defineMode("eight-track-select", grid => {
            The perfect sequencer to accompany a road trip. Select which of the eight tracks to play by pressing SPACE.",
 
     info: "\n\
-            [1-9] piano \
+            [1-9] place sample\
             [space] play track \
-            [arrow] move cursor\
+            [arrows] move cursor\
             [delete] clear sample\n\
-            [tab] last level\
+            [tab] prev level\
             [enter] next level",
 
     showPrompt: true,

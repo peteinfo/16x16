@@ -93,10 +93,10 @@ defineMode("full-grid", grid => {
       \n\nStuck for an idea? Use the prompt below for creative inspiration:",
 
     info:
-      "\n[1-9] synth pad\n\
-      [arrow] move cursor\n\
+      "\n[1-9] place sample\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,

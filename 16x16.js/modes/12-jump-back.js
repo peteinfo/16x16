@@ -92,12 +92,12 @@ defineMode("jump-back", grid => {
       A zero will jump the playhead back to the beginning of the row.",
       
     info: 
-      "\n[1-9] chime\
+      "\n[1-9] place sample\
       \n[0] goto start of row\
       \n[space] play row\
-      \n[arrow] move cursor\
+      \n[arrows] move cursor\
       \n[delete] clear sample\
-      \n[tab] last level\n\
+      \n[tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,
