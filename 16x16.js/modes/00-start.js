@@ -41,7 +41,7 @@ defineMode("start", grid => {
 
     title: 
       "16x16 \
-      ------------------------- \
+      -------------------------------- \
       A minimal audio-visual environment for exploring computer-aided creativity through esoteric music sequencing.\
       \n\nExplore composing music in each mode using the key commands on the right. Note that these commands may change between modes.\
       \n\nPress ENTER to begin.",

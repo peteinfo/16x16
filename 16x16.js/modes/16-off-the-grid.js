@@ -104,7 +104,7 @@ defineMode("off-the-grid", grid => {
     info:
       "\n[1-9] place sample\
       \n[0] goto start of row\
-      \n[space] play row\
+      \n[space] select row\
       \n[arrows] move cursor\
       \n[delete] clear sample\
       \n[tab] prev level\n\

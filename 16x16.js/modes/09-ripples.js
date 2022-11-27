@@ -11,7 +11,7 @@ defineMode("ripples", grid => {
   return {
     level: true,
     title: 
-      "RIPPLES \n--------------------------- \
+      "RIPPLES\n-----------------\n\
       Take a break from sequencing and drop a pebble in the pond.",
 
     info:

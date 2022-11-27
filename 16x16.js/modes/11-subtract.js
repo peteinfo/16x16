@@ -88,7 +88,7 @@ defineMode("subtract", grid => {
 
   return {
     level: true,
-    title: "CHIP AWAY \n--------------------------- \
+    title: "CHIP AWAY \n-------------------\n\
       A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within. This is a one way process.",
       
     info: 

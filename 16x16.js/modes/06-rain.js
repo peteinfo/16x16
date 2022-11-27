@@ -83,7 +83,7 @@ defineMode("rain", grid => {
 
   return {
     level: true,
-    title: "LIKE SAMPLES IN RAIN \n--------------------------- \
+    title: "LIKE SAMPLES IN RAIN \n------------------------------ \
             Playheads stream down the window. Try to find some order in the noise.",
     info: "\n\
             [1-9] place sample\n\

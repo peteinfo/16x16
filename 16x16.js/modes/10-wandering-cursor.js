@@ -96,12 +96,12 @@ defineMode("wandering-cursor", grid => {
   return {
     level: true,
     title: 
-      "WANDERING CURSOR \n--------------------------- \
+      "WANDERING CURSOR\n--------------------------\n\
        Let the automated cursor do the work for you. Decide whether to fight the cursor or let it guide you in new directions.",
     info: 
       "\n[1-9] place sample\
        \n[a-z] alphabet\
-       \n[space] play row\
+       \n[space] select row\
        \n[arrows] move cursor\
        \n[delete] clear sample\
        \n[tab] prev level\

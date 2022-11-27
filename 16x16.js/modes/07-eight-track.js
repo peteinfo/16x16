@@ -88,7 +88,7 @@ defineMode("eight-track", grid => {
 
   return {
     level: true,
-    title: "MULTI-TRACK \n--------------------------- \
+    title: "MULTI-TRACK\n---------------------\
             Eight tracks play simultaneously. Stack up the samples.",
     info: "\n[1-9] place sample\
             [arrows] move cursor\

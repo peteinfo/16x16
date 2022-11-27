@@ -92,11 +92,10 @@ defineMode("row-jump", grid => {
 
   return {
     level: true,
-    title: "JUMP TO A ROW \
-            --------------------------- \
+    title: "JUMP TO A ROW\n-----------------------\n\
             Create a pattern on each row. Press SPACE to play the row that the cursor is on.",
     info: " \n[1-9] place sample\
-            \n[space] play row\
+            \n[space] select row\
             \n[arrows] move cursor\
             \n[delete] clear sample\
             [tab] prev level\

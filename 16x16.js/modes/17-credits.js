@@ -39,8 +39,7 @@ defineMode("credits", grid => {
 
   return {
     title: 
-      "16x16 CREDTIS \
-      ------------------------- \
+      "16x16 CREDTIS\n-------------\n\
       Thanks for playing!\
       \n\nCreated in 2022 by: \
       \n- Pete Bennett \
