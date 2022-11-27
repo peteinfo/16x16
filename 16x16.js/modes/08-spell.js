@@ -90,10 +90,10 @@ defineMode("spell", grid => {
     level: true,
     title: 
       "SPELL & SPEAK\n-----------------------\
-      Alphabetical sequencing. With an 808 on the side.",
+      Alphabetical sequencing with an 808 on the side.",
     info: 
       "\n[1-9] place sample\n\
-      [a-z] alphabet\n\
+      [a-z] say letter\n\
       [space] select row\n\
       [arrows] move cursor\n\
       [delete] clear sample\n\
