@@ -239,11 +239,10 @@ defineMode("7-segment", grid => {
     level: true,
     title: 
       "7 SEGMENT\n-------------------\n\
-      The numbers fold ",
+      Let's try visuals again here. Place numbers in the grid to create evolving seven segment visual. Enjoy!",
 
     info:
-      "\n[0-4] horizontal wibbles \n\
-      [5-9] place sample\n\
+      "\n[0-9] place visuals\n\
       [arrows] move cursor\n\
       [space] jump to row\n\
       [delete] clear sample\n\
