@@ -147,7 +147,6 @@ const setupGrid = (width, height) => {
           break
         case "Tab":
           currentLevel--
-          print(currentLevel)
           if (currentLevel < 0) {
             currentLevel = levels.length - 1
           }
@@ -322,6 +321,7 @@ const modeSwitcher = ({
     //console.log('switching from', phase, 'to start')
     if (phase != null && phase != undefined && phase != 'preboot' && phase != 'switch') return
     phase = 'start'
+    currentLevel = 0
     startedAt = millis()
     // move to back to the origin when starting a new mode
     // this keeps it out of the way in the prompt mode
