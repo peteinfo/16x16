@@ -159,8 +159,7 @@ defineMode("14-blank", grid => {
 
     level: true,
     title: 
-      "RADIALS\
-       --------------------------- \
+      "RADIALS\n----------------\n\
       a-l triggers a visual arc that fades",
 
       info:
