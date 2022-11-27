@@ -88,13 +88,11 @@ defineMode("subtract", grid => {
 
   return {
     level: true,
-    title: "CHIP AWAY \n-------------------\n\
-      A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within. This is a one way process.",
+    title: "THE SCULPTURE\n-------------------\n\
+      A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within.",
       
     info: 
-      "\n[1-9] place sample\
-      \n[a-z] synth pad \
-      \n[arrows] move cursor\
+      "\n[arrows] move cursor\
       \n[delete] chip away\
       \n[tab] prev level\n\
       [enter] next level",
