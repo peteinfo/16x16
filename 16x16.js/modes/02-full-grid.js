@@ -86,8 +86,9 @@ defineMode("full-grid", grid => {
   }
 
   return {
-    title:
-      "\nLEVEL 2: FULL GRID SEQUENCE \n--------------------------- \
+    level: true,
+    title: 
+      "FULL GRID SEQUENCE \n--------------------------- \
       Lay out a sequence over the full grid. Take time to build it up. Have patience to hear it play. \
       \n\nStuck for an idea? Use the prompt below for creative inspiration:",
 

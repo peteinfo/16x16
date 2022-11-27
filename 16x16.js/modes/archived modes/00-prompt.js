@@ -12,7 +12,8 @@ defineMode("prompt", grid => {
   let backgroundFill = ['_', '*', '|', '+', '=', ':']
 
   return {
-    title: "\nOBLIQUE GRID STRATEGIES\n-----------------------\nconsider this creativity prompt for the next level",
+    level: true,
+    title: "OBLIQUE GRID STRATEGIES\n-----------------------\nconsider this creativity prompt for the next level",
     info: "\n[tab] to proceed\n [esc] return to start",
     isPrompt: true,
     preload() {

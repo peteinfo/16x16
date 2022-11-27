@@ -87,8 +87,9 @@ defineMode("spell", grid => {
   }
 
   return {
+    level: true,
     title: 
-      "\nLEVEL 8: SPELL & SPEAK \n--------------------------- \
+      "SPELL & SPEAK \n--------------------------- \
       Alphabetical sequencing. With an 808 on the side.",
     info: 
       "\n[1-9] 808 drum kit\n\

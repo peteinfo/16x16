@@ -88,8 +88,9 @@ defineMode("off-the-grid", grid => {
   }
 
   return {
-    title:
-      "\nLEVEL 16: OFF THE GRID  \
+    level: true,
+    title: 
+      "OFF THE GRID  \
       --------------------------- \
       The sequencing has taken a toll and the foundations of the grid become loose. Brownian motion sequencing ensues.",
 

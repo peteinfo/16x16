@@ -91,7 +91,8 @@ defineMode("eight-track-select", grid => {
   }
 
   return {
-    title: "\nLEVEL 5: EIGHT-TRACK \n--------------------------- \
+    level: true,
+    title: "EIGHT-TRACK \n--------------------------- \
            The perfect sequencer to accompany a road trip. Select which of the eight tracks to play by pressing SPACE.",
 
     info: "\n\

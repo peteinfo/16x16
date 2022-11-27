@@ -9,8 +9,9 @@ defineMode("ripples", grid => {
     colour: [random(80, 100), random(100, 140), random(110, 200)]
   })
   return {
-    title:
-      "\nLEVEL 9: RIPPLES \n--------------------------- \
+    level: true,
+    title: 
+      "RIPPLES \n--------------------------- \
       Take a break from sequencing and drop a pebble in the pond.",
 
     info:

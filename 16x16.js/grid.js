@@ -114,6 +114,7 @@ const indexToPixelXY = (index, mode = null) => {
 const setupGrid = (width, height) => {
   return {
     description: "",
+    level: true,
     title: "",
     info: "",
     showPrompt: true,
@@ -288,11 +289,9 @@ const allModes = () => Object.keys(modes).filter(m => m != 'prompt')
 const randomMode = () => pickRandom(allModes())
 
 const getMode = name => modes[name] || {}
-const currentModeName = grid => {
-  return Object.entries(modes).find(([name, mode]) => {
-    if (mode === grid.mode) return name
-  })[0];
-}
+const matchMode = grid => ([_, mode]) => mode === grid.mode
+const currentModeName = grid => Object.entries(modes).find(matchMode(grid))[0]
+const modeLevel = grid => Object.entries(modes).findIndex(matchMode(grid))
 
 const modeSwitcher = ({
   startupTime = 500,
@@ -374,7 +373,10 @@ const modeSwitcher = ({
 //const modeTitle = grid => grid.mode.title || currentModeName(grid)
 //const modeInfo = grid => grid.mode.info || currentModeName(grid)
 
-const modeTitle = grid => grid.mode.title
-const modeInfo = grid => grid.mode.info
-const modeShowPrompt = grid => grid.mode.showPrompt
+const modeTitle = grid => grid.mode.level
+  ? `LEVEL ${modeLevel(grid)}: ${grid.mode.title}`
+  : grid.mode.title
 
+const modeInfo = grid => grid.mode.info
+
+const modeShowPrompt = grid => grid.mode.showPrompt

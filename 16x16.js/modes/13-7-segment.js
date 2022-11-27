@@ -236,8 +236,9 @@ defineMode("7-segment", grid => {
 
   return {
 
-    title:
-      "\nLEVEL 13: 7 SEGMENT\
+    level: true,
+    title: 
+      "7 SEGMENT\
        --------------------------- \
       The numbers fold ",
 

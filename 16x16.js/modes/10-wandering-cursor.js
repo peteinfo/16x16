@@ -94,8 +94,9 @@ defineMode("wandering-cursor", grid => {
   }
 
   return {
-    title:
-      "\nLEVEL 10: WANDERING CURSOR \n--------------------------- \
+    level: true,
+    title: 
+      "WANDERING CURSOR \n--------------------------- \
        Let the automated cursor do the work for you. Decide whether to fight the cursor or let it guide you in new directions.",
     info: 
       "\n[1-9] 808 drum kit\

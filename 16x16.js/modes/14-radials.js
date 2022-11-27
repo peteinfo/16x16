@@ -157,8 +157,9 @@ defineMode("14-blank", grid => {
 
   return {
 
-    title:
-      "\nLEVEL 14: RADIALS\
+    level: true,
+    title: 
+      "RADIALS\
        --------------------------- \
       a-l triggers a visual arc that fades",
 

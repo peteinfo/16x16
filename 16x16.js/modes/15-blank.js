@@ -147,8 +147,9 @@ defineMode("15-blank", grid => {
 
   return {
 
-    title:
-      "\nLEVEL 15: DISTURB\
+    level: true,
+    title: 
+      "DISTURB\
        --------------------------- \
       Disturb the surface by placing one obstacle in a row",
 

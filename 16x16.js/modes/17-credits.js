@@ -38,8 +38,8 @@ defineMode("credits", grid => {
   }
 
   return {
-    title:
-      "\n16x16 CREDTIS \
+    title: 
+      "16x16 CREDTIS \
       ------------------------- \
       Thanks for playing!\
       \n\nCreated in 2022 by: \
