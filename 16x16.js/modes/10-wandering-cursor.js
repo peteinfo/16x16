@@ -102,7 +102,7 @@ defineMode("wandering-cursor", grid => {
       "\n[1-9] place sample\
        \n[a-z] alphabet\
        \n[space] select row\
-       \n[arrows] move cursor\
+       \n[arrows] shove cursor\
        \n[delete] clear sample\
        \n[tab] prev level\
        \n[enter] next level",
