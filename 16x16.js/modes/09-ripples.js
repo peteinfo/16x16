@@ -17,11 +17,12 @@ defineMode("ripples", grid => {
     info:
       "\n[1-9] drop a pebble \
       \n[arrows] move cursor\
-      \n[delete] clear sample\
       \n[tab] prev level\
       \n[enter] next level",
 
     showPrompt: false,
+
+    immutable: true,
 
     preload() {
       sample = loadSound('./samples/long-samples/stream.mp3')
@@ -41,7 +42,7 @@ defineMode("ripples", grid => {
     },
 
     onKey(key) {
-    
+      if (grid.sequence[grid.cursor.index] !== '.') return
       if (key.key.match(/^[1-9]$/)) {
 
         let stones = ['O', '0', 'o']
