@@ -325,7 +325,7 @@ const modeSwitcher = ({
     startedAt = millis()
     // move to back to the origin when starting a new mode
     // this keeps it out of the way in the prompt mode
-    grid.moveTo(0, 0)
+    grid.moveTo(7, 8)
   }
 
   const idle = () => {
