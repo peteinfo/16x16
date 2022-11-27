@@ -105,12 +105,13 @@ defineMode("stream", grid => {
   }
 
   return {
-    title: "\nLEVEL 4: DOWN STREAM \n--------------------------- \
+    level: true,
+    title: "DOWN STREAM \n---------------------\
             Samples dropped in the stream float down river.",
-    info: "\n[1-9] piano\n\
-          [arrow] move cursor \n\
+    info: "\n[1-9] place sample\n\
+          [arrows] move cursor \n\
           [delete] clear sample\n\
-          [tab] last level\n\
+          [tab] prev level\n\
           [enter] next level\
           ",
 
@@ -123,6 +124,7 @@ defineMode("stream", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      grid.moveTo(7,0)
     },
     // unload is called when the mode actually unloads
     unload() {

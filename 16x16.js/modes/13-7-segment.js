@@ -236,18 +236,17 @@ defineMode("7-segment", grid => {
 
   return {
 
-    title:
-      "\nLEVEL 13: 7 SEGMENT\
-       --------------------------- \
-      The numbers fold ",
+    level: true,
+    title: 
+      "7 SEGMENT\n-------------------\n\
+      Let's try visuals again here. Place numbers in the grid to create evolving seven segment visual. Enjoy!",
 
     info:
-      "\n[0-4] horizontal wibbles \n\
-      [5-9] vertical wibbles \n\
-      [arrow] move cursor\n\
+      "\n[0-9] place visuals\n\
+      [arrows] move cursor\n\
       [space] jump to row\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,
@@ -267,6 +266,7 @@ defineMode("7-segment", grid => {
         return new Rapple(gridPos.index, gridPos.x, gridPos.y, s)
       })
       sample.play()
+      grid.moveTo(7,7)
     },
 
     // unload is called when the mode unloads

@@ -84,7 +84,8 @@ defineMode("long-sequence", grid => {
   }
 
   return {
-    description: "level 2: a longer sequence\n[0-9] vibes [a-z] drums\n[Enter] jumps playhead to cursor",
+    description: "level 2: a longer sequence\n[0-9] place sample
+[Enter] jumps playhead to cursor",
     preload() {
       samples = samples.map(loadSound)
     },

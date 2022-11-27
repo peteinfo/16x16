@@ -91,15 +91,16 @@ defineMode("eight-track-select", grid => {
   }
 
   return {
-    title: "\nLEVEL 5: EIGHT-TRACK \n--------------------------- \
+    level: true,
+    title: "EIGHT-TRACK \n---------------------\
            The perfect sequencer to accompany a road trip. Select which of the eight tracks to play by pressing SPACE.",
 
     info: "\n\
-            [1-9] piano \
-            [space] play track \
-            [arrow] move cursor\
+            [1-9] place sample\
+            [space] select row \
+            [arrows] move cursor\
             [delete] clear sample\n\
-            [tab] last level\
+            [tab] prev level\
             [enter] next level",
 
     showPrompt: true,

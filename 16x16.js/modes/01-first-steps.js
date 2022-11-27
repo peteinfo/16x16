@@ -88,16 +88,17 @@ defineMode("first-steps", grid => {
 
   return {
 
-    title:
-      "\nLEVEL 1: FIRST (16) STEPS \n--------------------------- \
+    level: true,
+    title: 
+      "FIRST (16) STEPS\n--------------------------\n\
       Build a sequence in the top row. Place one of nine samples using the number keys.\
       ",
 
     info:
-      "\n[1-9] synth blip\n\
-      [arrow] move cursor\n\
+      "\n[1-9] place sample\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,

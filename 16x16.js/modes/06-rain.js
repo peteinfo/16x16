@@ -82,13 +82,14 @@ defineMode("rain", grid => {
   }
 
   return {
-    title: "\nLEVEL 6: LIKE SAMPLES IN RAIN \n--------------------------- \
+    level: true,
+    title: "LIKE SAMPLES IN RAIN \n------------------------------ \
             Playheads stream down the window. Try to find some order in the noise.",
     info: "\n\
-            [1-9] synth blip\n\
-            [arrow] move cursor\n\
+            [1-9] place sample\n\
+            [arrows] move cursor\n\
             [delete] clear sample\
-            [tab] last level\n\
+            [tab] prev level\n\
             [enter] next level",
 
     showPrompt: true,
@@ -107,6 +108,7 @@ defineMode("rain", grid => {
       }
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      grid.moveTo(7,8)
     },
 
     // unload is called when the mode actually unloads

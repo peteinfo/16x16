@@ -86,16 +86,17 @@ defineMode("full-grid", grid => {
   }
 
   return {
-    title:
-      "\nLEVEL 2: FULL GRID SEQUENCE \n--------------------------- \
+    level: true,
+    title: 
+      "FULL GRID\n-------------------\n\
       Lay out a sequence over the full grid. Take time to build it up. Have patience to hear it play. \
       \n\nStuck for an idea? Use the prompt below for creative inspiration:",
 
     info:
-      "\n[1-9] synth pad\n\
-      [arrow] move cursor\n\
+      "\n[1-9] place sample\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,
@@ -108,6 +109,7 @@ defineMode("full-grid", grid => {
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
+      grid.moveTo(0, 7)
     },
     // unload is called when the mode actually unloads
     unload() {

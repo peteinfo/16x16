@@ -114,6 +114,7 @@ const indexToPixelXY = (index, mode = null) => {
 const setupGrid = (width, height) => {
   return {
     description: "",
+    level: true,
     title: "",
     info: "",
     showPrompt: true,
@@ -142,15 +143,16 @@ const setupGrid = (width, height) => {
             currentLevel = 0;
           }
           currentPrompt = random(prompts)
+          this.moveTo(0,0)
           useMode(levels[currentLevel])
           break
         case "Tab":
           currentLevel--
-          print(currentLevel)
           if (currentLevel < 0) {
             currentLevel = levels.length - 1
           }
           currentPrompt = random(prompts)
+          this.moveTo(0,0)
           useMode(levels[currentLevel])
           break
         case "ArrowRight":
@@ -172,7 +174,7 @@ const setupGrid = (width, height) => {
           this.moveBy(0, 1)
           break;
         case "Backspace":
-          this.sequence[this.cursor.index] = '.'
+          if(!this.mode.immutable) this.sequence[this.cursor.index] = '.'
           if (this.cursor.x == 0) {
             //this.moveBy(0, -1)
           }
@@ -277,22 +279,16 @@ const defineMode = (name, func) => modes[name] = { name, ...func(grid) }
 
 const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
-const pickRandom = array => {
-  for (let index = 0; index < array.length; index++) {
-    if (Math.random() > 0.5) return array[index]
-  }
-}
+const pickRandom = array => array[Math.floor(Math.random()*array.length)]
 
 const allModes = () => Object.keys(modes).filter(m => m != 'prompt')
 
 const randomMode = () => pickRandom(allModes())
 
 const getMode = name => modes[name] || {}
-const currentModeName = grid => {
-  return Object.entries(modes).find(([name, mode]) => {
-    if (mode === grid.mode) return name
-  })[0];
-}
+const matchMode = grid => ([_, mode]) => mode === grid.mode
+const currentModeName = grid => Object.entries(modes).find(matchMode(grid))[0]
+const modeLevel = grid => Object.entries(modes).findIndex(matchMode(grid))
 
 const modeSwitcher = ({
   startupTime = 500,
@@ -323,6 +319,7 @@ const modeSwitcher = ({
     //console.log('switching from', phase, 'to start')
     if (phase != null && phase != undefined && phase != 'preboot' && phase != 'switch') return
     phase = 'start'
+    currentLevel = 0
     startedAt = millis()
     // move to back to the origin when starting a new mode
     // this keeps it out of the way in the prompt mode
@@ -374,7 +371,10 @@ const modeSwitcher = ({
 //const modeTitle = grid => grid.mode.title || currentModeName(grid)
 //const modeInfo = grid => grid.mode.info || currentModeName(grid)
 
-const modeTitle = grid => grid.mode.title
-const modeInfo = grid => grid.mode.info
-const modeShowPrompt = grid => grid.mode.showPrompt
+const modeTitle = grid => grid.mode.level
+  ? `LEVEL ${modeLevel(grid)}: ${grid.mode.title}`
+  : grid.mode.title
 
+const modeInfo = grid => grid.mode.info
+
+const modeShowPrompt = grid => grid.mode.showPrompt

@@ -87,16 +87,17 @@ defineMode("spell", grid => {
   }
 
   return {
+    level: true,
     title: 
-      "\nLEVEL 8: SPELL & SPEAK \n--------------------------- \
-      Alphabetical sequencing. With an 808 on the side.",
+      "SPELL & SPEAK\n-----------------------\
+      Alphabetical sequencing with an 808 on the side.",
     info: 
-      "\n[1-9] 808 drum kit\n\
-      [a-z] alphabet\n\
-      [space] play row\n\
-      [arrow] move cursor\n\
+      "\n[1-9] place sample\n\
+      [a-z] say letter\n\
+      [space] select row\n\
+      [arrows] move cursor\n\
       [delete] clear sample\n\
-      [tab] last level\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,
@@ -109,6 +110,7 @@ defineMode("spell", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      grid.moveTo(7,0)
     },
     // unload is called when the mode actually unloads
     unload() {

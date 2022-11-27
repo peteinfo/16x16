@@ -87,19 +87,27 @@ defineMode("off-the-grid", grid => {
     timer = setTimeout(tick, playhead.interval)
   }
 
+  const jumpToRow = () => {
+    track = grid.cursor.y
+    print("jump to row " + 16 * grid.cursor.y)
+    playhead.min = 16 * grid.cursor.y
+    playhead.max = 16 * grid.cursor.y + 15
+    playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
+  }
+
   return {
-    title:
-      "\nLEVEL 16: OFF THE GRID  \
-      --------------------------- \
-      The sequencing has taken a toll and the foundations of the grid become loose. Brownian motion sequencing ensues.",
+    level: true,
+    title: 
+      "OFF GRID\n----------------------\n\
+      The sequencing has taken tolls. The foundations of the grid become loose. Brownian motion sequencing ensues. Entropy unrolls.",
 
     info:
-      "\n[1-9] chime\
+      "\n[1-9] place sample\
       \n[0] goto start of row\
-      \n[space] play row\
-      \n[arrow] move cursor\
+      \n[space] select row\
+      \n[arrows] move cursor\
       \n[delete] clear sample\
-      \n[tab] last level\n\
+      \n[tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,
@@ -110,7 +118,9 @@ defineMode("off-the-grid", grid => {
     },
 
     init() {
-      track = 0
+      grid.moveTo(7,7)
+      jumpToRow()
+      // track = 7
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
@@ -118,7 +128,6 @@ defineMode("off-the-grid", grid => {
       // create a drift array to nudge the grids off
       driftX = Array(grid.sequence.length).fill(0)
       driftY = Array(grid.sequence.length).fill(0)
-
     },
     // unload is called when the mode actually unloads
     unload() {
@@ -136,12 +145,7 @@ defineMode("off-the-grid", grid => {
         //grid.advanceBy(1)
       } else if (key.key == ' ') {
         // if space is pressed then jump playhead to that position
-
-        track = grid.cursor.y
-        print("jump to row " + 16 * grid.cursor.y)
-        playhead.min = 16 * grid.cursor.y
-        playhead.max = 16 * grid.cursor.y + 15
-        playhead.pos = 16 * grid.cursor.y + playhead.pos % 16
+        jumpToRow()
       }
     },
 

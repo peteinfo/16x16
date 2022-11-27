@@ -9,18 +9,20 @@ defineMode("ripples", grid => {
     colour: [random(80, 100), random(100, 140), random(110, 200)]
   })
   return {
-    title:
-      "\nLEVEL 9: RIPPLES \n--------------------------- \
+    level: true,
+    title: 
+      "RIPPLES\n-----------------\n\
       Take a break from sequencing and drop a pebble in the pond.",
 
     info:
       "\n[1-9] drop a pebble \
-      \n[arrow] move cursor\
-      \n[delete] clear sample\
-      \n[tab] last level\
+      \n[arrows] move cursor\
+      \n[tab] prev level\
       \n[enter] next level",
 
     showPrompt: false,
+
+    immutable: true,
 
     preload() {
       sample = loadSound('./samples/long-samples/stream.mp3')
@@ -31,6 +33,7 @@ defineMode("ripples", grid => {
       //sample.volume(0.5)
       sample.play()
       ripples.clear
+      grid.moveTo(7,7)
     },
     
     unload() {
@@ -39,7 +42,7 @@ defineMode("ripples", grid => {
     },
 
     onKey(key) {
-    
+      if (grid.sequence[grid.cursor.index] !== '.') return
       if (key.key.match(/^[1-9]$/)) {
 
         let stones = ['O', '0', 'o']

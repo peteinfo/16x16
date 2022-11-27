@@ -147,16 +147,16 @@ defineMode("15-blank", grid => {
 
   return {
 
-    title:
-      "\nLEVEL 15: DISTURB\
-       --------------------------- \
-      Disturb the surface by placing one obstacle in a row",
+    level: true,
+    title: 
+      "WAVEPOOL\n\-----------------\n\
+      Back to visuals. Create some waves by placing numbers one to nine.",
 
       info:
-      "\n[1-9] strength of displacement \n\
-      [arrow] move cursor\n\
-      [delete] clear sample\n\
-      [tab] last level\n\
+      "\n[1-9] make wave\n\
+      [arrows] move cursor\n\
+      [delete] calm down\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,
@@ -170,6 +170,7 @@ defineMode("15-blank", grid => {
       timer = setTimeout(tick, playhead.interval)
       disturber=new Disturber(unitOf(16), unitOf(16))
       grid.sequence.fill('.')
+      grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads
     unload() {

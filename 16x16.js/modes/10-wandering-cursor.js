@@ -94,16 +94,17 @@ defineMode("wandering-cursor", grid => {
   }
 
   return {
-    title:
-      "\nLEVEL 10: WANDERING CURSOR \n--------------------------- \
+    level: true,
+    title: 
+      "WANDERING CURSOR\n--------------------------\n\
        Let the automated cursor do the work for you. Decide whether to fight the cursor or let it guide you in new directions.",
     info: 
-      "\n[1-9] 808 drum kit\
+      "\n[1-9] place sample\
        \n[a-z] alphabet\
-       \n[space] play row\
-       \n[arrow] move cursor\
+       \n[space] select row\
+       \n[arrows] shove cursor\
        \n[delete] clear sample\
-       \n[tab] last level\
+       \n[tab] prev level\
        \n[enter] next level",
        
     showPrompt: true,
@@ -125,6 +126,7 @@ defineMode("wandering-cursor", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads
     unload() {

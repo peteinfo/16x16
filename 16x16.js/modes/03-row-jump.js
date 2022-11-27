@@ -91,14 +91,14 @@ defineMode("row-jump", grid => {
   }
 
   return {
-    title: "\nLEVEL 3: JUMP TO A ROW \
-            --------------------------- \
+    level: true,
+    title: "JUMP TO A ROW\n-----------------------\n\
             Create a pattern on each row. Press SPACE to play the row that the cursor is on.",
-    info: " \n[1-9] kalimba\
-            \n[space] play row\
-            \n[arrow] move cursor\
+    info: " \n[1-9] place sample\
+            \n[space] select row\
+            \n[arrows] move cursor\
             \n[delete] clear sample\
-            [tab] last level\
+            [tab] prev level\
             \n[enter] next level\
             ",
 
@@ -113,6 +113,7 @@ defineMode("row-jump", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      grid.moveTo(0,7)
     },
     // unload is called when the mode actually unloads
     unload() {

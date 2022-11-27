@@ -87,16 +87,14 @@ defineMode("subtract", grid => {
   }
 
   return {
-    title: 
-      "\nLEVEL 11: CHIP AWAY \n--------------------------- \
-      A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within. This is a one way process.",
+    level: true,
+    title: "THE SCULPTURE\n-------------------\n\
+      A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within.",
       
     info: 
-      "\n[1-9] kalimba \
-      \n[a-z] synth pad \
-      \n[arrow] move cursor\
+      "\n[arrows] move cursor\
       \n[delete] chip away\
-      \n[tab] last level\n\
+      \n[tab] prev level\n\
       [enter] next level",
 
     showPrompt: true,
@@ -114,7 +112,7 @@ defineMode("subtract", grid => {
         if (ascii > 57) ascii += 39
         grid.sequence[n] = String.fromCharCode(ascii)
       }
-
+      grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads
     unload() {

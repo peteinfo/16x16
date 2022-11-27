@@ -60,18 +60,18 @@ defineMode("14-blank", grid => {
   ]
 
   const arcTypes={
-    a:{rIn:0.0,rOut:0.3,col:cols[0]},
-    b:{rIn:0.1,rOut:0.7,col:cols[1]},
-    c:{rIn:0.2,rOut:0.5,col:cols[2]},
-    d:{rIn:0.3,rOut:0.7,col:cols[3]},
-    e:{rIn:0.4,rOut:0.6,col:cols[4]},
-    f:{rIn:0.9,rOut:0.3,col:cols[5]},
-    g:{rIn:0.5,rOut:0.9,col:cols[0]},
-    h:{rIn:0.9,rOut:0.7,col:cols[1]},
-    i:{rIn:0.5,rOut:0.9,col:cols[2]},
-    j:{rIn:0.7,rOut:0.2,col:cols[3]},
-    k:{rIn:0.6,rOut:0.4,col:cols[4]},
-    l:{rIn:0.7,rOut:0.2,col:cols[5]},
+    0:{rIn:0.0,rOut:0.3,col:cols[0]},
+    1:{rIn:0.1,rOut:0.7,col:cols[1]},
+    2:{rIn:0.2,rOut:0.5,col:cols[2]},
+    3:{rIn:0.3,rOut:0.7,col:cols[3]},
+    4:{rIn:0.4,rOut:0.6,col:cols[4]},
+    5:{rIn:0.9,rOut:0.3,col:cols[5]},
+    6:{rIn:0.5,rOut:0.9,col:cols[0]},
+    7:{rIn:0.9,rOut:0.7,col:cols[1]},
+    8:{rIn:0.5,rOut:0.9,col:cols[2]},
+    9:{rIn:0.7,rOut:0.2,col:cols[3]},
+    // :{rIn:0.6,rOut:0.4,col:cols[4]},
+    // :{rIn:0.7,rOut:0.2,col:cols[5]},
   }
   class ArcRenderer{
     constructor(){
@@ -157,16 +157,16 @@ defineMode("14-blank", grid => {
 
   return {
 
-    title:
-      "\nLEVEL 14: RADIALS\
-       --------------------------- \
-      a-l triggers a visual arc that fades",
+    level: true,
+    title: 
+      "ARC AID\n----------------\n\
+      Let's try visuals again. Place numbers in the grid to create evolving visual arcs. Enjoy!",
 
       info:
-      "\n[a-l] radial move \n\
-      [arrow] move cursor\n\
-      [delete] clear sample\n\
-      [tab] last level\n\
+      "\n[0-9] place arc \n\
+      [arrows] move cursor\n\
+      [delete] remove arc\n\
+      [tab] prev level\n\
       [enter] next level",
 
     showPrompt: false,
@@ -181,6 +181,7 @@ defineMode("14-blank", grid => {
       timer = setTimeout(tick, playhead.interval)
 
       grid.sequence.fill('.')
+      grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads
     unload() {
@@ -194,7 +195,7 @@ defineMode("14-blank", grid => {
     },
 
     onKey(key) {
-      if (key.key.match(/^[a-l]$/)) {
+      if (key.key.match(/^[0-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
       } else if (key.key == 'Enter') {

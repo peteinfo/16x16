@@ -18,13 +18,14 @@ defineMode("game-of-life", grid => {
   const birthRandCell = () => grid.setRandomCell(liveCell())
 
   return {
-    title: "\nLEVEL 10: CELLULAR AUTOMATA \n--------------------------- \
+    level: true,
+    title: "CELLULAR AUTOMATA \n--------------------------- \
     Let the pattern evolve.\
     \n",
 info: "\n[space] add cells \
     \n\
     \n[tab] next level \
-    \n[esc] last level ",
+    \n[esc] prev level ",
     preload() {
 
     },
