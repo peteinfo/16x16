@@ -34,19 +34,20 @@ defineMode("credits", grid => {
         break;
       default:
     }
+    questionAnswer = `We gave OpenAI questions and prompts to guide our design process:
+    
+    ${questionAnswer}`
     timer = setTimeout(tick, interval)
   }
 
   return {
     title: 
-      "16x16 CREDTIS\n-------------\n\
-      Thanks for playing!\
-      \n\nCreated in 2022 by: \
+      "CREDITS\n-------\
+      \n\nThanks for playing!\
+      \n\n16x16 was created in 2022 by:\
       \n- Pete Bennett \
       \n- Jens Ewald \
-      \n- Dave Webb \
-      \n\nInspired by the Orca live-coding language. \
-      \n\nDesign process and oblique prompts guided by OpenAI:",
+      \n- Dave Webb",
     info:
       "[enter] return to start",
 
@@ -111,7 +112,7 @@ defineMode("credits", grid => {
       textSize(unitOf(0.5))
       textLeading(unitOf(1.0))
       textAlign(LEFT, TOP)
-      text(questionAnswer, unitOf(1.5), unitOf(3), unitOf(13.5), unitOf(12))
+      text(questionAnswer, unitOf(1.5), unitOf(2), unitOf(13.5), unitOf(12))
     },
   }
 })
