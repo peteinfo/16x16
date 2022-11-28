@@ -1,4 +1,4 @@
-defineMode("7-segment", grid => {
+defineMode("seven-segment", grid => {
 
   let currentVal = 0
   let rapples=[]
@@ -238,8 +238,8 @@ defineMode("7-segment", grid => {
 
     level: true,
     title: 
-      "7 SEGMENT\n-------------------\n\
-      Let's try visuals again here. Place numbers in the grid to create evolving seven segment visual. Enjoy!",
+      "SEVEN SEGMENT\n-------------------\n\
+      Let's try visuals again here. Place numbers in the grid to create evolving seven segment visuals.",
 
     info:
       "\n[0-9] place visuals\n\

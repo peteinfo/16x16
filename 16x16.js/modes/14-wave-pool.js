@@ -1,4 +1,4 @@
-defineMode("15-blank", grid => {
+defineMode("wave-pool", grid => {
 
   let timer // for being able to cancel the setTimeout call on exit
   let samples

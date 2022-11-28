@@ -1,4 +1,4 @@
-defineMode("14-blank", grid => {
+defineMode("arc-aid", grid => {
   let arcRenderer
 
   let timer // for being able to cancel the setTimeout call on exit

@@ -99,7 +99,7 @@ defineMode("off-the-grid", grid => {
     level: true,
     title: 
       "OFF GRID\n----------------------\n\
-      The sequencing has taken tolls. The foundations of the grid become loose. Brownian motion sequencing ensues. Entropy unrolls.",
+      The sequencing has taken it's toll on the grid. The foundations become loose and Brownian motion jiggles the grid into a state of higher entropy.",
 
     info:
       "\n[1-9] place sample\

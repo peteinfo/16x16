@@ -1,4 +1,4 @@
-defineMode("eight-track", grid => {
+defineMode("parallels", grid => {
 
   let interval = 200
   let playheads = []

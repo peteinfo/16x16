@@ -1,4 +1,4 @@
-defineMode("eight-track-select", grid => {
+defineMode("eight-track", grid => {
 
   let track = 0
   let timer // for being able to cancel the setTimeout call on exit

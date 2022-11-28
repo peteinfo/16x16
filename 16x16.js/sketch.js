@@ -22,18 +22,18 @@ let levels = [
   "first-steps",
   "full-grid",
   "row-jump",
-  "stream",
-  "eight-track-select",
-  "rain",
-  "eight-track",
   "spell",
-  "ripples",
-  "wandering-cursor",
-  "subtract",
+  "ripples",        // VISUALS
+  "parallels",
+  "rain",
+  "arc-aid",        // VISUALS
+  "sculpture",
+  "stream",
+  "seven-segment",  // VISUALS
+  "eight-track",
   "jump-back",
-  "7-segment",
-  "14-blank",
-  "15-blank",
+  "wave-pool",      // VISUALS
+  "wandering-cursor",
   "off-the-grid",
   "credits"
 ]
