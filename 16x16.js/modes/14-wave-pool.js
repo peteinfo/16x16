@@ -1,6 +1,7 @@
 defineMode("wave-pool", grid => {
 
   let timer // for being able to cancel the setTimeout call on exit
+  let backgroundSample
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/nothing/0",
@@ -149,7 +150,7 @@ defineMode("wave-pool", grid => {
 
     level: true,
     title: 
-      "WAVEPOOL\n\-----------------\n\
+      "WAVEPOOL\n\------------------\n\
       Back to visuals. Create some waves by placing numbers one to nine.",
 
       info:
@@ -165,6 +166,12 @@ defineMode("wave-pool", grid => {
     },
 
     init() {
+      backgroundSample = new Howl({
+        src: ['./samples/long-samples/hiddenconstruct-macrosurface.mp3', './samples/long-samples/hiddenconstruct-macrosurface.wav'],
+        autoplay: true,
+        loop: true,
+        volume: 0.4
+      })
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
       //setTimeout(tick, playhead.interval)
       timer = setTimeout(tick, playhead.interval)
@@ -176,9 +183,7 @@ defineMode("wave-pool", grid => {
     unload() {
       // delete samples array
       samples.length = 0;
-    },
-
-    unload() {
+      backgroundSample.stop()
       clearTimeout(timer)
     },
 

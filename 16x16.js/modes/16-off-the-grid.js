@@ -4,18 +4,19 @@ defineMode("off-the-grid", grid => {
   let driftX
   let drfitY
   let timer // for being able to cancel the setTimeout call on exit
+  let backgroundSample
   let samples
   let sampleFiles = [
      /* 00 - 0 */ "./samples/nothing/0",
-    /* 01 - 1 */ "./samples/metal/01",
-    /* 02 - 2 */ "./samples/metal/02",
-    /* 03 - 3 */ "./samples/metal/03",
-    /* 04 - 4 */ "./samples/metal/04",
-    /* 05 - 5 */ "./samples/metal/05",
-    /* 06 - 6 */ "./samples/metal/06",
-    /* 07 - 7 */ "./samples/metal/07",
-    /* 08 - 8 */ "./samples/metal/08",
-    /* 09 - 9 */ "./samples/metal/09"
+    /* 01 - 1 */ "./samples/mars-strange/01",
+    /* 02 - 2 */ "./samples/mars-strange/02",
+    /* 03 - 3 */ "./samples/mars-strange/03",
+    /* 04 - 4 */ "./samples/mars-strange/04",
+    /* 05 - 5 */ "./samples/mars-strange/05",
+    /* 06 - 6 */ "./samples/mars-strange/06",
+    /* 07 - 7 */ "./samples/mars-strange/07",
+    /* 08 - 8 */ "./samples/mars-strange/08",
+    /* 09 - 9 */ "./samples/mars-strange/09"
     // /* 10 - a */ "./samples/metal/01",
     // /* 10 - a */ "./samples/metal/02",
     // /* 10 - a */ "./samples/metal/03",
@@ -98,7 +99,7 @@ defineMode("off-the-grid", grid => {
   return {
     level: true,
     title: 
-      "OFF GRID\n----------------------\n\
+      "OFF GRID\n------------------\n\
       The sequencing has taken it's toll on the grid. The foundations become loose and Brownian motion jiggles the grid into a state of higher entropy.",
 
     info:
@@ -123,6 +124,12 @@ defineMode("off-the-grid", grid => {
       // track = 7
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
+      backgroundSample = new Howl({
+        src: ['./samples/long-samples/telex.wav', './samples/long-samples/telex.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.4
+      })
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
 
       // create a drift array to nudge the grids off
@@ -133,6 +140,7 @@ defineMode("off-the-grid", grid => {
     unload() {
       // delete samples array
       samples.length = 0;
+      backgroundSample.stop()
       clearTimeout(timer)
     },
 

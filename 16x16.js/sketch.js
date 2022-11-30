@@ -42,7 +42,7 @@ var currentLevel = 0
 
 const { active, start, idle, whatState } = modeSwitcher({
   startupTime: 1000,
-  idleTime: 60000, // 60 seconds until system gets bored and moves right back to start page
+  idleTime: 180000, // 3 minutes until system gets bored and moves right back to start page
   transitionTime: 1000,
 })
 

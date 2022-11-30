@@ -87,7 +87,7 @@ defineMode("jump-back", grid => {
 
   return {
     level: true,
-    title: "GO TO START\n-------------------\n\
+    title: "GOTO START\n--------------------\n\
       A zero will jump the playhead back to the beginning of the row.",
       
     info: 

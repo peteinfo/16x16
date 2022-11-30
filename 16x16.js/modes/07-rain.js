@@ -2,6 +2,7 @@ defineMode("rain", grid => {
 
   let playheads = []
   let timers = []      // for being able to cancel the setTimeout call on exit
+  let backgroundSample
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/nothing/0",
@@ -74,7 +75,9 @@ defineMode("rain", grid => {
         sampleToPlay = grid.sequence[playheads[n].pos].charCodeAt(0) - 87
       }
 
-      //samples[sampleToPlay].rate(2)
+      if (sampleToPlay < 5) {
+        samples[sampleToPlay].rate(0.5)
+      }
       //samples[sampleToPlay].stop()
       samples[sampleToPlay].play()
     }
@@ -83,7 +86,7 @@ defineMode("rain", grid => {
 
   return {
     level: true,
-    title: "LIKE SAMPLES IN RAIN \n------------------------------ \
+    title: "LIKE SAMPLES IN RAIN \n----------------------------- \
             Playheads stream down the window. Try to find some order in the noise.",
     info: "\n\
             [1-9] place sample\n\
@@ -108,13 +111,20 @@ defineMode("rain", grid => {
       }
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
-      grid.moveTo(7,8)
+      backgroundSample = new Howl({
+        src: ['./samples/long-samples/rain-window.wav', './samples/long-samples/rain-window.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.4
+      })
+      grid.moveTo(7, 8)
     },
 
     // unload is called when the mode actually unloads
     unload() {
       // delete samples array
-      samples.length = 0;
+      samples.length = 0
+      backgroundSample.stop()
 
       for (n = 0; n < timers.length; n++) {
         clearTimeout(timers[n])

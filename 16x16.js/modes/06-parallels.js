@@ -80,6 +80,8 @@ defineMode("parallels", grid => {
 
         //samples[sampleToPlay].rate(1)
         //samples[sampleToPlay].stop()
+        samples[sampleToPlay].stereo(-1 + 0.25*n)
+        samples[sampleToPlay].volume(0.4)
         samples[sampleToPlay].play()
       }
     }
@@ -88,8 +90,8 @@ defineMode("parallels", grid => {
 
   return {
     level: true,
-    title: "PARALLELS\n-------------------\
-            Eight tracks play simultaneously.",
+    title: "PARALLELS\n------------------\
+            Eight tracks play simultaneously across the stereo field.",
     info: "\n[1-9] place sample\
             [arrows] move cursor\
             [delete] clear sample\n\
@@ -127,7 +129,7 @@ defineMode("parallels", grid => {
     },
 
     onKey(key) {
-      if (key.key.match(/^[0-9a-z]$/)) {
+      if (key.key.match(/^[1-9]$/)) {
         grid.sequence[grid.cursor.index] = key.key
         //grid.advanceBy(1)
       }

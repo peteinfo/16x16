@@ -11,8 +11,8 @@ defineMode("ripples", grid => {
   return {
     level: true,
     title: 
-      "RIPPLES\n-----------------\n\
-      Take a break from sequencing and drop a pebble in the pond.",
+      "RIPPLES\n----------------\n\
+      Take a break from sequencing and drop a pebble in the stream.",
 
     info:
       "\n[1-9] drop a pebble \
@@ -32,6 +32,7 @@ defineMode("ripples", grid => {
       grid.sequence.fill('.')
       //sample.volume(0.5)
       sample.play()
+      sample.amp(0.3)
       ripples.clear
       grid.moveTo(7,7)
     },

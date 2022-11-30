@@ -90,7 +90,7 @@ defineMode("first-steps", grid => {
 
     level: true,
     title: 
-      "FIRST (16) STEPS\n--------------------------\n\
+      "FIRST (16) STEPS\n-------------------------\n\
       Build a sequence in the top row. Place one of nine samples using the number keys.\
       ",
 

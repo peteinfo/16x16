@@ -2,48 +2,49 @@ defineMode("eight-track", grid => {
 
   let track = 0
   let timer // for being able to cancel the setTimeout call on exit
+  let backgroundSample
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/nothing/0",
-    /* 01 - 1 */ "./samples/piano/01",
-    /* 02 - 2 */ "./samples/piano/02",
-    /* 03 - 3 */ "./samples/piano/03",
-    /* 04 - 4 */ "./samples/piano/04",
-    /* 05 - 5 */ "./samples/piano/05",
-    /* 06 - 6 */ "./samples/piano/06",
-    /* 07 - 7 */ "./samples/piano/07",
-    /* 08 - 8 */ "./samples/piano/08",
-    /* 09 - 9 */ "./samples/piano/09",
-    /* 10 - a */ "./samples/kalimba/10",
-    /* 10 - a */ "./samples/kalimba/11",
-    /* 10 - a */ "./samples/kalimba/12",
-    /* 10 - a */ "./samples/kalimba/13",
-    /* 10 - a */ "./samples/kalimba/14",
-    /* 11 - b */ "./samples/kalimba/15",
-    /* 12 - c */ "./samples/kalimba/16",
-    /* 13 - d */ "./samples/kalimba/17",
-    /* 14 - e */ "./samples/kalimba/18",
-    /* 15 - f */ "./samples/kalimba/19",
-    /* 16 - g */ "./samples/kalimba/20",
-    /* 17 - h */ "./samples/kalimba/21",
-    /* 18 - i */ "./samples/kalimba/22",
-    /* 19 - j*/  "./samples/kalimba/23",
-    /* 20 - k */ "./samples/kalimba/24",
-    /* 21 - l */ "./samples/kalimba/25",
-    /* 22 - m */ "./samples/kalimba/26",
-    /* 23 - n */ "./samples/kalimba/27",
-    /* 24 - o */ "./samples/kalimba/28",
-    /* 25 - p */ "./samples/kalimba/00",
-    /* 26 - q */ "./samples/kalimba/01",
-    /* 27 - r */ "./samples/kalimba/02",
-    /* 28 - s */ "./samples/kalimba/03",
-    /* 29 - t */ "./samples/kalimba/04",
-    /* 30 - u */ "./samples/kalimba/05",
-    /* 31 - v */ "./samples/kalimba/06",
-    /* 32 - w */ "./samples/kalimba/07",
-    /* 33 - x */ "./samples/kalimba/08",
-    /* 34 - y */ "./samples/kalimba/09",
-    /* 35 - z */ "./samples/kalimba/10"
+    /* 01 - 1 */ "./samples/mars-wood/01",
+    /* 02 - 2 */ "./samples/mars-wood/02",
+    /* 03 - 3 */ "./samples/mars-wood/03",
+    /* 04 - 4 */ "./samples/mars-wood/04",
+    /* 05 - 5 */ "./samples/mars-wood/05",
+    /* 06 - 6 */ "./samples/mars-wood/06",
+    /* 07 - 7 */ "./samples/mars-wood/07",
+    /* 08 - 8 */ "./samples/mars-wood/08",
+    /* 09 - 9 */ "./samples/mars-wood/09",
+    // /* 10 - a */ "./samples/kalimba/10",
+    // /* 10 - a */ "./samples/kalimba/11",
+    // /* 10 - a */ "./samples/kalimba/12",
+    // /* 10 - a */ "./samples/kalimba/13",
+    // /* 10 - a */ "./samples/kalimba/14",
+    // /* 11 - b */ "./samples/kalimba/15",
+    // /* 12 - c */ "./samples/kalimba/16",
+    // /* 13 - d */ "./samples/kalimba/17",
+    // /* 14 - e */ "./samples/kalimba/18",
+    // /* 15 - f */ "./samples/kalimba/19",
+    // /* 16 - g */ "./samples/kalimba/20",
+    // /* 17 - h */ "./samples/kalimba/21",
+    // /* 18 - i */ "./samples/kalimba/22",
+    // /* 19 - j*/  "./samples/kalimba/23",
+    // /* 20 - k */ "./samples/kalimba/24",
+    // /* 21 - l */ "./samples/kalimba/25",
+    // /* 22 - m */ "./samples/kalimba/26",
+    // /* 23 - n */ "./samples/kalimba/27",
+    // /* 24 - o */ "./samples/kalimba/28",
+    // /* 25 - p */ "./samples/kalimba/00",
+    // /* 26 - q */ "./samples/kalimba/01",
+    // /* 27 - r */ "./samples/kalimba/02",
+    // /* 28 - s */ "./samples/kalimba/03",
+    // /* 29 - t */ "./samples/kalimba/04",
+    // /* 30 - u */ "./samples/kalimba/05",
+    // /* 31 - v */ "./samples/kalimba/06",
+    // /* 32 - w */ "./samples/kalimba/07",
+    // /* 33 - x */ "./samples/kalimba/08",
+    // /* 34 - y */ "./samples/kalimba/09",
+    // /* 35 - z */ "./samples/kalimba/10"
   ]
 
   class Playhead {
@@ -93,7 +94,7 @@ defineMode("eight-track", grid => {
   return {
     level: true,
     title: "EIGHT-TRACK \n---------------------\
-           The perfect sequencer to accompany a road trip. Select which of the eight tracks to play by pressing SPACE.",
+           Eight tracks of everyday percussion accompanied by cafe ambience. Select which track to play by pressing SPACE.",
 
     info: "\n\
             [1-9] place sample\
@@ -114,11 +115,18 @@ defineMode("eight-track", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      backgroundSample = new Howl({
+        src: ['./samples/long-samples/dareshack.wav', './samples/long-samples/dareshack.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.3
+      })
     },
     // unload is called when the mode actually unloads
     unload() {
       // delete samples array
       samples.length = 0;
+      backgroundSample.stop()
       clearTimeout(timer)
     },
 

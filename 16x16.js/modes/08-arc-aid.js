@@ -3,6 +3,7 @@ defineMode("arc-aid", grid => {
 
   let timer // for being able to cancel the setTimeout call on exit
   let samples
+  let backgroundSample
   let sampleFiles = [
     /* 00 - 0 */ "./samples/nothing/0",
     /* 01 - 1 */ "./samples/synth-plip/01",
@@ -14,32 +15,32 @@ defineMode("arc-aid", grid => {
     /* 07 - 7 */ "./samples/synth-plip/07",
     /* 08 - 8 */ "./samples/synth-plip/08",
     /* 09 - 9 */ "./samples/synth-plip/09",
-    /* 10 - a */ "./samples/nothing/0",
-    /* 11 - b */ "./samples/nothing/0",
-    /* 12 - c */ "./samples/nothing/0",
-    /* 13 - d */ "./samples/nothing/0",
-    /* 14 - e */ "./samples/nothing/0",
-    /* 15 - f */ "./samples/nothing/0",
-    /* 16 - g */ "./samples/nothing/0",
-    /* 17 - h */ "./samples/nothing/0",
-    /* 18 - i */ "./samples/nothing/0",
-    /* 19 - j */ "./samples/nothing/0",
-    /* 20 - k */ "./samples/nothing/0",
-    /* 21 - l */ "./samples/nothing/0",
-    /* 22 - m */ "./samples/nothing/0",
-    /* 23 - n */ "./samples/nothing/0",
-    /* 24 - o */ "./samples/nothing/0",
-    /* 25 - p */ "./samples/nothing/0",
-    /* 26 - q */ "./samples/nothing/0",
-    /* 27 - r */ "./samples/nothing/0",
-    /* 28 - s */ "./samples/nothing/0",
-    /* 29 - t */ "./samples/nothing/0",
-    /* 30 - u */ "./samples/nothing/0",
-    /* 31 - v */ "./samples/nothing/0",
-    /* 32 - w */ "./samples/nothing/0",
-    /* 33 - x */ "./samples/nothing/0",
-    /* 34 - y */ "./samples/nothing/0",
-    /* 35 - z */ "./samples/nothing/0"
+    // /* 10 - a */ "./samples/nothing/0",
+    // /* 11 - b */ "./samples/nothing/0",
+    // /* 12 - c */ "./samples/nothing/0",
+    // /* 13 - d */ "./samples/nothing/0",
+    // /* 14 - e */ "./samples/nothing/0",
+    // /* 15 - f */ "./samples/nothing/0",
+    // /* 16 - g */ "./samples/nothing/0",
+    // /* 17 - h */ "./samples/nothing/0",
+    // /* 18 - i */ "./samples/nothing/0",
+    // /* 19 - j */ "./samples/nothing/0",
+    // /* 20 - k */ "./samples/nothing/0",
+    // /* 21 - l */ "./samples/nothing/0",
+    // /* 22 - m */ "./samples/nothing/0",
+    // /* 23 - n */ "./samples/nothing/0",
+    // /* 24 - o */ "./samples/nothing/0",
+    // /* 25 - p */ "./samples/nothing/0",
+    // /* 26 - q */ "./samples/nothing/0",
+    // /* 27 - r */ "./samples/nothing/0",
+    // /* 28 - s */ "./samples/nothing/0",
+    // /* 29 - t */ "./samples/nothing/0",
+    // /* 30 - u */ "./samples/nothing/0",
+    // /* 31 - v */ "./samples/nothing/0",
+    // /* 32 - w */ "./samples/nothing/0",
+    // /* 33 - x */ "./samples/nothing/0",
+    // /* 34 - y */ "./samples/nothing/0",
+    // /* 35 - z */ "./samples/nothing/0"
   ]
   
   // const cols=[[200,30,30],
@@ -160,7 +161,7 @@ defineMode("arc-aid", grid => {
     level: true,
     title: 
       "ARC AID\n----------------\n\
-      Let's try visuals again. Place numbers in the grid to create evolving visual arcs. Enjoy!",
+      Back to concentrating on the visuals. Place numbers in the grid to create evolving patterns of arcs.",
 
       info:
       "\n[0-9] place arc \n\
@@ -177,6 +178,12 @@ defineMode("arc-aid", grid => {
     init() {
       arcRenderer=new ArcRenderer()
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      backgroundSample = new Howl({
+        src: ['./samples/long-samples/hiddenconstruct-microstructure.wav', './samples/long-samples/hiddenconstruct-microstructure.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.5
+      })
       //setTimeout(tick, playhead.interval)
       timer = setTimeout(tick, playhead.interval)
 
@@ -188,10 +195,9 @@ defineMode("arc-aid", grid => {
       arcRenderer=null
       // delete samples array
       samples.length = 0;
-    },
-
-    unload() {
+      backgroundSample.stop()
       clearTimeout(timer)
+
     },
 
     onKey(key) {

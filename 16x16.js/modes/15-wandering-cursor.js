@@ -88,6 +88,8 @@ defineMode("wandering-cursor", grid => {
 
       //samples[sampleToPlay].rate(1)
       //samples[sampleToPlay].stop()
+
+      samples[sampleToPlay].volume(0.5)
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)

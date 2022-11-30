@@ -4,6 +4,7 @@
 
 defineMode("credits", grid => {
 
+  let backgroundSample
   let sample
   let quotes
   let quotePointer
@@ -61,6 +62,12 @@ defineMode("credits", grid => {
     },
 
     init() {
+      backgroundSample = new Howl({
+        src: ['./samples/long-samples/hiddenconstruct-eventloop.mp3', './samples/long-samples/hiddenconstruct-eventloop.wav'],
+        autoplay: true,
+        loop: true,
+        volume: 0.3
+      })
       sample = new Howl({
         src: ['./samples/fx/blip.mp3']
       })
@@ -74,6 +81,7 @@ defineMode("credits", grid => {
 
     unload() {
       clearTimeout(timer)
+      backgroundSample.stop()
     },
 
     onKey(key) {

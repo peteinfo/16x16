@@ -81,6 +81,7 @@ defineMode("spell", grid => {
 
       //samples[sampleToPlay].rate(1)
       //samples[sampleToPlay].stop()
+      samples[sampleToPlay].volume(0.5)
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
@@ -89,7 +90,7 @@ defineMode("spell", grid => {
   return {
     level: true,
     title: 
-      "SPELL & SPEAK\n-----------------------\
+      "SPELL & SPEAK\n----------------------\
       Alphabetical sequencing with an 808 on the side.",
     info: 
       "\n[1-9] place sample\n\

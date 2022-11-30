@@ -85,6 +85,7 @@ defineMode("row-jump", grid => {
 
       //samples[sampleToPlay].rate(1)
       //samples[sampleToPlay].stop()
+      samples[sampleToPlay].volume(0.3)
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
@@ -92,7 +93,7 @@ defineMode("row-jump", grid => {
 
   return {
     level: true,
-    title: "JUMP TO A ROW\n-----------------------\n\
+    title: "JUMP TO A ROW\n----------------------\n\
             Create a pattern on each row. Press SPACE to play the row that the cursor is on.",
     info: " \n[1-9] place sample\
             \n[space] select row\

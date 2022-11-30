@@ -80,7 +80,7 @@ defineMode("sculpture", grid => {
 
       //samples[sampleToPlay].rate(1)
       //samples[sampleToPlay].stop()
-      samples[sampleToPlay].volume(0.5)
+      samples[sampleToPlay].volume(0.2)
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
@@ -88,7 +88,7 @@ defineMode("sculpture", grid => {
 
   return {
     level: true,
-    title: "THE SCULPTURE\n-------------------\n\
+    title: "THE SCULPTURE\n----------------------\n\
       A pristine block of samples stands in front of you. Use the delete key to chip away and release the form within.",
       
     info: 

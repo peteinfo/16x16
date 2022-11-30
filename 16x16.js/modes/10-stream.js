@@ -1,6 +1,7 @@
 defineMode("stream", grid => {
 
   let timer // for being able to cancel the setTimeout call on exit
+  let backgroundSample
   let samples
   let sampleFiles = [
     /* 00 - 0 */ "./samples/nothing/0",
@@ -99,6 +100,7 @@ defineMode("stream", grid => {
 
       //samples[sampleToPlay].rate(1)
       //samples[sampleToPlay].stop()
+      samples[sampleToPlay].volume(0.6)
       samples[sampleToPlay].play()
     }
     timer = setTimeout(tick, playhead.interval)
@@ -124,12 +126,19 @@ defineMode("stream", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      backgroundSample = new Howl({
+        src: ['./samples/long-samples/stream2.wav', './samples/long-samples/stream2.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.2
+      })
       grid.moveTo(7,0)
     },
     // unload is called when the mode actually unloads
     unload() {
       // delete samples array
       samples.length = 0;
+      backgroundSample.stop()
       clearTimeout(timer)
     },
 
