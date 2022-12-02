@@ -14,32 +14,32 @@ defineMode("wave-pool", grid => {
     /* 07 - 7 */ "./samples/synth-plip/07",
     /* 08 - 8 */ "./samples/synth-plip/08",
     /* 09 - 9 */ "./samples/synth-plip/09",
-    /* 10 - a */ "./samples/nothing/0",
-    /* 11 - b */ "./samples/nothing/0",
-    /* 12 - c */ "./samples/nothing/0",
-    /* 13 - d */ "./samples/nothing/0",
-    /* 14 - e */ "./samples/nothing/0",
-    /* 15 - f */ "./samples/nothing/0",
-    /* 16 - g */ "./samples/nothing/0",
-    /* 17 - h */ "./samples/nothing/0",
-    /* 18 - i */ "./samples/nothing/0",
-    /* 19 - j */ "./samples/nothing/0",
-    /* 20 - k */ "./samples/nothing/0",
-    /* 21 - l */ "./samples/nothing/0",
-    /* 22 - m */ "./samples/nothing/0",
-    /* 23 - n */ "./samples/nothing/0",
-    /* 24 - o */ "./samples/nothing/0",
-    /* 25 - p */ "./samples/nothing/0",
-    /* 26 - q */ "./samples/nothing/0",
-    /* 27 - r */ "./samples/nothing/0",
-    /* 28 - s */ "./samples/nothing/0",
-    /* 29 - t */ "./samples/nothing/0",
-    /* 30 - u */ "./samples/nothing/0",
-    /* 31 - v */ "./samples/nothing/0",
-    /* 32 - w */ "./samples/nothing/0",
-    /* 33 - x */ "./samples/nothing/0",
-    /* 34 - y */ "./samples/nothing/0",
-    /* 35 - z */ "./samples/nothing/0"
+    // /* 10 - a */ "./samples/nothing/0",
+    // /* 11 - b */ "./samples/nothing/0",
+    // /* 12 - c */ "./samples/nothing/0",
+    // /* 13 - d */ "./samples/nothing/0",
+    // /* 14 - e */ "./samples/nothing/0",
+    // /* 15 - f */ "./samples/nothing/0",
+    // /* 16 - g */ "./samples/nothing/0",
+    // /* 17 - h */ "./samples/nothing/0",
+    // /* 18 - i */ "./samples/nothing/0",
+    // /* 19 - j */ "./samples/nothing/0",
+    // /* 20 - k */ "./samples/nothing/0",
+    // /* 21 - l */ "./samples/nothing/0",
+    // /* 22 - m */ "./samples/nothing/0",
+    // /* 23 - n */ "./samples/nothing/0",
+    // /* 24 - o */ "./samples/nothing/0",
+    // /* 25 - p */ "./samples/nothing/0",
+    // /* 26 - q */ "./samples/nothing/0",
+    // /* 27 - r */ "./samples/nothing/0",
+    // /* 28 - s */ "./samples/nothing/0",
+    // /* 29 - t */ "./samples/nothing/0",
+    // /* 30 - u */ "./samples/nothing/0",
+    // /* 31 - v */ "./samples/nothing/0",
+    // /* 32 - w */ "./samples/nothing/0",
+    // /* 33 - x */ "./samples/nothing/0",
+    // /* 34 - y */ "./samples/nothing/0",
+    // /* 35 - z */ "./samples/nothing/0"
   ]
 
   let disturber
@@ -83,21 +83,24 @@ defineMode("wave-pool", grid => {
       translate(unitOf(8), unitOf(8))
       scale(width/w, height/h)
       translate(-unitOf(8), -unitOf(8))
+      fill(10, 235, 205, 20)       // PETE: I've made it green
       renderSurface()
       pop()
-      // push()
-      // translate(unitOf(8), unitOf(8))
-      // scale(width/w*1.0223,height/h*1.0421)
-      // translate(-unitOf(8), -unitOf(8))
-      // renderSurface()
-      // pop()
-      // push()
-      // translate(unitOf(8), unitOf(8))
-      // scale(width/w*1.132,height/h*1.0512)
-      // translate(-unitOf(7.7), -unitOf(8))
-      // renderSurface()
-      // pop()
-      disturber.ey+=(homeY-disturber.ey)/25
+      push()
+      translate(unitOf(8), unitOf(8))
+      scale(width/w*1.1223,height/h*1.0421)
+      translate(-unitOf(7), -unitOf(8))
+      fill(0, 255, 135, 20)       // PETE: I've made it green
+      renderSurface()
+      pop()
+      push()
+      translate(unitOf(8), unitOf(8))
+      scale(width/w*1.332,height/h*1.19512)
+      translate(-unitOf(10), -unitOf(8))
+      fill(0, 255, 105, 20)       // PETE: I've made it green
+      renderSurface()
+      pop()
+      disturber.ey+=(homeY-disturber.ey)/45
     }
 
     function renderSurface(){
@@ -110,14 +113,14 @@ defineMode("wave-pool", grid => {
         let distFromMouse=abs(xPos-disturber.x)/width;
         strength=map(distFromMouse,0,1,strengthMin,strengthMax);
         damp=map(distFromMouse,0,1,dampMin,dampMax);
-        vel[i]+=(disturber.ey-yPos[i])*strength/7;     // PETE: I've slowed it down a bit
+        vel[i]+=(disturber.ey-yPos[i])*strength/12;     // PETE: I've slowed it down a bit
         yPos[i]+=vel[i];
-        vertex(xPos, 300 + yPos[i]/2);      // PETE: playing with vertical position
+        vertex(xPos, 320 + yPos[i]/2);      // PETE: playing with vertical position
         vel[i]*=(1-damp);
       }
       vertex(w, h)
       vertex(0,h)
-      fill(0, 255, 155, 25)       // PETE: I've made it green
+      //fill(0, 255, 155, 20)       // PETE: I've made it green
       noStroke();
       endShape()
     }
@@ -149,8 +152,9 @@ defineMode("wave-pool", grid => {
         break
       }
     }
+
     if(activePos>-1){
-      disturber.disturb((activePos+1)*(unitOfOne()), 1.3*unitOf(16)*valAsNum/9)
+      disturber.disturb((activePos+1)*(unitOfOne()), 1.0*unitOf(8) - 1.0*unitOf(8)*valAsNum/9)
     } 
     // console.log(playhead.pos, fromIndex(playhead.pos).y, activePos, valAsNum)
     //disturb the surface at this x position and this value as a disturbance magnitude and direction
@@ -168,7 +172,7 @@ defineMode("wave-pool", grid => {
       info:
       "\n[1-9] make wave\n\
       [arrows] move cursor\n\
-      [delete] calm down\n\
+      [delete] calm wave\n\
       [tab] prev level\n\
       [enter] next level",
 
