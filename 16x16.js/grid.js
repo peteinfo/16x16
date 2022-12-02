@@ -143,7 +143,7 @@ const setupGrid = (width, height) => {
             currentLevel = 0;
           }
           currentPrompt = random(prompts)
-          this.moveTo(0,0)
+          this.moveTo(0, 0)
           useMode(levels[currentLevel])
           break
         case "Tab":
@@ -152,7 +152,7 @@ const setupGrid = (width, height) => {
             currentLevel = levels.length - 1
           }
           currentPrompt = random(prompts)
-          this.moveTo(0,0)
+          this.moveTo(0, 0)
           useMode(levels[currentLevel])
           break
         case "ArrowRight":
@@ -173,9 +173,11 @@ const setupGrid = (width, height) => {
         case "ArrowDown":
           this.moveBy(0, 1)
           break;
+        case "Delete":
         case "Backspace":
-          if(!this.mode.immutable) this.sequence[this.cursor.index] = '.'
+          if (!this.mode.immutable) this.sequence[this.cursor.index] = '.'
           if (this.cursor.x == 0) {
+            // for typing style delete
             //this.moveBy(0, -1)
           }
           //this.moveBy(-1, 0)
@@ -279,7 +281,7 @@ const defineMode = (name, func) => modes[name] = { name, ...func(grid) }
 
 const preloadModes = () => Object.values(modes).forEach(mode => (mode.preload && mode.preload()))
 
-const pickRandom = array => array[Math.floor(Math.random()*array.length)]
+const pickRandom = array => array[Math.floor(Math.random() * array.length)]
 
 const allModes = () => Object.keys(modes).filter(m => m != 'prompt')
 
