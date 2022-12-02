@@ -70,7 +70,7 @@ function setup() {
 const blinking = (on, off) => (millis() % 1000) > 500 ? on : off
 
 // shortest width divided by 25 (leaving a border of 2 on each side around grid)
-const unitOfOne = () => Math.min(windowWidth, windowHeight) / 26
+const unitOfOne = () => Math.min(windowWidth, windowHeight) / 22
 //const unitOfOne = () => Math.min(windowWidth / 40, windowHeight / 25)
 const unitOf = scale => unitOfOne() * scale
 

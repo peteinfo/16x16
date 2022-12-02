@@ -1,8 +1,3 @@
-- [ ] turn off screensaver
-- [ ] DELETE
-  - [ ] remove del key 
-  - [ ] OR add delete key in code
-- [ ] enticer music on opening screen
 - [ ] Sound levels
   - [ ] Lv 3 down a bit on all samples
 - [ ] STREAM
