@@ -1,4 +1,4 @@
-defineMode("wave-pool", grid => {
+defineMode("wave-pool-backup", grid => {
 
   let timer // for being able to cancel the setTimeout call on exit
   let backgroundSample
@@ -81,22 +81,10 @@ defineMode("wave-pool", grid => {
       //renderSurface()
       push()
       translate(unitOf(8), unitOf(8))
-      scale(width/w, height/h)
+      scale(width/w,height/h)
       translate(-unitOf(8), -unitOf(8))
       renderSurface()
       pop()
-      // push()
-      // translate(unitOf(8), unitOf(8))
-      // scale(width/w*1.0223,height/h*1.0421)
-      // translate(-unitOf(8), -unitOf(8))
-      // renderSurface()
-      // pop()
-      // push()
-      // translate(unitOf(8), unitOf(8))
-      // scale(width/w*1.132,height/h*1.0512)
-      // translate(-unitOf(7.7), -unitOf(8))
-      // renderSurface()
-      // pop()
       disturber.ey+=(homeY-disturber.ey)/25
     }
 
