@@ -268,7 +268,7 @@ defineMode("seven-segment", grid => {
         return new Rapple(gridPos.index, gridPos.x, gridPos.y, s)
       })
       backgroundSample = new Howl({
-        src: ['./samples/long-samples/hiddenconstruct-wavedisk.mp3', './samples/long-samples/hiddenconstruct-wavedisk.wav'],
+        src: ['./samples/long-samples/hiddenconstruct-wavedisk.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.4

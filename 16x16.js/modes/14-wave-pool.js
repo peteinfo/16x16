@@ -183,12 +183,12 @@ defineMode("wave-pool", grid => {
 
     init() {
       backgroundSample = new Howl({
-        src: ['./samples/long-samples/hiddenconstruct-macrosurface.mp3', './samples/long-samples/hiddenconstruct-macrosurface.wav'],
+        src: ['./samples/long-samples/hiddenconstruct-macrosurface.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.4
       })
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
       //setTimeout(tick, playhead.interval)
       timer = setTimeout(tick, playhead.interval)
       disturber=new Disturber(unitOf(16), unitOf(16))

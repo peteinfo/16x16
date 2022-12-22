@@ -125,12 +125,12 @@ defineMode("off-the-grid", grid => {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
       backgroundSample = new Howl({
-        src: ['./samples/long-samples/telex.wav', './samples/long-samples/telex.mp3'],
+        src: ['./samples/long-samples/telex.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.4
       })
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
 
       // create a drift array to nudge the grids off
       driftX = Array(grid.sequence.length).fill(0)

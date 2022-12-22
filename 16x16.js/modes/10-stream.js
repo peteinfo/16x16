@@ -125,9 +125,9 @@ defineMode("stream", grid => {
     init() {
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
       backgroundSample = new Howl({
-        src: ['./samples/long-samples/stream2.wav', './samples/long-samples/stream2.mp3'],
+        src: ['./samples/long-samples/stream2.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.2

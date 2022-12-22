@@ -104,7 +104,7 @@ defineMode("sculpture", grid => {
     },
 
     init() {
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
       timer = setTimeout(tick, playhead.interval)
       //grid.sequence.fill('.')
       for (n in grid.sequence) {

@@ -177,9 +177,9 @@ defineMode("arc-aid", grid => {
 
     init() {
       arcRenderer=new ArcRenderer()
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
       backgroundSample = new Howl({
-        src: ['./samples/long-samples/hiddenconstruct-microstructure.wav', './samples/long-samples/hiddenconstruct-microstructure.mp3'],
+        src: ['./samples/long-samples/hiddenconstruct-microstructure.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.5

@@ -113,7 +113,7 @@ defineMode("parallels", grid => {
         playheads[n] = new Playhead(n * 32, n * 32 + 32)
       }
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
 
       timer = setTimeout(tick, interval)
 

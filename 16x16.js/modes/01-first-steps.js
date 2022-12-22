@@ -107,7 +107,7 @@ defineMode("first-steps", grid => {
     },
 
     init() {
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
       //setTimeout(tick, playhead.interval)
       timer = setTimeout(tick, playhead.interval)
 

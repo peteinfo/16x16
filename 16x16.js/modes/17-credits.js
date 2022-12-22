@@ -63,7 +63,7 @@ defineMode("credits", grid => {
 
     init() {
       backgroundSample = new Howl({
-        src: ['./samples/long-samples/hiddenconstruct-eventloop.mp3', './samples/long-samples/hiddenconstruct-eventloop.wav'],
+        src: ['./samples/long-samples/hiddenconstruct-eventloop.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.3

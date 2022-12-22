@@ -127,7 +127,7 @@ defineMode("wandering-cursor", grid => {
       track = 0
       timer = setTimeout(tick, playhead.interval)
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
       grid.moveTo(7,7)
     },
     // unload is called when the mode actually unloads

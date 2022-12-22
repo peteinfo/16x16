@@ -110,9 +110,9 @@ defineMode("rain", grid => {
         timers[n] = setTimeout(tick, playheads[n].interval, n)
       }
       grid.sequence.fill('.')
-      samples = sampleFiles.map(x => new Howl({ src: [x + ".wav", x + ".mp3"] }))
+      samples = sampleFiles.map(x => new Howl({ src: [x + ".mp3"] }))
       backgroundSample = new Howl({
-        src: ['./samples/long-samples/rain-window.wav', './samples/long-samples/rain-window.mp3'],
+        src: ['./samples/long-samples/rain-window.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.4
